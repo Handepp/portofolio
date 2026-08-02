@@ -1,709 +1,164 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="scroll-smooth" lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>All Projects | Reyhan Devara</title>
-  <link rel="icon" type="image/x-icon" href="/assets/img/Name_Logo.png">
-
-  <!-- Bootstrap CSS -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-  />
-
-  <!-- Bootstrap Icons -->
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-  />
-
-  <!-- Google Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- Custom CSS -->
+  <link rel="icon" type="image/x-icon" href="assets/img/Name_Logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100;300;400;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Sora', 'sans-serif'] },
+          colors: {
+            brand: '#00d1ff',
+            surface: '#0e1417',
+            'surface-bright': '#333a3d',
+            'surface-lowest': '#090f12',
+            'surface-low': '#161d1f',
+          },
+          borderRadius: { custom: '8px' },
+        },
+      },
+    };
+  </script>
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
-<body>
+<body class="font-sans antialiased selection:bg-brand selection:text-surface bg-surface text-slate-200">
 
-  <!-- Navbar -->
-  <header class="site-header">
-    <nav class="navbar navbar-expand-lg">
-      <div class="container">
-        <a class="navbar-brand logo" href="index.html#home">
-          <img src="assets/img/Name_Logo.png" alt="Logo Portfolio" />
-        </a>
-
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#mainNavbar"
-          aria-controls="mainNavbar"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span><i class="bi bi-list"></i></span>
+  <nav class="fixed top-0 w-full z-50 bg-surface-lowest/80 backdrop-blur-md border-b border-white/5 transition-all duration-300" id="mainNavbar">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-20 items-center">
+        <a href="index.html#home" class="flex-shrink-0"><img src="assets/img/Name_Logo.png" alt="Logo" class="h-10 w-auto" /></a>
+        <div class="hidden md:flex space-x-10 text-sm font-semibold tracking-wide uppercase">
+          <a class="hover:text-brand transition-colors" href="index.html#home">Home</a>
+          <a class="hover:text-brand transition-colors" href="index.html#about">About</a>
+          <a class="hover:text-brand transition-colors" href="index.html#skills">Skills</a>
+          <a class="text-brand" href="projects.html">Projects</a>
+          <a class="hover:text-brand transition-colors" href="index.html#contact">Contact</a>
+        </div>
+        <button type="button" class="md:hidden p-2 text-slate-300 hover:text-brand" id="navToggle" aria-label="Toggle navigation">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
-
-        <div class="collapse navbar-collapse justify-content-end" id="mainNavbar">
-          <ul class="navbar-nav align-items-lg-center gap-lg-2">
-            <li class="nav-item"><a class="nav-link" href="index.html#home">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.html#skills">Skills</a></li>
-            <li class="nav-item"><a class="nav-link active" href="projects.html">Projects</a></li>
-            <li class="nav-item"><a class="nav-link nav-contact" href="index.html#contact">Contact</a></li>
-          </ul>
+      </div>
+      <div class="hidden md:hidden pb-4" id="mobileMenu">
+        <div class="flex flex-col gap-2 text-sm font-semibold tracking-wide uppercase">
+          <a class="py-2 hover:text-brand" href="index.html#home">Home</a>
+          <a class="py-2 hover:text-brand" href="index.html#about">About</a>
+          <a class="py-2 hover:text-brand" href="index.html#skills">Skills</a>
+          <a class="py-2 text-brand" href="projects.html">Projects</a>
+          <a class="py-2 hover:text-brand" href="index.html#contact">Contact</a>
         </div>
       </div>
-    </nav>
-  </header>
+    </div>
+  </nav>
 
-  <!-- Projects Hero -->
-  <section class="projects-page-hero">
-    <div class="container">
-      <div class="projects-page-header text-center">
-        <span class="section-badge">Portfolio</span>
-        <h1 class="projects-page-title">All Projects</h1>
-        <p class="projects-page-subtitle">
-          A collection of projects in AI, embedded systems, and software development.
-        </p>
-
-        <a href="index.html#projects" class="btn custom-btn-secondary mt-3">
-          <i class="bi bi-arrow-left me-2"></i>Back to Home
-        </a>
-      </div>
+  <section class="pt-36 pb-12 reveal-section">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="text-brand font-bold text-sm uppercase tracking-widest block mb-4">Portfolio</span>
+      <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">All Projects</h1>
+      <p class="text-slate-400 max-w-2xl mx-auto text-lg mb-8">A collection of projects in AI, embedded systems, and software development.</p>
+      <a href="index.html#projects" class="inline-flex items-center px-6 py-3 border border-brand/30 text-brand font-bold rounded-custom hover:bg-brand/10 transition-colors">
+        <svg class="mr-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+        Back to Home
+      </a>
     </div>
   </section>
 
-  <!-- Projects Grid -->
-  <section class="projects-page-section">
-    <div class="container">
-      <div class="row g-4">
-
-        <!-- Project 1 -->
-        <div class="col-lg-4 col-md-6">
-          <div class="project-card">
-            <div class="project-image">
-              <img src="assets/img/projects/thumbnail/labore.png" alt="Linear Position Tracking System using Rotary Encoder">
-            </div>
-
-            <div class="project-content">
-              <span class="project-tag">Embedded System</span>
-
-              <h3 class="project-title">Linear Position Tracking System using Rotary Encoder</h3>
-
-              <div class="project-meta small text-muted mb-2">
-                <p class="mb-0 developed-unictive"><strong>Developed at:</strong> Unictive</p>
-                <p class="mb-0"><strong>Year:</strong> 2025</p>
-              </div>
-
-              <p class="project-description">
-                Embedded system for tracking linear rail position accurately using a rotary encoder
-                and synchronizing movement data with interactive content.
-              </p>
-
-              <div class="project-tech">
-                <span>Embedded C</span>
-                <span>ESP32</span>
-                <span>Rotary Encoder</span>
-                <span>Bluetooth</span>
-                <span>EasyEDA</span>
-              </div>
-
-              <div class="project-links">
-                <a href="https://github.com/username/repository-name" target="_blank" class="project-link github-link">
-                  <i class="bi bi-github"></i>
-                  <span>GitHub</span>
-                </a>
-
-                <a href="project-linear-position.html" class="project-link details-link">
-                  <span>Details</span>
-                  <i class="bi bi-arrow-right-circle"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 2 -->
-        <div class="col-lg-4 col-md-6">
-            <div class="project-card">
-            <div class="project-image">
-                <img src="assets/img/projects/thumbnail/sgm.jpeg" alt="AI Face Processing and Virtual Makeup System">
-            </div>
-            <div class="project-content">
-                <span class="project-tag">Artificial Intelligence</span>
-                <h3 class="project-title">AI Face Processing and Virtual Makeup System</h3>
-                <div class="project-meta small text-muted mb-2">
-                  <p class="mb-0 developed-unictive"><strong>Developed at:</strong> Unictive</p>
-                  <p class="mb-0"><strong>Year:</strong> 2025</p>
-                </div>
-                <p class="project-description">
-                  AI-powered system that processes facial images for virtual makeup application and enhancement using advanced algorithms.
-                </p>
-                <div class="project-tech">
-                <span>Python</span>
-                <span>GFPGAN</span>
-                <span>Mediapipe</span>
-                <span>FastAPI</span>
-                <span>OpenCV</span>
-                </div>
-
-                <div class="project-links">
-                <a href="https://github.com/username/repository-name" target="_blank" class="project-link github-link">
-                  <i class="bi bi-github"></i>
-                  <span>GitHub</span>
-                </a>
-
-                <a href="project-linear-position.html" class="project-link details-link">
-                  <span>Details</span>
-                  <i class="bi bi-arrow-right-circle"></i>
-                </a>
-              </div>
-
-            </div>
-            </div>
-        </div>
-
-        <!-- Project 3 -->
-        <div class="col-lg-4 col-md-6">
-          <div class="project-card">
-            <div class="project-image">
-              <img src="assets/img/projects/thumbnail/giias_rmbg.jpg" alt="Project 3">
-            </div>
-            <div class="project-content">
-              <span class="project-tag">Artificial Intelligence</span>
-              <h3 class="project-title">AI Background Removal Photobooth System</h3>
-              <div class="project-meta small text-muted mb-2">
-                <p class="mb-0 developed-unictive"><strong>Developed at:</strong> Unictive</p>
-                <p class="mb-0"><strong>Year:</strong> 2025</p>
-              </div>
-              <p class="project-description">
-          AI-powered photobooth system that removes backgrounds in real-time for enhanced photography experiences.
-              </p>
-              <div class="project-tech">
-                <span>Python</span>
-                <span>PIL</span>
-                <span>OpenCV</span>
-                <span>FastAPI</span>
-              </div>
-              <div class="project-links">
-          <a href="https://github.com/username/repository-name" target="_blank" class="project-link github-link">
-            <i class="bi bi-github"></i>
-            <span>GitHub</span>
-          </a>
-          <a href="project-giias-rmbg.html" class="project-link details-link">
-            <span>Details</span>
-            <i class="bi bi-arrow-right-circle"></i>
-          </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Project 4 -->
-        <div class="col-lg-4 col-md-6">
-          <div class="project-card">
-            <div class="project-image">
-              <img src="assets/img/projects/thumbnail/giias_footstep.jpg" alt="Project 4">
-            </div>
-            <div class="project-content">
-              <span class="project-tag">Embedded System</span>
-              <h3 class="project-title">Interactive Footstep Game Controller System</h3>
-              <div class="project-meta small text-muted mb-2">
-                <p class="mb-0 developed-unictive"><strong>Developed at:</strong> Unictive</p>
-                <p class="mb-0"><strong>Year:</strong> 2025</p>
-              </div>
-              <p class="project-description">
-                Embedded system that allows users to interact with a game through footstep controls, enhancing the gaming experience.
-              </p>
-              <div class="project-tech">
-                <span>Embedded C</span>
-                <span>Arduino Pro Micro</span>
-                <span>HID Keyboard</span>
-                <span>Serial Communication</span>
-              </div>
-              <div class="project-links">
-                <a href="#" class="project-link github-link">
-                  <i class="bi bi-github"></i>
-                  <span>GitHub</span>
-                </a>
-                <a href="#" class="project-link details-link">
-                  <span>Details</span>
-                  <i class="bi bi-arrow-right-circle"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 5 -->
-        <div class="col-lg-4 col-md-6">
-          <div class="project-card">
-            <div class="project-image">
-              <img src="assets/img/projects/thumbnail/giias_arcade.jpg" alt="Project 5">
-            </div>
-            <div class="project-content">
-              <span class="project-tag">Embedded System</span>
-              <h3 class="project-title">Arcade Game Controller System</h3>
-              <div class="project-meta small text-muted mb-2">
-                <p class="mb-0 developed-unictive"><strong>Developed at:</strong> Unictive</p>
-                <p class="mb-0"><strong>Year:</strong> 2025</p>
-              </div>
-              <p class="project-description">
-                Embedded system that allows users to interact with a game through an arcade-style controller, enhancing the gaming experience.
-              </p>
-              <div class="project-tech">
-                <span>Embedded C</span>
-                <span>ESP32</span>
-                <span>Bluetooth</span>
-              </div>
-              <div class="project-links">
-                <a href="#" class="project-link github-link">
-                  <i class="bi bi-github"></i>
-                  <span>GitHub</span>
-                </a>
-                <a href="#" class="project-link details-link">
-                  <span>Details</span>
-                  <i class="bi bi-arrow-right-circle"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 6 -->
-        <div class="col-lg-4 col-md-6">
-          <div class="project-card">
-            <div class="project-image">
-              <img src="assets/img/projects/thumbnail/fitbar.jpg" alt="Project 6">
-            </div>
-            <div class="project-content">
-              <span class="project-tag">Embedded System</span>
-              <h3 class="project-title">Rotational Speed Detection and LED Control System</h3>
-              <div class="project-meta small text-muted mb-2">
-                <p class="mb-0 developed-unictive"><strong>Developed at:</strong> Unictive</p>
-                <p class="mb-0"><strong>Year:</strong> 2025</p>
-              </div>
-              <p class="project-description">
-                Embedded system that detects rotational speed and controls LED indicators accordingly for real-time feedback.
-              </p>
-              <div class="project-tech">
-                <span>Python</span>
-                <span>Embedded C</span>
-                <span>ESP32</span>
-                <span>Hall Sensor</span>
-                <span>Relay</span>
-                <span>MAX7219</span>
-              </div>
-              <div class="project-links">
-                <a href="#" class="project-link github-link">
-                  <i class="bi bi-github"></i>
-                  <span>GitHub</span>
-                </a>
-                <a href="#" class="project-link details-link">
-                  <span>Details</span>
-                  <i class="bi bi-arrow-right-circle"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 7 -->
-        <div class="col-lg-4 col-md-6">
-          <div class="project-card">
-            <div class="project-image">
-              <img src="assets/img/projects/thumbnail/liftandlearn.jpeg" alt="Load Cell Interactive Display System">
-            </div>
-            <div class="project-content">
-              <span class="project-tag">Embedded System</span>
-              <h3 class="project-title">Load Cell Interactive Display System</h3>
-              <div class="project-meta small text-muted mb-2">
-                <p class="mb-0 developed-unictive"><strong>Developed at:</strong> Unictive</p>
-                <p class="mb-0"><strong>Year:</strong> 2025</p>
-              </div>
-              <p class="project-description">
-                Embedded system that uses load cells to create an interactive display, providing real-time feedback based on user interactions.
-              </p>
-              <div class="project-tech">
-                <span>Embedded C</span>
-                <span>Python</span>
-                <span>TKinter</span>
-                <span>ESP32</span>
-                <span>Load Cell Sensor</span>
-                <span>HX711</span>
-                <span>Bluetooth</span>
-              </div>
-              <div class="project-links">
-                <a href="#" class="project-link github-link">
-                  <i class="bi bi-github"></i>
-                  <span>GitHub</span>
-                </a>
-                <a href="#" class="project-link details-link">
-                  <span>Details</span>
-                  <i class="bi bi-arrow-right-circle"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 8 -->
-        <div class="col-lg-4 col-md-6">
-          <div class="project-card">
-            <div class="project-image">
-              <img src="assets/img/projects/thumbnail/haluuxbintang_presence.jpg" alt="Project 8">
-            </div>
-            <div class="project-content">
-              <span class="project-tag">Embedded System</span>
-              <h3 class="project-title">Interactive Presence Detection System</h3>
-              <div class="project-meta small text-muted mb-2">
-                <p class="mb-0 developed-unictive"><strong>Developed at:</strong> Unictive</p>
-                <p class="mb-0"><strong>Year:</strong> 2025</p>
-              </div>
-              <p class="project-description">
-                Embedded system that detects user presence and provides interactive feedback for enhanced engagement.
-              </p>
-              <div class="project-tech">
-                <span>Embedded C</span>
-                <span>ESP32</span>
-                <span>HTTP</span>
-                <span>Ultrasonic Sensor</span>
-              </div>
-              <div class="project-links">
-                <a href="#" class="project-link github-link">
-                  <i class="bi bi-github"></i>
-                  <span>GitHub</span>
-                </a>
-                <a href="#" class="project-link details-link">
-                  <span>Details</span>
-                  <i class="bi bi-arrow-right-circle"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-          <!-- Project 9 -->
-        <div class="col-lg-4 col-md-6">
-          <div class="project-card">
-            <div class="project-image">
-              <img src="assets/img/projects/thumbnail/haluuxbintang_button.jpg" alt="Project 9">
-            </div>
-            <div class="project-content">
-              <span class="project-tag">Embedded System</span>
-              <h3 class="project-title">Interactive Installation Sequential Control System</h3>
-              <div class="project-meta small text-muted mb-2">
-                <p class="mb-0 developed-unictive"><strong>Developed at:</strong> Unictive</p>
-                <p class="mb-0"><strong>Year:</strong> 2025</p>
-
-              </div>
-              <p class="project-description">
-                Embedded system that detects user presence and provides interactive feedback for enhanced engagement.
-              </p>
-              <div class="project-tech">
-                <span>Embedded C</span>
-                <span>ESP32</span>
-                <span>HTTP</span>
-                <span>Solid State Relay</span>
-              </div>
-              <div class="project-links">
-                <a href="#" class="project-link github-link">
-                  <i class="bi bi-github"></i>
-                  <span>GitHub</span>
-                </a>
-                <a href="#" class="project-link details-link">
-                  <span>Details</span>
-                  <i class="bi bi-arrow-right-circle"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 10 -->
-        <div class="col-lg-4 col-md-6">
-          <div class="project-card">
-            <div class="project-image">
-              <img src="assets/img/projects/thumbnail/wardah_1.jpg" alt="Wardah">
-            </div>
-            <div class="project-content">
-              <span class="project-tag">Artificial Intelligence</span>
-              <h3 class="project-title">Real-Time Object Detection Game System</h3>
-              <div class="project-meta small text-muted mb-2">
-                <p class="mb-0 developed-unictive"><strong>Developed at:</strong> Unictive</p>
-                <p class="mb-0"><strong>Year:</strong> 2024</p>
-              </div>
-              <p class="project-description">
-                Attendance system using facial recognition to automatically identify users
-                and record attendance efficiently.
-              </p>
-              <div class="project-tech">
-                <span>Python</span>
-                <span>OpenCV</span>
-                <span>YOLO</span>
-                <span>Roboflow</span>
-                <span>Flask</span>
-              </div>
-              <div class="project-links">
-                <a href="#" class="project-link github-link">
-                  <i class="bi bi-github"></i>
-                  <span>GitHub</span>
-                </a>
-                <a href="#" class="project-link details-link">
-                  <span>Details</span>
-                  <i class="bi bi-arrow-right-circle"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 11 -->
-        <div class="col-lg-4 col-md-6">
-          <div class="project-card">
-            <div class="project-image">
-              <img src="assets/img/projects/thumbnail/savi.jpg" alt="SAVI">
-            </div>
-            <div class="project-content">
-              <span class="project-tag">Artificial Intelligence and Embedded Systems</span>
-              <h3 class="project-title">SAVI - Autonomous Vehicle with AI Chatbot Control System</h3>
-              <div class="project-meta small text-muted mb-2">
-                <p class="mb-0"><strong>Developed at:</strong> Universitas Padjadjaran</p>
-                <p class="mb-0"><strong>Year:</strong> 2022-2023</p>
-
-              </div>
-              <p class="project-description">
-                Attendance system using facial recognition to automatically identify users
-                and record attendance efficiently.
-              </p>
-              <div class="project-tech">
-                <span>Python</span>
-                <span>Embedded C</span>
-                <span>Arduino Mega</span>
-                <span>Serial Communication</span>
-                <span>Tensorflow</span>
-                <span>BERT</span>
-                <span>HTML</span>
-                <span>CSS</span>
-                <span>Bootstrap</span>
-                <span>Javascript</span>
-              </div>
-              <div class="project-links">
-                <a target="_blank" href="https://github.com/Handepp/SAVIBot-Virtual-Assistant-Bot-for-Interaction-and-Control-of-Smart-Vehicles-BERT-FLASK" class="project-link github-link">
-                  <i class="bi bi-github"></i>
-                  <span>GitHub</span>
-                </a>
-                <a href="#" class="project-link details-link">
-                  <span>Details</span>
-                  <i class="bi bi-arrow-right-circle"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 12 -->
-        <div class="col-lg-4 col-md-6">
-          <div class="project-card">
-            <div class="project-image">
-              <img src="assets/img/projects/thumbnail/gui_syergie.jpg" alt="Smart IoT Monitoring">
-            </div>
-            <div class="project-content">
-              <span class="project-tag">Embedded Systems/IoT</span>
-              <h3 class="project-title">IoT Monitoring and Control System with GUI</h3>
-              <div class="project-meta small text-muted mb-2">
-                <p class="mb-0"><strong>Developed at:</strong> PT. Syergie Indo Prima</p>
-                <p class="mb-0"><strong>Year:</strong> 2022</p>
-              </div>
-              <p class="project-description">
-                IoT-based real-time environmental monitoring system using sensors and a web dashboard.
-              </p>
-              <div class="project-tech">
-                <span>Embedded C</span>
-                <span>ESP32</span>
-                <span>MQTT</span>
-                <span>PyQt</span>
-                <span>QML</span>
-              </div>
-              <div class="project-links">
-                <a target="_blank" href="https://github.com/Handepp/GUI-Waterflow-DHT11-Motor-DC-QML" class="project-link github-link">
-                  <i class="bi bi-github"></i>
-                  <span>GitHub</span>
-                </a>
-                <a href="#" class="project-link details-link">
-                  <span>Details</span>
-                  <i class="bi bi-arrow-right-circle"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 13 -->
-        <div class="col-lg-4 col-md-6">
-          <div class="project-card">
-            <div class="project-image">
-              <img src="assets/img/projects/thumbnail//Bestibot.png" alt="BestiBot - Mental Health Chatbot using BERT">
-            </div>
-            <div class="project-content">
-              <span class="project-tag">Artificial Intelligence</span>
-              <h3 class="project-title">BestiBot - Mental Health Chatbot using BERT</h3>
-              <div class="project-meta small text-muted mb-2">
-                <p class="mb-0"><strong>Developed at:</strong> Orbit Future Academy</p>
-                <p class="mb-0"><strong>Year:</strong> 2022</p>
-              </div>
-              <p class="project-description">
-                Mental health chatbot using BERT for natural language understanding and Flask for backend integration.
-              </p>
-              <div class="project-tech">
-                <span>Python</span>
-                <span>BERT</span>
-                <span>Flask</span>
-                <span>HTML</span>
-                <span>CSS</span>
-                <span>Bootstrap</span>
-                <span>Javascript</span>
-              </div>
-              <div class="project-links">
-                <a target="_blank" href="https://github.com/Handepp/BestiBot-Chatbot-Flask" class="project-link github-link">
-                  <i class="bi bi-github"></i>
-                  <span>GitHub</span>
-                </a>
-                <a href="#" class="project-link details-link">
-                  <span>Details</span>
-                  <i class="bi bi-arrow-right-circle"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 14 -->
-        <div class="col-lg-4 col-md-6">
-          <div class="project-card">
-            <div class="project-image">
-              <img src="assets/img/projects/thumbnail/facerecog.png" alt="Face Recognition Security System">
-            </div>
-            <div class="project-content">
-              <span class="project-tag">Artificial Intelligence</span>
-              <h3 class="project-title">Face Recognition Security System</h3>
-              <div class="project-meta small text-muted mb-2">
-                <p class="mb-0"><strong>Developed at:</strong> Universitas Padjadjaran</p>
-                <p class="mb-0"><strong>Year:</strong> 2021</p>
-              </div>
-              <p class="project-description">
-                Object detection application for identifying targets in real-time images and video streams.
-              </p>
-              <div class="project-tech">
-                <span>Python</span>
-                <span>OpenCV</span>
-                <span>Haar Cascade</span>
-                <span>LBPH</span>
-              </div>
-              <div class="project-links">
-                <a class="d-none" href="#" class="project-link github-link">
-                  <i class="bi bi-github"></i>
-                  <span>GitHub</span>
-                </a>
-                <a href="#" class="project-link details-link">
-                  <span>Details</span>
-                  <i class="bi bi-arrow-right-circle"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 15 -->
-        <div class="col-lg-4 col-md-6">
-          <div class="project-card">
-            <div class="project-image">
-              <img src="assets/img/projects/thumbnail/keran.png" alt="Automatic Handwashing Station using Infrared Sensor">
-            </div>
-            <div class="project-content">
-              <span class="project-tag">Embedded System</span>
-              <h3 class="project-title">Automatic Handwashing Station using Infrared Sensor</h3>
-              <div class="project-meta small text-muted mb-2">
-                <p class="mb-0"><strong>Developed at:</strong> Universitas Padjadjaran</p>
-                <p class="mb-0"><strong>Year:</strong> 2021</p>
-
-              </div>
-              <p class="project-description">
-                Automatic handwashing station that uses an infrared sensor to detect hands and control water flow.
-              </p>
-              <div class="project-tech">
-                <span>Embedded C</span>
-                <span>Arduino Mega</span>
-                <span>Infrared sensor</span>
-                <span>Solenoid Valve</span>
-              </div>
-              <div class="project-links">
-                <a class="d-none" href="#" class="project-link github-link">
-                  <i class="bi bi-github"></i>
-                  <span>GitHub</span>
-                </a>
-                <a href="#" class="project-link details-link">
-                  <span>Details</span>
-                  <i class="bi bi-arrow-right-circle"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 16 -->
-        <div class="col-lg-4 col-md-6">
-          <div class="project-card">
-            <div class="project-image">
-              <img src="assets/img/projects/thumbnail/sarung.png" alt="Ultrasonic Smart Glove for Visually Impaired">
-            </div>
-            <div class="project-content">
-              <span class="project-tag">Embedded System</span>
-              <h3 class="project-title">Ultrasonic Smart Glove for Visually Impaired</h3>
-              <div class="project-meta small text-muted mb-2">
-                <p class="mb-0"><strong>Developed at:</strong> Universitas Padjadjaran</p>
-                <p class="mb-0"><strong>Year:</strong> 2021</p>
-              </div>
-              <p class="project-description">
-                Wearable smart glove that uses ultrasonic sensors to detect obstacles and provide feedback for visually impaired users.
-              </p>
-              <div class="project-tech">
-                <span>Embedded C</span>
-                <span>Arduino Uno</span>
-                <span>Ultrasonic Sensor</span>
-                <span>Buzzer</span>
-              </div>
-              <div class="project-links">
-                <a class="d-none" href="#" class="project-link github-link">
-                  <i class="bi bi-github"></i>
-                  <span>GitHub</span>
-                </a>
-                <a href="#" class="project-link details-link">
-                  <span>Details</span>
-                  <i class="bi bi-arrow-right-circle"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
+  <section class="pb-24 reveal-section">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projectsGrid"></div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="simple-footer text-center">
-    <div class="container">
-      <p class="mb-0">© 2026 Reyhan Devara. All rights reserved.</p>
+  <div id="projectModal" class="project-modal hidden" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalProjectTitle">
+    <div class="project-modal-overlay" data-modal-close></div>
+    <div class="project-modal-dialog">
+      <button type="button" class="project-modal-close" data-modal-close aria-label="Close project details">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+      <div class="project-modal-body">
+        <div class="project-modal-hero">
+          <div class="project-modal-slider" id="modalImageSlider">
+            <button type="button" class="slider-btn slider-prev" id="modalSliderPrev" aria-label="Previous image">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            </button>
+            <div class="slider-viewport">
+              <div class="slider-track" id="modalSliderTrack"></div>
+            </div>
+            <button type="button" class="slider-btn slider-next" id="modalSliderNext" aria-label="Next image">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </button>
+            <div class="slider-counter" id="modalSliderCounter">1 / 1</div>
+            <div class="slider-dots" id="modalSliderDots"></div>
+          </div>
+          <div class="project-modal-hero-content">
+            <span id="modalProjectMeta" class="project-modal-badge">Project</span>
+            <h2 id="modalProjectTitle" class="project-modal-title">Project Title</h2>
+            <p id="modalProjectSummary" class="project-modal-summary"></p>
+            <div id="modalProjectTech" class="project-modal-tech"></div>
+            <div class="project-modal-actions">
+              <a id="modalGithubBtn" href="#" target="_blank" rel="noopener noreferrer" class="project-modal-btn project-modal-btn-primary hidden">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.042-1.416-4.042-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                View on GitHub
+              </a>
+              <button type="button" class="project-modal-btn project-modal-btn-secondary" data-modal-close>Close</button>
+            </div>
+          </div>
+        </div>
+        <div class="project-modal-section" id="modalVideoSection">
+          <h3 class="project-modal-section-title">Demo Video</h3>
+          <div class="project-modal-video-wrap" id="modalVideoWrap">
+            <div id="modalVideoContainer" class="project-modal-video hidden"></div>
+            <div id="modalVideoPlaceholder" class="project-modal-video-placeholder">
+              <svg class="w-10 h-10 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <p>Demo video will be available soon.</p>
+            </div>
+          </div>
+        </div>
+        <div class="project-modal-section project-modal-about">
+          <h3 class="project-modal-section-title">About the Project</h3>
+          <p id="modalAbout" class="project-modal-about-text"></p>
+          <ul id="modalHighlights" class="project-modal-list project-modal-highlights"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="py-12 border-t border-white/5 bg-surface-lowest">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-slate-500 text-sm">© 2026 Reyhan Devara. All rights reserved.</p>
     </div>
   </footer>
 
+  <script src="assets/js/projects-data.js"></script>
+  <script>
+    const grid = document.getElementById("projectsGrid");
+    grid.innerHTML = PROJECTS_ORDER.map((id) => {
+      const p = PROJECTS_DATA[id];
+      return `
+      <article class="project-card project-card-trigger glass-card rounded-custom overflow-hidden group border border-white/5 cursor-pointer" data-project-id="${p.id}" tabindex="0" role="button" aria-label="View ${p.title} details">
+        <div class="aspect-video relative overflow-hidden">
+          <img src="assets/img/projects/thumbnail/${p.img}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          <span class="absolute top-4 left-4 px-3 py-1 bg-brand text-surface text-[10px] font-bold uppercase rounded-sm">${p.tag}</span>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold leading-tight mb-4">${p.title}</h3>
+          <p class="text-slate-400 text-sm mb-6 line-clamp-3">${p.summary}</p>
+          <div class="flex flex-wrap gap-2 mb-4">${p.tech.slice(0, 4).map((t) => `<span class="tech-tag">${t}</span>`).join("")}</div>
+          <p class="text-xs text-slate-500 font-bold uppercase">Year: ${p.year} · ${p.org}</p>
+        </div>
+      </article>`;
+    }).join("");
+
+    if (typeof window.initPortfolioAnimations === "function") {
+      window.initPortfolioAnimations();
+    }
+  </script>
   <script src="assets/js/script.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
