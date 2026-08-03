@@ -33,7 +33,7 @@ window.PROJECTS_DATA = {
       "Delivered a stable embedded prototype for deployment",
     ],
     gallery: ["labore.png"],
-    video: "",
+    video: "https://www.youtube.com/embed/zB8dq26QAPs",
   },
   sgm: {
     id: "sgm",
