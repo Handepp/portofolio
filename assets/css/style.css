@@ -702,10 +702,27 @@ body {
   min-height: 200px;
 }
 
+.project-modal-video-wrap.is-portrait {
+  width: min(100%, 320px);
+  margin-left: auto;
+  margin-right: auto;
+  min-height: auto;
+}
+
+@media (min-width: 768px) {
+  .project-modal-video-wrap.is-portrait {
+    width: min(100%, 360px);
+  }
+}
+
 .project-modal-video {
   position: relative;
   width: 100%;
   padding-top: 56.25%;
+}
+
+.project-modal-video.is-portrait {
+  padding-top: 177.78%;
 }
 
 .project-modal-video iframe {
@@ -728,6 +745,10 @@ body {
   color: #64748b;
   text-align: center;
   font-size: 0.9rem;
+}
+
+.project-modal-video-wrap.is-portrait .project-modal-video-placeholder {
+  min-height: 420px;
 }
 
 .project-modal-about-text {

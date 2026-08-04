@@ -34,6 +34,7 @@ window.PROJECTS_DATA = {
     ],
     gallery: ["labore.png"],
     video: "https://www.youtube.com/embed/zB8dq26QAPs",
+    videoPortrait: true,
   },
   sgm: {
     id: "sgm",
@@ -102,8 +103,13 @@ window.PROJECTS_DATA = {
       "Successfully deployed at exhibition events",
       "Provided smooth real-time user experience",
     ],
-    gallery: ["giias_rmbg.jpg"],
-    video: "",
+    gallery: [
+      "giias_rmbg.jpg",
+      "assets/img/projects/gallery/giias-rmbg/dsc09936.jpg",
+      "assets/img/projects/gallery/giias-rmbg/img_6138.jpg",
+      "assets/img/projects/gallery/giias-rmbg/img_6192.jpg",
+    ],
+    video: "https://www.youtube.com/embed/F72TLEsxbS4",
   },
   "giias-footstep": {
     id: "giias-footstep",
@@ -136,8 +142,12 @@ window.PROJECTS_DATA = {
       "Enabled intuitive physical game interaction",
       "Ran reliably during exhibition sessions",
     ],
-    gallery: ["giias_footstep.jpg"],
-    video: "",
+    gallery: [
+      "giias_footstep.jpg",
+      "assets/img/projects/gallery/giias-footstep/img_6186.jpg",
+      "assets/img/projects/gallery/giias-footstep/img_6350.jpg",
+    ],
+    video: "https://www.youtube.com/embed/xHA6Z1qbb5E",
   },
   "giias-arcade": {
     id: "giias-arcade",
@@ -170,8 +180,12 @@ window.PROJECTS_DATA = {
       "Delivered responsive arcade control experience",
       "Used in client interactive installations",
     ],
-    gallery: ["giias_arcade.jpg"],
-    video: "",
+    gallery: [
+      "giias_arcade.jpg",
+      "assets/img/projects/gallery/giias-arcade/img_6189.jpg",
+      "assets/img/projects/gallery/giias-arcade/img_6271.jpg",
+    ],
+    video: "https://www.youtube.com/embed/FYcYul-Nbos",
   },
   fitbar: {
     id: "fitbar",
@@ -205,8 +219,13 @@ window.PROJECTS_DATA = {
       "Provided engaging real-time visual feedback",
       "Stable operation in demonstration environments",
     ],
-    gallery: ["fitbar.jpg"],
-    video: "",
+    gallery: [
+      "fitbar.jpg",
+      "assets/img/projects/gallery/fitbar/img_5731.jpg",
+      "assets/img/projects/gallery/fitbar/img_5732.jpg",
+      "assets/img/projects/gallery/fitbar/img_5743.jpg",
+    ],
+    video: "https://www.youtube.com/shorts/HoLX4Fy0NQ4",
   },
   "lift-and-learn": {
     id: "lift-and-learn",
@@ -230,7 +249,7 @@ window.PROJECTS_DATA = {
     challenges: ["Load cell calibration stability", "Filtering noise from user interaction"],
     results: ["Delivered reliable lift-to-learn experience", "Used in client product demos"],
     gallery: ["liftandlearn.jpeg"],
-    video: "",
+    video: "https://www.youtube.com/shorts/EYsW_4lp7N0",
   },
   "presence-detection": {
     id: "presence-detection",
@@ -253,7 +272,7 @@ window.PROJECTS_DATA = {
     challenges: ["Avoiding false positives in crowded spaces"],
     results: ["Enabled automatic content activation on approach"],
     gallery: ["haluuxbintang_presence.jpg"],
-    video: "",
+    video: "https://www.youtube.com/shorts/EnHvPIwf-No",
   },
   "sequential-control": {
     id: "sequential-control",
@@ -276,7 +295,7 @@ window.PROJECTS_DATA = {
     challenges: ["Coordinating timing across multiple outputs"],
     results: ["Delivered smooth multi-step user journey"],
     gallery: ["haluuxbintang_button.jpg"],
-    video: "",
+    video: "https://www.youtube.com/shorts/gtmq3XGj05I",
   },
   wardah: {
     id: "wardah",
@@ -322,8 +341,13 @@ window.PROJECTS_DATA = {
     features: ["BERT-based NLP", "Smart vehicle control", "Web-based interface", "Serial embedded integration"],
     challenges: ["Intent recognition consistency", "Mapping language to safe vehicle commands"],
     results: ["Functional autonomous vehicle assistant prototype", "Demonstrated AI-driven vehicle interaction"],
-    gallery: ["savi.jpg", "savi2.png"],
-    video: "",
+    gallery: [
+      "savi.jpg",
+      "savi2.png",
+      "assets/img/projects/gallery/savibot/savi_1.jpg",
+      "assets/img/projects/gallery/savibot/savi_2.jpg",
+    ],
+    video: "https://www.youtube.com/shorts/1xyPHF3GQdo",
   },
   "iot-syergie": {
     id: "iot-syergie",
@@ -345,7 +369,13 @@ window.PROJECTS_DATA = {
     features: ["Real-time MQTT monitoring", "QML dashboard", "Motor and sensor control"],
     challenges: ["Reliable MQTT messaging", "Responsive GUI updates"],
     results: ["Working IoT monitoring prototype for industrial use case"],
-    gallery: ["gui_syergie.jpg"],
+    gallery: [
+      "gui_syergie.jpg",
+      "assets/img/projects/gallery/iot-syergie/dc1.jpg",
+      "assets/img/projects/gallery/iot-syergie/gui_head_2.jpg",
+      "assets/img/projects/gallery/iot-syergie/menit_2.jpg",
+      "assets/img/projects/gallery/iot-syergie/ruangan_normal.jpg",
+    ],
     video: "",
   },
   bestibot: {
@@ -368,7 +398,13 @@ window.PROJECTS_DATA = {
     features: ["BERT NLP", "Web chat interface", "Intent-based responses"],
     challenges: ["Handling sensitive conversational context"],
     results: ["Functional mental health chatbot prototype"],
-    gallery: ["Bestibot.png"],
+    gallery: [
+      "Bestibot.png",
+      "assets/img/projects/gallery/bestibot/bestibot_5.jpg",
+      "assets/img/projects/gallery/bestibot/bestibot_6.jpg",
+      "assets/img/projects/gallery/bestibot/bestibot_6_2.jpg",
+      "assets/img/projects/gallery/bestibot/bestibot_7.jpg",
+    ],
     video: "",
   },
   "face-recognition": {
@@ -414,7 +450,11 @@ window.PROJECTS_DATA = {
     features: ["Contactless activation", "Timed water flow", "Low-cost embedded design"],
     challenges: ["Reliable hand detection", "Water valve timing calibration"],
     results: ["Functional automatic handwashing prototype"],
-    gallery: ["keran.png"],
+    gallery: [
+      "keran.png",
+      "assets/img/projects/gallery/handwashing-station/keran_2.jpg",
+      "assets/img/projects/gallery/handwashing-station/keran_3.jpg",
+    ],
     video: "",
   },
   "smart-glove": {

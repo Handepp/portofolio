@@ -182,6 +182,7 @@ function initProjectModal() {
     tech: document.getElementById("modalProjectTech"),
     githubBtn: document.getElementById("modalGithubBtn"),
     videoContainer: document.getElementById("modalVideoContainer"),
+    videoWrap: document.getElementById("modalVideoWrap"),
     videoPlaceholder: document.getElementById("modalVideoPlaceholder"),
     about: document.getElementById("modalAbout"),
     highlights: document.getElementById("modalHighlights"),
@@ -190,6 +191,14 @@ function initProjectModal() {
   const thumbBase = "assets/img/projects/thumbnail/";
   let currentSlide = 0;
   let slideCount = 0;
+
+  function getImageSrc(imagePath) {
+    if (!imagePath) return "";
+    if (imagePath.startsWith("assets/") || imagePath.startsWith("/")) {
+      return imagePath;
+    }
+    return `${thumbBase}${imagePath}`;
+  }
 
   function renderList(container, items = []) {
     if (!container) return;
@@ -257,7 +266,7 @@ function initProjectModal() {
     els.sliderTrack.innerHTML = uniqueImages
       .map(
         (img) =>
-          `<div class="slider-slide"><img src="${thumbBase}${img}" alt="${title}" loading="lazy" /></div>`
+          `<div class="slider-slide"><img src="${getImageSrc(img)}" alt="${title}" loading="lazy" /></div>`
       )
       .join("");
 
@@ -281,14 +290,47 @@ function initProjectModal() {
     updateSliderPosition();
   }
 
-  function renderVideo(videoUrl) {
+  function normalizeYoutubeEmbed(url) {
+    if (!url) return "";
+    const patterns = [
+      /shorts\/([a-zA-Z0-9_-]+)/,
+      /embed\/([a-zA-Z0-9_-]+)/,
+      /youtu\.be\/([a-zA-Z0-9_-]+)/,
+      /[?&]v=([a-zA-Z0-9_-]+)/,
+    ];
+
+    for (const pattern of patterns) {
+      const match = url.match(pattern);
+      if (match) return `https://www.youtube.com/embed/${match[1]}`;
+    }
+
+    return url.split("?")[0];
+  }
+
+  function isPortraitVideo(url, project) {
+    if (project?.videoPortrait) return true;
+    return /shorts\//i.test(url || "");
+  }
+
+  function getVideoEmbedUrl(url) {
+    const embedUrl = normalizeYoutubeEmbed(url);
+    if (!embedUrl) return "";
+    const separator = embedUrl.includes("?") ? "&" : "?";
+    return `${embedUrl}${separator}autoplay=1&mute=1&playsinline=1`;
+  }
+
+  function renderVideo(videoUrl, project) {
     if (!els.videoContainer || !els.videoPlaceholder) return;
 
     els.videoContainer.innerHTML = "";
+    const portrait = isPortraitVideo(videoUrl, project);
+    els.videoWrap?.classList.toggle("is-portrait", portrait);
+    els.videoContainer.classList.toggle("is-portrait", portrait);
 
     if (!videoUrl) {
       els.videoContainer.classList.add("hidden");
       els.videoPlaceholder.classList.remove("hidden");
+      els.videoWrap?.classList.remove("is-portrait");
       return;
     }
 
@@ -296,7 +338,7 @@ function initProjectModal() {
     els.videoPlaceholder.classList.add("hidden");
     els.videoContainer.innerHTML = `
       <iframe
-        src="${videoUrl}"
+        src="${getVideoEmbedUrl(videoUrl)}"
         title="Project demo video"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen
@@ -317,7 +359,7 @@ function initProjectModal() {
 
     renderTech(project.tech);
     renderList(els.highlights, getHighlights(project));
-    renderVideo(project.video);
+    renderVideo(project.video, project);
 
     if (els.githubBtn) {
       const showGithub = Boolean(project.github);
@@ -341,7 +383,9 @@ function initProjectModal() {
     if (els.videoContainer) {
       els.videoContainer.innerHTML = "";
       els.videoContainer.classList.add("hidden");
+      els.videoContainer.classList.remove("is-portrait");
     }
+    if (els.videoWrap) els.videoWrap.classList.remove("is-portrait");
     if (els.videoPlaceholder) els.videoPlaceholder.classList.remove("hidden");
   }
 
