@@ -30,7 +30,7 @@
       },
     };
   </script>
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/style.css?v=13" />
 </head>
 <body class="font-sans antialiased selection:bg-brand selection:text-surface bg-surface text-slate-200">
 
@@ -75,32 +75,53 @@
   </nav>
 
   <!-- Hero -->
-  <header class="hero-section relative min-h-[calc(100vh-5rem)] flex items-center overflow-hidden" id="home">
+  <header class="hero-section relative h-screen min-h-screen overflow-hidden pt-20 box-border" id="home">
     <div class="hero-bg-glow pointer-events-none" aria-hidden="true"></div>
     <div class="hero-grid-pattern pointer-events-none" aria-hidden="true"></div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative w-full py-16 lg:py-24">
-      <div class="grid lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] gap-12 lg:gap-16 items-center">
-        <!-- Photo -->
-        <div class="order-1 flex justify-center lg:justify-start hero-animate hero-animate-left">
-          <div class="hero-photo-shell">
-            <div class="hero-photo-glow" aria-hidden="true"></div>
-            <div class="hero-photo-frame">
-              <img
-                src="assets/img/handep.jpeg"
-                alt="Reyhan Devara Profile"
-                class="hero-photo"
-              />
-            </div>
-            <div class="hero-photo-badge">
-              <span class="hero-photo-badge-dot"></span>
-              Open to work
-            </div>
-          </div>
-        </div>
+    <div class="hero-vectors pointer-events-none" aria-hidden="true">
+      <svg class="hero-deco hero-deco--blob-a" viewBox="0 0 240 240" fill="none">
+        <path class="hero-deco-blob" d="M58 128c-28-36-8-88 42-98 34-7 72 12 88 44 18 36-2 84-44 98-36 12-74-2-86-44Z" />
+      </svg>
 
-        <!-- Content -->
-        <div class="order-2 text-center lg:text-left hero-animate hero-animate-right">
+      <svg class="hero-deco hero-deco--blob-b" viewBox="0 0 200 200" fill="none">
+        <path class="hero-deco-blob hero-deco-blob--soft" d="M42 104c-18-30 6-68 46-74 28-4 56 14 64 42 10 34-14 66-48 72-30 5-54-16-62-40Z" />
+      </svg>
+
+      <svg class="hero-deco hero-deco--accent" viewBox="0 0 180 180" fill="none">
+        <circle class="hero-deco-ring" cx="90" cy="90" r="62" />
+        <circle class="hero-deco-ring hero-deco-ring--inner" cx="90" cy="90" r="38" />
+        <path class="hero-deco-spark" d="M90 24v28M90 128v28M24 90h28M128 90h28" />
+      </svg>
+
+      <span class="hero-deco-dot hero-deco-dot--1"></span>
+      <span class="hero-deco-dot hero-deco-dot--2"></span>
+      <span class="hero-deco-dot hero-deco-dot--3"></span>
+      <span class="hero-deco-plus hero-deco-plus--1">+</span>
+      <span class="hero-deco-plus hero-deco-plus--2">+</span>
+    </div>
+
+    <div class="hero-layout mx-auto grid h-full min-h-0 w-full max-w-7xl grid-cols-1 items-center gap-6 px-4 sm:px-6 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-12 lg:px-8">
+      <!-- Portrait -->
+      <div class="hero-visual relative flex items-end justify-center overflow-visible min-h-[38vh] max-h-[50vh] lg:max-h-none lg:min-h-0 lg:h-full lg:justify-end hero-animate hero-animate-left">
+        <div class="hero-portrait-wrap">
+          <div class="hero-portrait-glow" aria-hidden="true"></div>
+          <div class="hero-portrait-shadow" aria-hidden="true"></div>
+          <img
+            src="assets/img/handep-no-bg.png?v=3"
+            alt="Reyhan Devara Profile"
+            class="hero-portrait"
+          />
+        </div>
+        <div class="hero-photo-badge">
+          <span class="hero-photo-badge-dot"></span>
+          Open to work
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="hero-content flex items-center justify-center lg:justify-start self-stretch min-h-0 px-5 py-6 sm:px-8 lg:py-8 lg:pl-4 lg:pr-4 text-center lg:text-left hero-animate hero-animate-right">
+        <div class="hero-content-inner">
           <span class="inline-block px-4 py-1.5 bg-brand/10 text-brand text-xs font-bold uppercase tracking-widest rounded-full mb-6">
             Available for Opportunities
           </span>
@@ -509,7 +530,7 @@
   </div>
 
   <!-- Footer -->
-  <footer class="py-12 border-t border-white/5 bg-surface-lowest">
+  <footer class="py-12 border-t border-white/5 bg-surface-lowest reveal-section">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col md:flex-row justify-between items-center gap-6">
         <a href="#home"><img src="assets/img/Name_Logo.png" alt="Reyhan Devara" class="h-10 w-auto" /></a>

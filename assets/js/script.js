@@ -34,10 +34,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!prefersReducedMotion) {
     initNavbarScroll(navbar);
+    initSectionBackgrounds();
     initScrollReveal();
-    initTimelineReveal();
     initActiveNavHighlight();
+
+    if (document.getElementById("projectsGrid")?.querySelector(".project-card")) {
+      initPortfolioAnimations();
+    }
   } else {
+    initSectionBackgrounds();
     document.querySelectorAll(".reveal, .timeline-item").forEach((el) => {
       el.classList.add("is-visible");
     });
@@ -55,65 +60,180 @@ function initNavbarScroll(navbar) {
   window.addEventListener("scroll", onScroll, { passive: true });
 }
 
+const revealRegistry = new Set();
+
+function registerReveal(el, observer, { variant = "", delay = 0, scale = false } = {}) {
+  if (!el || revealRegistry.has(el)) return;
+  revealRegistry.add(el);
+
+  el.classList.add("reveal");
+  if (variant) el.classList.add(`reveal-${variant}`);
+  if (scale) el.classList.add("reveal-scale");
+  if (delay) el.style.transitionDelay = `${delay}s`;
+
+  observer.observe(el);
+}
+
+function createRevealObserver() {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+  );
+
+  return observer;
+}
+
 function initScrollReveal() {
+  const observer = createRevealObserver();
+
   document.querySelectorAll(".reveal-section").forEach((section) => {
-    const heading = section.querySelector(":scope > .max-w-7xl > :first-child");
-    if (heading) {
-      heading.classList.add("reveal");
+    if (section.id === "about") {
+      const [imgCol, textCol] = section.querySelectorAll(".grid > div");
+      registerReveal(imgCol, observer, { variant: "left", scale: true });
+      registerReveal(textCol?.querySelector("span"), observer, { variant: "right", delay: 0.06 });
+      registerReveal(textCol?.querySelector("h2"), observer, { variant: "right", delay: 0.12 });
+      textCol?.querySelectorAll(".space-y-6 > p").forEach((paragraph, index) => {
+        registerReveal(paragraph, observer, { delay: 0.18 + index * 0.1 });
+      });
+    } else if (section.id === "contact") {
+      const [infoCol, formCol] = section.querySelectorAll(".grid > div");
+      registerReveal(infoCol?.querySelector("span"), observer, { variant: "left" });
+      registerReveal(infoCol?.querySelector("h2"), observer, { variant: "left", delay: 0.08 });
+      registerReveal(infoCol?.querySelector("p.text-slate-400"), observer, { variant: "left", delay: 0.16 });
+      infoCol?.querySelectorAll(".space-y-8 > .flex").forEach((row, index) => {
+        registerReveal(row, observer, { variant: "left", delay: 0.24 + index * 0.1 });
+      });
+      registerReveal(infoCol?.querySelector(".mt-12"), observer, { variant: "left", delay: 0.54 });
+      registerReveal(formCol, observer, { variant: "right", delay: 0.1 });
+    } else if (section.id === "projects") {
+      const header = section.querySelector(":scope > .max-w-7xl > .flex");
+      registerReveal(header?.querySelector(":scope > div"), observer, { variant: "left" });
+      registerReveal(header?.querySelector("p"), observer, { variant: "right", delay: 0.12 });
+      registerReveal(section.querySelector(".mt-16 a"), observer, { scale: true, delay: 0.2 });
+    } else {
+      const intro = section.querySelector(
+        ":scope > .max-w-7xl > .text-center, :scope > .max-w-7xl > .flex.flex-col:not(.md\\:flex-row)"
+      );
+      registerReveal(intro, observer);
+      section.querySelectorAll(":scope > .max-w-7xl a.inline-flex").forEach((link) => {
+        registerReveal(link, observer, { scale: true, delay: 0.15 });
+      });
     }
 
     section.querySelectorAll(".glass-card, .project-card").forEach((card, index) => {
-      card.classList.add("reveal");
-      card.style.transitionDelay = `${index % 6 * 0.08}s`;
+      registerReveal(card, observer, { delay: (index % 6) * 0.08 });
     });
 
-    if (section.id === "about") {
-      const gridChildren = section.querySelectorAll(".grid > div");
-      gridChildren[0]?.classList.add("reveal", "reveal-left");
-      gridChildren[1]?.classList.add("reveal", "reveal-right");
-    }
-
-    if (section.id === "contact") {
-      section.querySelectorAll(".grid > div").forEach((col, index) => {
-        col.classList.add("reveal", index === 0 ? "reveal-left" : "reveal-right");
-      });
-    }
+    section.querySelectorAll("h3.border-l-4").forEach((heading, index) => {
+      registerReveal(heading, observer, { variant: "left", delay: index * 0.08 });
+    });
   });
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
-  );
-
-  document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+  initTimelineReveal(observer);
+  initFooterReveal(observer);
 }
 
-function initTimelineReveal() {
+function initTimelineReveal(observer) {
   document.querySelectorAll("#journey .relative.pl-8 > .relative").forEach((item, index) => {
+    if (revealRegistry.has(item)) return;
+    revealRegistry.add(item);
     item.classList.add("timeline-item");
     item.style.transitionDelay = `${index * 0.12}s`;
+    observer.observe(item);
   });
+}
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.2 }
-  );
+function initFooterReveal(observer) {
+  document.querySelectorAll("footer .max-w-7xl").forEach((inner) => {
+    inner.querySelectorAll(":scope > *").forEach((child, index) => {
+      registerReveal(child, observer, { delay: index * 0.1 });
+    });
+  });
+}
 
-  document.querySelectorAll(".timeline-item").forEach((el) => observer.observe(el));
+const SECTION_DECO_RING = `
+  <svg class="hero-deco hero-deco--accent" viewBox="0 0 180 180" fill="none">
+    <circle class="hero-deco-ring" cx="90" cy="90" r="62" />
+    <circle class="hero-deco-ring hero-deco-ring--inner" cx="90" cy="90" r="38" />
+    <path class="hero-deco-spark" d="M90 24v28M90 128v28M24 90h28M128 90h28" />
+  </svg>`;
+
+const SECTION_DECO_BLOB_A = `
+  <svg class="hero-deco hero-deco--blob-a" viewBox="0 0 240 240" fill="none">
+    <path class="hero-deco-blob" d="M58 128c-28-36-8-88 42-98 34-7 72 12 88 44 18 36-2 84-44 98-36 12-74-2-86-44Z" />
+  </svg>`;
+
+const SECTION_DECO_BLOB_B = `
+  <svg class="hero-deco hero-deco--blob-b" viewBox="0 0 200 200" fill="none">
+    <path class="hero-deco-blob hero-deco-blob--soft" d="M42 104c-18-30 6-68 46-74 28-4 56 14 64 42 10 34-14 66-48 72-30 5-54-16-62-40Z" />
+  </svg>`;
+
+const SECTION_DECO_VARIANTS = {
+  v0: `
+    ${SECTION_DECO_BLOB_A}
+    ${SECTION_DECO_RING}
+    <span class="hero-deco-dot hero-deco-dot--1"></span>
+    <span class="hero-deco-dot hero-deco-dot--3"></span>
+    <span class="hero-deco-plus hero-deco-plus--1">+</span>
+  `,
+  v1: `
+    ${SECTION_DECO_BLOB_B}
+    <span class="hero-deco-dot hero-deco-dot--2"></span>
+    <span class="hero-deco-plus hero-deco-plus--2">+</span>
+    <span class="hero-deco-plus hero-deco-plus--1">+</span>
+  `,
+  v2: `
+    ${SECTION_DECO_BLOB_A}
+    ${SECTION_DECO_BLOB_B}
+    ${SECTION_DECO_RING}
+    <span class="hero-deco-dot hero-deco-dot--1"></span>
+    <span class="hero-deco-dot hero-deco-dot--2"></span>
+  `,
+  footer: `
+    <span class="hero-deco-dot hero-deco-dot--2"></span>
+  `,
+};
+
+const SECTION_DECO_BY_ID = {
+  about: "v0",
+  skills: "v1",
+  projects: "v2",
+  journey: "v0",
+  contact: "v1",
+};
+
+function buildSectionDecoLayer(variant) {
+  const layer = document.createElement("div");
+  layer.className = `section-deco-layer section-deco-layer--${variant}`;
+  layer.setAttribute("aria-hidden", "true");
+  layer.innerHTML = `
+    <div class="section-bg-glow"></div>
+    <div class="section-grid-pattern"></div>
+    <div class="section-vectors">${SECTION_DECO_VARIANTS[variant] || SECTION_DECO_VARIANTS.v0}</div>
+  `;
+  return layer;
+}
+
+function initSectionBackgrounds() {
+  let fallbackIndex = 0;
+
+  document.querySelectorAll("section.reveal-section, footer.reveal-section").forEach((section) => {
+    if (section.querySelector(".section-deco-layer")) return;
+
+    const isFooter = section.tagName === "FOOTER";
+    const variant = isFooter
+      ? "footer"
+      : SECTION_DECO_BY_ID[section.id] || `v${fallbackIndex++ % 3}`;
+
+    section.insertBefore(buildSectionDecoLayer(variant), section.firstChild);
+  });
 }
 
 function initActiveNavHighlight() {
@@ -145,23 +265,10 @@ function initActiveNavHighlight() {
 window.initPortfolioAnimations = function initPortfolioAnimations() {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
+  const observer = createRevealObserver();
+
   document.querySelectorAll("#projectsGrid .project-card").forEach((card, index) => {
-    card.classList.add("reveal");
-    card.style.transitionDelay = `${index % 6 * 0.08}s`;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12 }
-    );
-
-    observer.observe(card);
+    registerReveal(card, observer, { delay: (index % 6) * 0.08 });
   });
 };
 
