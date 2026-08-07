@@ -645,7 +645,129 @@ footer.reveal-section > .max-w-7xl {
 .hero-section {
   position: relative;
   min-height: 100dvh;
-  height: 100dvh;
+}
+
+@media (max-width: 1023.98px) {
+  .hero-section {
+    height: auto;
+    min-height: 100dvh;
+    min-height: 100svh;
+    padding-top: max(6rem, calc(5rem + env(safe-area-inset-top, 0px) + 0.5rem));
+  }
+
+  .hero-layout {
+    height: auto;
+    min-height: calc(100svh - 5rem);
+    align-content: start;
+    padding-bottom: 1.5rem;
+  }
+
+  .hero-visual {
+    width: 100%;
+    max-width: 100%;
+    min-height: 0;
+    padding-top: 1.25rem;
+    margin-top: 0.25rem;
+  }
+
+  .hero-portrait-wrap {
+    width: 100%;
+    height: auto;
+    max-height: min(32svh, 280px);
+    padding-top: 0.5rem;
+  }
+
+  .hero-portrait {
+    width: auto;
+    height: auto;
+    max-height: min(32svh, 280px);
+    max-width: min(68vw, 280px);
+    margin-inline: auto;
+    object-position: center bottom;
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 86%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 0%, #000 86%, transparent 100%);
+  }
+
+  .hero-portrait-glow {
+    width: min(62%, 240px);
+    height: 34%;
+    bottom: 6%;
+  }
+
+  .hero-portrait-shadow {
+    width: min(52%, 220px);
+    bottom: 0;
+  }
+
+  .hero-photo-badge {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    bottom: 0.5rem;
+    padding: 0.45rem 0.7rem;
+    font-size: 0.68rem;
+    white-space: nowrap;
+  }
+
+  .hero-content {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-content-inner > .inline-block {
+    margin-bottom: 0.65rem;
+    font-size: 0.65rem;
+    padding: 0.35rem 0.75rem;
+  }
+
+  .hero-content-inner > p.text-brand {
+    margin-bottom: 0.35rem;
+    font-size: 1rem;
+  }
+
+  .hero-content-inner h1 {
+    font-size: clamp(1.75rem, 8.5vw, 2.35rem);
+    margin-bottom: 0.4rem;
+    line-height: 1.08;
+  }
+
+  .hero-content-inner h2 {
+    font-size: 1rem;
+    margin-bottom: 0.65rem;
+    line-height: 1.35;
+  }
+
+  .hero-content-inner > p.text-slate-400 {
+    font-size: 0.875rem;
+    line-height: 1.55;
+    margin-bottom: 0.85rem;
+  }
+
+  .hero-content-inner > .flex.flex-wrap.gap-4 {
+    gap: 0.65rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .hero-content-inner > .flex.flex-wrap.gap-4 a {
+    padding: 0.65rem 1.15rem;
+    font-size: 0.84rem;
+  }
+
+  .hero-social-link {
+    width: 2.45rem;
+    height: 2.45rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-section {
+    height: 100dvh;
+  }
+
+  .hero-layout {
+    height: 100%;
+    min-height: 0;
+  }
 }
 
 .hero-layout {

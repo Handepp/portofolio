@@ -30,7 +30,7 @@
       },
     };
   </script>
-  <link rel="stylesheet" href="assets/css/style.css?v=13" />
+  <link rel="stylesheet" href="assets/css/style.css?v=15" />
 </head>
 <body class="font-sans antialiased selection:bg-brand selection:text-surface bg-surface text-slate-200">
 
@@ -75,7 +75,7 @@
   </nav>
 
   <!-- Hero -->
-  <header class="hero-section relative h-screen min-h-screen overflow-hidden pt-20 box-border" id="home">
+  <header class="hero-section relative overflow-x-hidden pt-24 sm:pt-24 lg:pt-20 box-border" id="home">
     <div class="hero-bg-glow pointer-events-none" aria-hidden="true"></div>
     <div class="hero-grid-pattern pointer-events-none" aria-hidden="true"></div>
 
@@ -101,9 +101,9 @@
       <span class="hero-deco-plus hero-deco-plus--2">+</span>
     </div>
 
-    <div class="hero-layout mx-auto grid h-full min-h-0 w-full max-w-7xl grid-cols-1 items-center gap-6 px-4 sm:px-6 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-12 lg:px-8">
+    <div class="hero-layout mx-auto grid w-full max-w-7xl grid-cols-1 items-stretch gap-4 px-4 sm:gap-6 sm:px-6 lg:h-full lg:min-h-0 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-center lg:gap-12 lg:px-8">
       <!-- Portrait -->
-      <div class="hero-visual relative flex items-end justify-center overflow-visible min-h-[38vh] max-h-[50vh] lg:max-h-none lg:min-h-0 lg:h-full lg:justify-end hero-animate hero-animate-left">
+      <div class="hero-visual relative flex items-end justify-center overflow-hidden lg:overflow-visible lg:h-full lg:justify-end hero-animate hero-animate-left">
         <div class="hero-portrait-wrap">
           <div class="hero-portrait-glow" aria-hidden="true"></div>
           <div class="hero-portrait-shadow" aria-hidden="true"></div>
@@ -120,7 +120,7 @@
       </div>
 
       <!-- Content -->
-      <div class="hero-content flex items-center justify-center lg:justify-start self-stretch min-h-0 px-5 py-6 sm:px-8 lg:py-8 lg:pl-4 lg:pr-4 text-center lg:text-left hero-animate hero-animate-right">
+      <div class="hero-content flex items-start justify-center self-stretch px-4 py-4 sm:px-6 sm:py-5 lg:items-center lg:justify-start lg:px-4 lg:py-8 lg:pl-4 lg:pr-4 text-center lg:text-left hero-animate hero-animate-right">
         <div class="hero-content-inner">
           <span class="inline-block px-4 py-1.5 bg-brand/10 text-brand text-xs font-bold uppercase tracking-widest rounded-full mb-6">
             Available for Opportunities
