@@ -5,22 +5,23 @@ window.PROJECTS_DATA = {
     title: "Linear Position Tracking System using Rotary Encoder",
     img: "labore.png",
     summary: "Embedded system for tracking linear rail position accurately using a rotary encoder and synchronizing movement data with interactive content.",
-    tech: ["Embedded C", "ESP32", "Rotary Encoder", "Bluetooth", "EasyEDA"],
+    tech: ["Embedded C", "ESP32", "Rotary Encoder", "USB Serial", "EasyEDA"],
     year: "2025",
     org: "Unictive",
     github: "",
+    projectUrl: "https://www.linkedin.com/posts/pt-uniktif-media-indonesia_unictive-x-haluu-world-labore-dermalab-2025-activity-7399382418769752064-7s38",
     overview: "This project was developed to track linear movement precisely using a rotary encoder. The system synchronizes physical position data with digital interactive content in real time.",
-    howItWorks: "The encoder reads rotational motion, converts it into position data, and sends the result via Bluetooth to the host system for synchronization with interactive applications.",
+    howItWorks: "The encoder reads rotational motion, converts it into position data, and sends the result via USB serial communication to the host system for synchronization with interactive applications.",
     contributions: [
       "Designed the embedded system architecture",
       "Implemented rotary encoder reading logic",
-      "Integrated Bluetooth communication for data transfer",
+      "Integrated USB serial communication for data transfer",
       "Performed testing and calibration for motion accuracy",
     ],
     features: [
       "Real-time position tracking",
       "Accurate motion synchronization",
-      "Wireless embedded communication",
+      "USB serial communication with host system",
       "Compact hardware design",
     ],
     challenges: [
@@ -81,6 +82,7 @@ window.PROJECTS_DATA = {
     year: "2025",
     org: "Unictive",
     github: "",
+    projectUrl: "https://www.unictive.com/titan/detail/XPOB",
     overview: "A real-time background removal photobooth built for exhibition events, allowing users to capture photos with custom backgrounds instantly.",
     howItWorks: "The camera feed is processed through a segmentation and matting pipeline, composited with selected backgrounds, and displayed on screen for capture.",
     contributions: [
@@ -121,6 +123,7 @@ window.PROJECTS_DATA = {
     year: "2025",
     org: "Unictive",
     github: "",
+    projectUrl: "https://www.unictive.com/titan/detail/XPOB",
     overview: "A footstep-based game controller for interactive installations where users control gameplay by stepping on sensor pads.",
     howItWorks: "Pressure or touch sensors detect footsteps and the microcontroller emulates keyboard inputs via HID to control the game.",
     contributions: [
@@ -159,6 +162,7 @@ window.PROJECTS_DATA = {
     year: "2025",
     org: "Unictive",
     github: "",
+    projectUrl: "https://www.unictive.com/titan/detail/XPOB",
     overview: "Custom arcade controller hardware for interactive game installations with wireless connectivity to the host system.",
     howItWorks: "Physical buttons and joystick inputs are read by ESP32 firmware and transmitted via Bluetooth to control the game application.",
     contributions: [
@@ -197,6 +201,7 @@ window.PROJECTS_DATA = {
     year: "2025",
     org: "Unictive",
     github: "",
+    projectUrl: "https://www.unictive.com/titan/detail/PAQJ",
     overview: "A rotational speed monitoring system with LED matrix feedback for interactive product demonstration installations.",
     howItWorks: "Hall sensors detect rotation speed, ESP32 processes the data, and LED matrices display real-time speed indicators while relays trigger physical effects.",
     contributions: [
@@ -261,6 +266,7 @@ window.PROJECTS_DATA = {
     year: "2025",
     org: "Unictive",
     github: "",
+    projectUrl: "https://www.unictive.com/titan/detail/IOAE",
     overview: "Presence detection system for interactive installations that trigger content when users approach a zone.",
     howItWorks: "Ultrasonic sensors detect proximity, ESP32 processes distance thresholds, and HTTP requests trigger content on the host display.",
     contributions: [
@@ -284,6 +290,7 @@ window.PROJECTS_DATA = {
     year: "2025",
     org: "Unictive",
     github: "",
+    projectUrl: "https://www.unictive.com/titan/detail/IOAE",
     overview: "Sequential button-based control system for multi-step interactive brand installations.",
     howItWorks: "Button inputs trigger a defined sequence of outputs via solid state relays, coordinated through ESP32 firmware and HTTP callbacks.",
     contributions: [
@@ -307,6 +314,7 @@ window.PROJECTS_DATA = {
     year: "2024",
     org: "Unictive",
     github: "",
+    projectUrl: "https://www.unictive.com/titan/detail/NORQ",
     overview: "Gamified object detection experience where players interact with real-world objects detected by a custom YOLO model.",
     howItWorks: "Camera feed is processed by a YOLO model trained on Roboflow, detections trigger game events through a Flask backend.",
     contributions: [

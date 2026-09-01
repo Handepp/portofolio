@@ -1,5 +1,121 @@
+const PROJECT_THUMB_BASE = "assets/img/projects/thumbnail/";
+const FEATURED_PROJECT_COUNT = 6;
+
+const GITHUB_LINK_ICON = `<svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.042-1.416-4.042-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>`;
+
+const EXTERNAL_LINK_ICON = `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>`;
+
+function getProjectLinkLabel(project, url) {
+  if (project.projectLinkLabel) return project.projectLinkLabel;
+  if (url.includes("linkedin.com")) return "View on LinkedIn";
+  if (url.includes("unictive.com")) return "View on Unictive";
+  return "View Project";
+}
+
+function getProjectLink(project) {
+  if (!project) return null;
+
+  if (project.projectUrl) {
+    return {
+      url: project.projectUrl,
+      label: getProjectLinkLabel(project, project.projectUrl),
+      icon: EXTERNAL_LINK_ICON,
+    };
+  }
+
+  if (project.github) {
+    return {
+      url: project.github,
+      label: "View on GitHub",
+      icon: GITHUB_LINK_ICON,
+    };
+  }
+
+  return null;
+}
+
+function createProjectCard(project) {
+  const article = document.createElement("article");
+  article.className =
+    "project-card project-card-trigger glass-card rounded-custom overflow-hidden group border border-white/5 cursor-pointer";
+  article.dataset.projectId = project.id;
+  article.tabIndex = 0;
+  article.setAttribute("role", "button");
+  article.setAttribute("aria-label", `View ${project.title} details`);
+
+  const media = document.createElement("div");
+  media.className = "aspect-video relative overflow-hidden";
+
+  const image = document.createElement("img");
+  image.src = `${PROJECT_THUMB_BASE}${project.img}`;
+  image.alt = project.title;
+  image.className = "w-full h-full object-cover group-hover:scale-105 transition-transform duration-500";
+
+  const tag = document.createElement("span");
+  tag.className =
+    "absolute top-4 left-4 px-3 py-1 bg-brand text-surface text-[10px] font-bold uppercase rounded-sm";
+  tag.textContent = project.tag;
+
+  media.append(image, tag);
+
+  const body = document.createElement("div");
+  body.className = "p-6";
+
+  const title = document.createElement("h3");
+  title.className = "text-xl font-bold leading-tight mb-4";
+  title.textContent = project.title;
+
+  const summary = document.createElement("p");
+  summary.className = "text-slate-400 text-sm mb-6 line-clamp-3";
+  summary.textContent = project.summary;
+
+  const techWrap = document.createElement("div");
+  techWrap.className = "flex flex-wrap gap-2 mb-4";
+  project.tech.slice(0, 4).forEach((item) => {
+    const techTag = document.createElement("span");
+    techTag.className = "tech-tag";
+    techTag.textContent = item;
+    techWrap.appendChild(techTag);
+  });
+
+  const meta = document.createElement("p");
+  meta.className = "text-xs text-slate-500 font-bold uppercase";
+  meta.textContent = `Year: ${project.year} · ${project.org}`;
+
+  body.append(title, summary, techWrap, meta);
+  article.append(media, body);
+
+  return article;
+}
+
+function renderProjectCards(container, projectIds = []) {
+  if (!container || !window.PROJECTS_DATA) return;
+
+  container.replaceChildren();
+
+  projectIds.forEach((id) => {
+    const project = PROJECTS_DATA[id];
+    if (project) container.appendChild(createProjectCard(project));
+  });
+}
+
+function initProjectGrids() {
+  const featuredGrid = document.getElementById("featuredProjectsGrid");
+  const allProjectsGrid = document.getElementById("projectsGrid");
+
+  if (featuredGrid && window.PROJECTS_ORDER) {
+    renderProjectCards(featuredGrid, PROJECTS_ORDER.slice(0, FEATURED_PROJECT_COUNT));
+  }
+
+  if (allProjectsGrid && window.PROJECTS_ORDER) {
+    renderProjectCards(allProjectsGrid, PROJECTS_ORDER);
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  initProjectGrids();
 
   const navToggle = document.getElementById("navToggle");
   const mobileMenu = document.getElementById("mobileMenu");
@@ -38,7 +154,9 @@ document.addEventListener("DOMContentLoaded", () => {
     initScrollReveal();
     initActiveNavHighlight();
 
-    if (document.getElementById("projectsGrid")?.querySelector(".project-card")) {
+    if (
+      document.querySelector("#projectsGrid .project-card, #featuredProjectsGrid .project-card")
+    ) {
       initPortfolioAnimations();
     }
   } else {
@@ -267,7 +385,7 @@ window.initPortfolioAnimations = function initPortfolioAnimations() {
 
   const observer = createRevealObserver();
 
-  document.querySelectorAll("#projectsGrid .project-card").forEach((card, index) => {
+  document.querySelectorAll("#projectsGrid .project-card, #featuredProjectsGrid .project-card").forEach((card, index) => {
     registerReveal(card, observer, { delay: (index % 6) * 0.08 });
   });
 };
@@ -287,12 +405,23 @@ function initProjectModal() {
     title: document.getElementById("modalProjectTitle"),
     summary: document.getElementById("modalProjectSummary"),
     tech: document.getElementById("modalProjectTech"),
-    githubBtn: document.getElementById("modalGithubBtn"),
+    githubBtn: document.getElementById("modalProjectLinkBtn"),
+    projectLinkIcon: document.getElementById("modalProjectLinkIcon"),
+    projectLinkLabel: document.getElementById("modalProjectLinkLabel"),
     videoContainer: document.getElementById("modalVideoContainer"),
     videoWrap: document.getElementById("modalVideoWrap"),
     videoPlaceholder: document.getElementById("modalVideoPlaceholder"),
     about: document.getElementById("modalAbout"),
-    highlights: document.getElementById("modalHighlights"),
+    howItWorksSection: document.getElementById("modalHowItWorksSection"),
+    howItWorks: document.getElementById("modalHowItWorks"),
+    contributionsSection: document.getElementById("modalContributionsSection"),
+    contributions: document.getElementById("modalContributions"),
+    featuresSection: document.getElementById("modalFeaturesSection"),
+    features: document.getElementById("modalFeatures"),
+    challengesSection: document.getElementById("modalChallengesSection"),
+    challenges: document.getElementById("modalChallenges"),
+    resultsSection: document.getElementById("modalResultsSection"),
+    results: document.getElementById("modalResults"),
   };
 
   const thumbBase = "assets/img/projects/thumbnail/";
@@ -324,17 +453,55 @@ function initProjectModal() {
       .join("");
   }
 
+  function renderProjectLink(project) {
+    const link = getProjectLink(project);
+
+    if (!els.githubBtn) return;
+
+    if (!link) {
+      els.githubBtn.classList.add("hidden");
+      els.githubBtn.removeAttribute("href");
+      return;
+    }
+
+    els.githubBtn.href = link.url;
+    els.githubBtn.classList.remove("hidden");
+
+    if (els.projectLinkIcon) els.projectLinkIcon.innerHTML = link.icon;
+    if (els.projectLinkLabel) els.projectLinkLabel.textContent = link.label;
+  }
+
   function getAboutText(project) {
     if (project.about) return project.about;
     return project.overview || project.summary || "";
   }
 
-  function getHighlights(project) {
-    if (project.highlights?.length) return project.highlights;
-    return [
-      ...(project.contributions || []).slice(0, 2),
-      ...(project.features || []).slice(0, 3),
-    ].slice(0, 5);
+  function toggleTextSection(sectionEl, contentEl, text) {
+    if (!sectionEl || !contentEl) return;
+
+    const value = (text || "").trim();
+    if (!value) {
+      sectionEl.classList.add("hidden");
+      contentEl.textContent = "";
+      return;
+    }
+
+    sectionEl.classList.remove("hidden");
+    contentEl.textContent = value;
+  }
+
+  function toggleListSection(sectionEl, listEl, items = []) {
+    if (!sectionEl || !listEl) return;
+
+    const values = items.filter(Boolean);
+    if (!values.length) {
+      sectionEl.classList.add("hidden");
+      listEl.innerHTML = "";
+      return;
+    }
+
+    sectionEl.classList.remove("hidden");
+    renderList(listEl, values);
   }
 
   function updateSliderPosition() {
@@ -464,15 +631,16 @@ function initProjectModal() {
     if (els.summary) els.summary.textContent = project.summary;
     if (els.about) els.about.textContent = getAboutText(project);
 
+    toggleTextSection(els.howItWorksSection, els.howItWorks, project.howItWorks);
+    toggleListSection(els.contributionsSection, els.contributions, project.contributions);
+    toggleListSection(els.featuresSection, els.features, project.features);
+    toggleListSection(els.challengesSection, els.challenges, project.challenges);
+    toggleListSection(els.resultsSection, els.results, project.results);
+
     renderTech(project.tech);
-    renderList(els.highlights, getHighlights(project));
     renderVideo(project.video, project);
 
-    if (els.githubBtn) {
-      const showGithub = Boolean(project.github);
-      els.githubBtn.classList.toggle("hidden", !showGithub);
-      if (showGithub) els.githubBtn.href = project.github;
-    }
+    renderProjectLink(project);
 
     modal.classList.remove("hidden");
     modal.classList.add("is-open");
