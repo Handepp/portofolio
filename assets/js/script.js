@@ -112,6 +112,92 @@ function initProjectGrids() {
   }
 }
 
+const CONTACT_FORM_ENDPOINT = "https://formspree.io/f/mkopokee";
+
+function setContactFormStatus(statusEl, type, message) {
+  if (!statusEl) return;
+
+  statusEl.hidden = false;
+  statusEl.textContent = message;
+  statusEl.classList.remove("is-success", "is-error");
+  statusEl.classList.add("is-visible", type === "success" ? "is-success" : "is-error");
+}
+
+function clearContactFormStatus(statusEl) {
+  if (!statusEl) return;
+
+  statusEl.hidden = true;
+  statusEl.textContent = "";
+  statusEl.classList.remove("is-visible", "is-success", "is-error");
+}
+
+function initContactForm() {
+  const form = document.getElementById("contactForm");
+  if (!form) return;
+
+  const submitBtn = document.getElementById("contactSubmitBtn");
+  const submitLabel = document.getElementById("contactSubmitLabel");
+  const statusEl = document.getElementById("contactFormStatus");
+  const defaultLabel = submitLabel?.textContent || "Send Message";
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    clearContactFormStatus(statusEl);
+
+    const honeypot = form.querySelector('input[name="_gotcha"]');
+    if (honeypot?.value) return;
+
+    if (!form.reportValidity()) return;
+
+    const formData = new FormData(form);
+    const payload = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      subject: formData.get("subject"),
+      message: formData.get("message"),
+      _subject: `Portfolio Contact: ${formData.get("subject")}`,
+    };
+
+    if (submitBtn) submitBtn.disabled = true;
+    if (submitLabel) submitLabel.textContent = "Sending...";
+
+    try {
+      const response = await fetch(CONTACT_FORM_ENDPOINT, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        const errorMessage =
+          data?.error || "Something went wrong. Please try again or email me directly.";
+        throw new Error(errorMessage);
+      }
+
+      form.reset();
+      setContactFormStatus(
+        statusEl,
+        "success",
+        "Thanks for reaching out! Your message has been sent successfully."
+      );
+    } catch (error) {
+      setContactFormStatus(
+        statusEl,
+        "error",
+        error.message || "Failed to send your message. Please try again later."
+      );
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
+      if (submitLabel) submitLabel.textContent = defaultLabel;
+    }
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -147,6 +233,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   initProjectModal();
+  initContactForm();
 
   if (!prefersReducedMotion) {
     initNavbarScroll(navbar);
