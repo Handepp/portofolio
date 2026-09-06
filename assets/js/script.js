@@ -236,15 +236,12 @@ function initScrollReveal() {
         registerReveal(paragraph, observer, { delay: 0.18 + index * 0.1 });
       });
     } else if (section.id === "contact") {
-      const [infoCol, formCol] = section.querySelectorAll(".grid > div");
+      const infoCol = section.querySelector(".contact-intro");
+      const panel = section.querySelector(".contact-panel");
       registerReveal(infoCol?.querySelector("span"), observer, { variant: "left" });
       registerReveal(infoCol?.querySelector("h2"), observer, { variant: "left", delay: 0.08 });
       registerReveal(infoCol?.querySelector("p.text-slate-400"), observer, { variant: "left", delay: 0.16 });
-      infoCol?.querySelectorAll(".space-y-8 > .flex").forEach((row, index) => {
-        registerReveal(row, observer, { variant: "left", delay: 0.24 + index * 0.1 });
-      });
-      registerReveal(infoCol?.querySelector(".mt-12"), observer, { variant: "left", delay: 0.54 });
-      registerReveal(formCol, observer, { variant: "right", delay: 0.1 });
+      registerReveal(panel, observer, { variant: "right", delay: 0.1 });
     } else if (section.id === "projects") {
       const header = section.querySelector(":scope > .max-w-7xl > .flex");
       registerReveal(header?.querySelector(":scope > div"), observer, { variant: "left" });
