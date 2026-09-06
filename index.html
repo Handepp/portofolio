@@ -24,7 +24,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100;300;400;600;700;800&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="assets/css/tailwind.css?v=1" />
-  <link rel="stylesheet" href="assets/css/style.css?v=24" />
+  <link rel="stylesheet" href="assets/css/style.css?v=26" />
 </head>
 <body class="font-sans antialiased selection:bg-brand selection:text-surface bg-surface text-slate-200">
 
@@ -382,74 +382,78 @@
       </button>
 
       <div class="project-modal-body">
-        <div class="project-modal-hero">
-          <div class="project-modal-slider" id="modalImageSlider">
-            <button type="button" class="slider-btn slider-prev" id="modalSliderPrev" aria-label="Previous image">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-            </button>
-            <div class="slider-viewport">
-              <div class="slider-track" id="modalSliderTrack"></div>
+        <div class="project-modal-workspace">
+          <aside class="project-modal-media">
+            <div class="project-modal-slider" id="modalImageSlider">
+              <button type="button" class="slider-btn slider-prev" id="modalSliderPrev" aria-label="Previous image">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+              </button>
+              <div class="slider-viewport">
+                <div class="slider-track" id="modalSliderTrack"></div>
+              </div>
+              <button type="button" class="slider-btn slider-next" id="modalSliderNext" aria-label="Next image">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </button>
+              <div class="slider-counter" id="modalSliderCounter">1 / 1</div>
+              <div class="slider-dots" id="modalSliderDots"></div>
             </div>
-            <button type="button" class="slider-btn slider-next" id="modalSliderNext" aria-label="Next image">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-            </button>
-            <div class="slider-counter" id="modalSliderCounter">1 / 1</div>
-            <div class="slider-dots" id="modalSliderDots"></div>
-          </div>
 
-          <div class="project-modal-hero-content">
-            <span id="modalProjectMeta" class="project-modal-badge">Project</span>
-            <h2 id="modalProjectTitle" class="project-modal-title">Project Title</h2>
-            <p id="modalProjectSummary" class="project-modal-summary"></p>
-            <div id="modalProjectTech" class="project-modal-tech"></div>
-            <div class="project-modal-actions">
-              <a id="modalProjectLinkBtn" href="#" target="_blank" rel="noopener noreferrer" class="project-modal-btn project-modal-btn-primary hidden">
-                <span id="modalProjectLinkIcon" class="inline-flex" aria-hidden="true"></span>
-                <span id="modalProjectLinkLabel">View Project</span>
-              </a>
+            <div class="project-modal-section project-modal-media-section" id="modalVideoSection">
+              <h3 class="project-modal-section-title">Demo Video</h3>
+              <div class="project-modal-video-wrap" id="modalVideoWrap">
+                <div id="modalVideoContainer" class="project-modal-video hidden"></div>
+                <div id="modalVideoPlaceholder" class="project-modal-video-placeholder">
+                  <svg class="w-10 h-10 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  <p>Demo video will be available soon.</p>
+                </div>
+              </div>
+            </div>
+          </aside>
+
+          <div class="project-modal-content">
+            <div class="project-modal-hero-content">
+              <span id="modalProjectMeta" class="project-modal-badge">Project</span>
+              <h2 id="modalProjectTitle" class="project-modal-title">Project Title</h2>
+              <p id="modalProjectSummary" class="project-modal-summary"></p>
+              <div id="modalProjectTech" class="project-modal-tech"></div>
+              <div class="project-modal-actions">
+                <a id="modalProjectLinkBtn" href="#" target="_blank" rel="noopener noreferrer" class="project-modal-btn project-modal-btn-primary hidden">
+                  <span id="modalProjectLinkIcon" class="inline-flex" aria-hidden="true"></span>
+                  <span id="modalProjectLinkLabel">View Project</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="project-modal-section project-modal-about">
+              <h3 class="project-modal-section-title">About the Project</h3>
+              <p id="modalAbout" class="project-modal-about-text"></p>
+            </div>
+
+            <div class="project-modal-section hidden" id="modalHowItWorksSection">
+              <h3 class="project-modal-section-title">How It Works</h3>
+              <p id="modalHowItWorks" class="project-modal-about-text"></p>
+            </div>
+
+            <div class="project-modal-section hidden" id="modalContributionsSection">
+              <h3 class="project-modal-section-title">My Contributions</h3>
+              <ul id="modalContributions" class="project-modal-list"></ul>
+            </div>
+
+            <div class="project-modal-section hidden" id="modalFeaturesSection">
+              <h3 class="project-modal-section-title">Key Features</h3>
+              <ul id="modalFeatures" class="project-modal-list"></ul>
+            </div>
+
+            <div class="project-modal-section hidden" id="modalChallengesSection">
+              <h3 class="project-modal-section-title">Challenges</h3>
+              <ul id="modalChallenges" class="project-modal-list"></ul>
+            </div>
+
+            <div class="project-modal-section hidden" id="modalResultsSection">
+              <h3 class="project-modal-section-title">Results</h3>
+              <ul id="modalResults" class="project-modal-list"></ul>
             </div>
           </div>
-        </div>
-
-        <div class="project-modal-section" id="modalVideoSection">
-          <h3 class="project-modal-section-title">Demo Video</h3>
-          <div class="project-modal-video-wrap" id="modalVideoWrap">
-            <div id="modalVideoContainer" class="project-modal-video hidden"></div>
-            <div id="modalVideoPlaceholder" class="project-modal-video-placeholder">
-              <svg class="w-10 h-10 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-              <p>Demo video will be available soon.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-modal-section project-modal-about">
-          <h3 class="project-modal-section-title">About the Project</h3>
-          <p id="modalAbout" class="project-modal-about-text"></p>
-        </div>
-
-        <div class="project-modal-section hidden" id="modalHowItWorksSection">
-          <h3 class="project-modal-section-title">How It Works</h3>
-          <p id="modalHowItWorks" class="project-modal-about-text"></p>
-        </div>
-
-        <div class="project-modal-section hidden" id="modalContributionsSection">
-          <h3 class="project-modal-section-title">My Contributions</h3>
-          <ul id="modalContributions" class="project-modal-list"></ul>
-        </div>
-
-        <div class="project-modal-section hidden" id="modalFeaturesSection">
-          <h3 class="project-modal-section-title">Key Features</h3>
-          <ul id="modalFeatures" class="project-modal-list"></ul>
-        </div>
-
-        <div class="project-modal-section hidden" id="modalChallengesSection">
-          <h3 class="project-modal-section-title">Challenges</h3>
-          <ul id="modalChallenges" class="project-modal-list"></ul>
-        </div>
-
-        <div class="project-modal-section hidden" id="modalResultsSection">
-          <h3 class="project-modal-section-title">Results</h3>
-          <ul id="modalResults" class="project-modal-list"></ul>
         </div>
       </div>
     </div>
