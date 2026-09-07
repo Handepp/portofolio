@@ -181,6 +181,7 @@ window.PROJECTS_DATA = {
 
     video:
       "https://www.youtube.com/embed/F72TLEsxbS4",
+    videoPortrait: true,
   },
 
 
@@ -306,6 +307,7 @@ window.PROJECTS_DATA = {
 
     video:
       "https://www.youtube.com/embed/FYcYul-Nbos",
+    videoPortrait: true,
   },
   fitbar: {
     id: "fitbar",
