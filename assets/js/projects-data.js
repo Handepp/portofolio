@@ -251,10 +251,10 @@ window.PROJECTS_DATA = {
   "giias-arcade": {
     id: "giias-arcade",
     tag: "Interactive Embedded System",
-    title: "Wireless Arcade Controller System",
+    title: "Bluetooth Arcade Controller System",
     img: "giias_arcade.jpg",
     summary:
-      "A custom arcade-style embedded controller designed for responsive gameplay interaction through wireless connectivity.",
+      "A custom arcade-style embedded controller designed for responsive gameplay interaction through Bluetooth connectivity.",
 
     tech: [
       "Embedded C",
@@ -270,7 +270,7 @@ window.PROJECTS_DATA = {
       "https://www.unictive.com/titan/detail/XPOB",
 
     overview:
-      "This project developed a custom arcade controller for interactive game installations, combining physical controls with wireless communication to provide an engaging user experience.",
+      "This project developed a custom arcade controller for interactive game installations, combining physical controls with Bluetooth communication to provide an engaging user experience.",
 
     howItWorks:
       "Joystick and button inputs are captured by ESP32 firmware and transmitted through Bluetooth communication to the host game system with low-latency response.",
@@ -290,7 +290,7 @@ window.PROJECTS_DATA = {
     ],
 
     challenges: [
-      "Reducing input latency over wireless communication",
+      "Reducing input latency over Bluetooth communication",
       "Designing reliable hardware for public interaction"
     ],
 
