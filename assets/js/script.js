@@ -166,6 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!prefersReducedMotion) {
     initNavbarScroll(navbar);
     initSectionBackgrounds();
+    initSectionMotion();
     initScrollReveal();
     initActiveNavHighlight();
 
@@ -364,6 +365,43 @@ function initSectionBackgrounds() {
 
     section.insertBefore(buildSectionDecoLayer(variant), section.firstChild);
   });
+}
+
+function initSectionMotion() {
+  const sections = Array.from(
+    document.querySelectorAll("header.hero-section, section.reveal-section, footer.reveal-section")
+  );
+
+  if (!sections.length) return;
+
+  const visibility = new Map(sections.map((section) => [section, 0]));
+  const updateActiveSection = () => {
+    const activeSection = sections.reduce((current, section) => {
+      if (!current || visibility.get(section) > visibility.get(current)) {
+        return section;
+      }
+      return current;
+    }, null);
+
+    sections.forEach((section) => {
+      section.classList.toggle("is-motion-active", section === activeSection);
+    });
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        visibility.set(entry.target, entry.isIntersecting ? entry.intersectionRatio : 0);
+      });
+      updateActiveSection();
+    },
+    {
+      threshold: [0, 0.15, 0.3, 0.5, 0.75, 1],
+      rootMargin: "-12% 0px -12% 0px",
+    }
+  );
+
+  sections.forEach((section) => observer.observe(section));
 }
 
 function initActiveNavHighlight() {
