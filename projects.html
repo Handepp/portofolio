@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100;300;400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/tailwind.css?v=1" />
-  <link rel="stylesheet" href="assets/css/style.css?v=39" />
+  <link rel="stylesheet" href="assets/css/style.css?v=47" />
 </head>
 <body class="font-sans antialiased selection:bg-brand selection:text-surface bg-surface text-slate-200">
 
@@ -98,6 +98,7 @@
 
             <div class="project-modal-section project-modal-media-section" id="modalVideoSection">
               <h3 class="project-modal-section-title">Demo Video</h3>
+              <div id="modalVideoDeployments" class="project-modal-video-deployments hidden" role="group" aria-label="Select deployment video"></div>
               <div class="project-modal-video-wrap" id="modalVideoWrap">
                 <div id="modalVideoContainer" class="project-modal-video hidden"></div>
                 <div id="modalVideoPlaceholder" class="project-modal-video-placeholder">
@@ -125,6 +126,11 @@
             <div class="project-modal-section project-modal-about">
               <h3 class="project-modal-section-title">About the Project</h3>
               <p id="modalAbout" class="project-modal-about-text"></p>
+            </div>
+
+            <div class="project-modal-section project-modal-deployments-section hidden" id="modalDeploymentsSection">
+              <h3 class="project-modal-section-title">Project Context</h3>
+              <div id="modalDeployments" class="project-modal-deployments"></div>
             </div>
 
             <div class="project-modal-section hidden" id="modalHowItWorksSection">
@@ -163,7 +169,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/projects-data.js"></script>
-  <script src="assets/js/script.js?v=2"></script>
+  <script src="assets/js/projects-data.js?v=9"></script>
+  <script src="assets/js/script.js?v=11"></script>
 </body>
 </html>

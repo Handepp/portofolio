@@ -52,7 +52,20 @@ window.PROJECTS_DATA = {
     ],
 
     gallery: [
-      "labore.png"
+      "labore.png",
+      "assets/img/projects/gallery/linear-position/byd/slider_byd.jpg"
+    ],
+
+    clientDeployments: [
+      {
+        endClient: "Labore",
+        event: "Labore Dermalab Experience"
+      },
+      {
+        endClient: "BYD",
+        event: "BYD M6 DM Launching and Tech-Culture Fest",
+        video: "https://youtube.com/shorts/PBT_386hxmE"
+      }
     ],
 
     video:
@@ -116,6 +129,8 @@ window.PROJECTS_DATA = {
       "sgm.jpeg"
     ],
 
+    clientDeployments: [],
+
     video: "",
   },
 
@@ -177,6 +192,13 @@ window.PROJECTS_DATA = {
       "assets/img/projects/gallery/giias-rmbg/dsc09936.jpg",
       "assets/img/projects/gallery/giias-rmbg/img_6138.jpg",
       "assets/img/projects/gallery/giias-rmbg/img_6192.jpg"
+    ],
+
+    clientDeployments: [
+      {
+        endClient: "Daihatsu",
+        event: "Daihatsu GIIAS 2025"
+      }
     ],
 
     video:
@@ -243,6 +265,13 @@ window.PROJECTS_DATA = {
       "assets/img/projects/gallery/giias-footstep/img_6350.jpg"
     ],
 
+    clientDeployments: [
+      {
+        endClient: "Daihatsu",
+        event: "Daihatsu GIIAS 2025"
+      }
+    ],
+
     video:
       "https://www.youtube.com/embed/xHA6Z1qbb5E",
   },
@@ -303,6 +332,13 @@ window.PROJECTS_DATA = {
       "giias_arcade.jpg",
       "assets/img/projects/gallery/giias-arcade/img_6189.jpg",
       "assets/img/projects/gallery/giias-arcade/img_6271.jpg"
+    ],
+
+    clientDeployments: [
+      {
+        endClient: "Daihatsu",
+        event: "Daihatsu GIIAS 2025"
+      }
     ],
 
     video:
@@ -370,6 +406,13 @@ window.PROJECTS_DATA = {
       "assets/img/projects/gallery/fitbar/img_5743.jpg"
     ],
 
+    clientDeployments: [
+      {
+        endClient: "Fitbar",
+        event: "House of Goodness"
+      }
+    ],
+
     video:
       "https://www.youtube.com/shorts/HoLX4Fy0NQ4",
   },
@@ -428,6 +471,13 @@ window.PROJECTS_DATA = {
 
     gallery: [
       "liftandlearn.jpeg"
+    ],
+
+    clientDeployments: [
+      {
+        endClient: "BAT",
+        event: ""
+      }
     ],
 
     video:
@@ -491,6 +541,13 @@ window.PROJECTS_DATA = {
       "haluuxbintang_presence.jpg"
     ],
 
+    clientDeployments: [
+      {
+        endClient: "Bir Bintang",
+        event: "Dunia Tanpa Syarat"
+      }
+    ],
+
     video:
       "https://www.youtube.com/shorts/EnHvPIwf-No",
   },
@@ -550,6 +607,13 @@ window.PROJECTS_DATA = {
 
     gallery: [
       "haluuxbintang_button.jpg"
+    ],
+
+    clientDeployments: [
+      {
+        endClient: "Bir Bintang",
+        event: "Dunia Tanpa Syarat"
+      }
     ],
 
     video:
@@ -612,6 +676,13 @@ window.PROJECTS_DATA = {
 
     gallery: [
       "wardah_1.jpg"
+    ],
+
+    clientDeployments: [
+      {
+        endClient: "Wardah",
+        event: "Bigger Better Challenge"
+      }
     ],
 
     video: "",

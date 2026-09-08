@@ -461,7 +461,10 @@ function initProjectModal() {
     videoContainer: document.getElementById("modalVideoContainer"),
     videoWrap: document.getElementById("modalVideoWrap"),
     videoPlaceholder: document.getElementById("modalVideoPlaceholder"),
+    videoDeployments: document.getElementById("modalVideoDeployments"),
     about: document.getElementById("modalAbout"),
+    deploymentsSection: document.getElementById("modalDeploymentsSection"),
+    deployments: document.getElementById("modalDeployments"),
     howItWorksSection: document.getElementById("modalHowItWorksSection"),
     howItWorks: document.getElementById("modalHowItWorks"),
     contributionsSection: document.getElementById("modalContributionsSection"),
@@ -493,6 +496,115 @@ function initProjectModal() {
       const li = document.createElement("li");
       li.textContent = item;
       container.appendChild(li);
+    });
+  }
+
+  function getClientDeployments(project) {
+    if (project.org !== "Unictive") return [];
+
+    const deployments = Array.isArray(project.clientDeployments)
+      ? project.clientDeployments.filter(
+          (deployment) => deployment?.endClient || deployment?.client
+        )
+      : [];
+
+    if (Array.isArray(project.clientDeployments)) return deployments;
+
+    return [
+      {
+        endClient: "[End client / brand placeholder]",
+        event: "[Event name placeholder]",
+        video: project.video || "",
+      },
+    ];
+  }
+
+  function renderDeployments(deployments = []) {
+    if (!els.deploymentsSection || !els.deployments) return;
+
+    const values = deployments.filter(
+      (deployment) => deployment?.endClient || deployment?.client
+    );
+    if (!values.length) {
+      els.deploymentsSection.classList.add("hidden");
+      els.deploymentsSection.classList.remove("is-single");
+      els.deployments.replaceChildren();
+      return;
+    }
+
+    els.deploymentsSection.classList.remove("hidden");
+    els.deploymentsSection.classList.toggle("is-single", values.length === 1);
+    els.deployments.replaceChildren();
+
+    values.forEach((deployment) => {
+      const card = document.createElement("article");
+      card.className = "project-modal-deployment";
+
+      const client = document.createElement("h4");
+      client.textContent =
+        deployment.endClient || deployment.client || "[End client / brand placeholder]";
+
+      const details = [
+        [
+          "Event",
+          deployment.event === ""
+            ? "—"
+            : deployment.event || "[Event name placeholder]",
+        ],
+      ];
+
+      card.append(client);
+      details.forEach(([label, value]) => {
+        const detail = document.createElement("p");
+        const labelEl = document.createElement("span");
+        labelEl.className = "project-modal-deployment-detail-label";
+        labelEl.textContent = `${label}: `;
+        detail.append(labelEl, document.createTextNode(value));
+        card.appendChild(detail);
+      });
+      els.deployments.appendChild(card);
+    });
+  }
+
+  function getDeploymentVideo(deployment, project, index) {
+    if (deployment?.video) return deployment.video;
+    return index === 0 ? project.video || "" : "";
+  }
+
+  function renderDeploymentVideo(deployment, project, index) {
+    const videoProject = {
+      ...project,
+      videoPortrait: deployment?.videoPortrait ?? project.videoPortrait,
+    };
+    renderVideo(getDeploymentVideo(deployment, project, index), videoProject);
+  }
+
+  function renderVideoDeploymentSelector(deployments, project) {
+    if (!els.videoDeployments) return;
+
+    els.videoDeployments.replaceChildren();
+    if (deployments.length <= 1) {
+      els.videoDeployments.classList.add("hidden");
+      return;
+    }
+
+    els.videoDeployments.classList.remove("hidden");
+    deployments.forEach((deployment, index) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = `project-modal-video-deployment${index === 0 ? " is-active" : ""}`;
+      button.textContent =
+        deployment.endClient || deployment.client || `Deployment ${index + 1}`;
+      button.setAttribute("aria-pressed", index === 0 ? "true" : "false");
+      button.addEventListener("click", () => {
+        els.videoDeployments.querySelectorAll("button").forEach((item) => {
+          const isActive = item === button;
+          item.classList.toggle("is-active", isActive);
+          item.setAttribute("aria-pressed", isActive ? "true" : "false");
+        });
+        renderDeploymentVideo(deployment, project, index);
+      });
+      els.videoDeployments.appendChild(button);
     });
   }
 
@@ -699,6 +811,9 @@ function initProjectModal() {
     if (els.summary) els.summary.textContent = project.summary;
     if (els.about) els.about.textContent = getAboutText(project);
 
+    const deployments = getClientDeployments(project);
+    renderDeployments(deployments);
+    renderVideoDeploymentSelector(deployments, project);
     toggleTextSection(els.howItWorksSection, els.howItWorks, project.howItWorks);
     toggleListSection(els.contributionsSection, els.contributions, project.contributions);
     toggleListSection(els.featuresSection, els.features, project.features);
@@ -706,7 +821,7 @@ function initProjectModal() {
     toggleListSection(els.resultsSection, els.results, project.results);
 
     renderTech(project.tech);
-    renderVideo(project.video, project);
+    renderDeploymentVideo(deployments[0], project, 0);
 
     renderProjectLink(project);
 
@@ -734,6 +849,10 @@ function initProjectModal() {
     }
     if (els.videoWrap) els.videoWrap.classList.remove("is-portrait");
     if (els.videoPlaceholder) els.videoPlaceholder.classList.remove("hidden");
+    if (els.videoDeployments) {
+      els.videoDeployments.replaceChildren();
+      els.videoDeployments.classList.add("hidden");
+    }
 
     if (triggerToRestore && document.contains(triggerToRestore)) {
       triggerToRestore.focus();

@@ -1335,6 +1335,7 @@ section.is-motion-active .section-deco-layer .hero-deco-plus {
 }
 
 .slider-slide {
+  width: 100%;
   min-width: 100%;
   flex-shrink: 0;
 }
@@ -1342,7 +1343,9 @@ section.is-motion-active .section-deco-layer .hero-deco-plus {
 .slider-slide img {
   width: 100%;
   height: 260px;
-  object-fit: cover;
+  object-fit: contain;
+  padding: 0.35rem;
+  background: #090f12;
   display: block;
 }
 
@@ -1516,6 +1519,92 @@ section.is-motion-active .section-deco-layer .hero-deco-plus {
 
 .project-modal-section:last-child {
   border-bottom: none;
+}
+
+.project-modal-deployments {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.project-modal-deployments-section {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+.project-modal-deployments-section .project-modal-section-title {
+  margin-bottom: 0.65rem;
+  font-size: 1.05rem;
+}
+
+.project-modal-deployment {
+  display: grid;
+  grid-template-columns: minmax(7rem, 0.35fr) minmax(0, 1fr);
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.project-modal-deployments-section.is-single .project-modal-deployment {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.project-modal-deployment:last-child {
+  border-bottom: none;
+}
+
+.project-modal-deployment h4 {
+  margin: 0;
+  color: #f8fafc;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.project-modal-deployment p {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.project-modal-deployment-detail-label {
+  color: #cbd5e1;
+  font-weight: 600;
+}
+
+.project-modal-video-deployments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.project-modal-video-deployment {
+  padding: 0.45rem 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 600;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.project-modal-video-deployment:hover,
+.project-modal-video-deployment.is-active {
+  border-color: rgba(0, 209, 255, 0.45);
+  background: rgba(0, 209, 255, 0.1);
+  color: #00d1ff;
+}
+
+@media (max-width: 639px) {
+  .project-modal-deployment {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+  }
 }
 
 .project-modal-section-title {
