@@ -28,7 +28,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100;300;400;600;700;800&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="assets/css/tailwind.css?v=1" />
-  <link rel="stylesheet" href="assets/css/style.css?v=47" />
+  <link rel="stylesheet" href="assets/css/style.css?v=48" />
 </head>
 <body class="font-sans antialiased selection:bg-brand selection:text-surface bg-surface text-slate-200">
 
@@ -302,10 +302,18 @@
         <p class="text-slate-400 max-w-sm">A selection of projects I have worked on in AI, embedded systems, and software development.</p>
       </div>
 
+      <!-- Project Category Filters -->
+      <div class="project-filter-bar mb-12" id="featuredFilterBar" role="tablist" aria-label="Filter featured projects">
+        <button type="button" class="project-filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
+        <button type="button" class="project-filter-btn" data-filter="interactive" role="tab" aria-selected="false">Interactive/Gamification</button>
+        <button type="button" class="project-filter-btn" data-filter="embedded" role="tab" aria-selected="false">Embedded &amp; IoT</button>
+        <button type="button" class="project-filter-btn" data-filter="ai" role="tab" aria-selected="false">Artificial Intelligence</button>
+      </div>
+
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="featuredProjectsGrid"></div>
 
       <div class="mt-16 text-center">
-        <a class="inline-flex items-center px-8 py-4 bg-transparent border-2 border-brand/30 text-brand font-bold rounded-custom hover:bg-brand/10 transition-colors" href="projects.html">
+        <a id="viewMoreProjectsBtn" class="inline-flex items-center px-8 py-4 bg-transparent border-2 border-brand/30 text-brand font-bold rounded-custom hover:bg-brand/10 transition-colors" href="projects.html">
           View More Projects
           <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
         </a>
@@ -563,7 +571,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/projects-data.js?v=9"></script>
-  <script src="assets/js/script.js?v=11"></script>
+  <script src="assets/js/projects-data.js?v=10"></script>
+  <script src="assets/js/script.js?v=12"></script>
 </body>
 </html>

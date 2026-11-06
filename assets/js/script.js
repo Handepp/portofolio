@@ -114,6 +114,99 @@ function renderProjectCards(container, projectIds = []) {
   });
 }
 
+function getFilteredProjectIds(category, isFeatured = false) {
+  const order = window.PROJECTS_ORDER;
+  const data = window.PROJECTS_DATA;
+  if (!order || !data) return [];
+
+  if (category === "all") {
+    return isFeatured ? order.slice(0, FEATURED_PROJECT_COUNT) : order;
+  }
+
+  const filtered = order.filter((id) => {
+    const project = data[id];
+    return (
+      project &&
+      Array.isArray(project.categories) &&
+      project.categories.includes(category)
+    );
+  });
+
+  return isFeatured ? filtered.slice(0, FEATURED_PROJECT_COUNT) : filtered;
+}
+
+function filterProjects(container, category, isFeatured = false) {
+  if (!container) return;
+
+  const projectIds = getFilteredProjectIds(category, isFeatured);
+  renderProjectCards(container, projectIds);
+
+  if (projectIds.length === 0) {
+    const empty = document.createElement("p");
+    empty.className = "project-grid-empty";
+    empty.textContent = "No projects found in this category.";
+    container.appendChild(empty);
+  }
+
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!prefersReducedMotion && typeof window.initPortfolioAnimations === "function") {
+    window.initPortfolioAnimations();
+  } else {
+    container.querySelectorAll(".project-card").forEach((card) => {
+      card.classList.add("is-visible");
+    });
+  }
+}
+
+function initProjectFilters() {
+  const featuredBar = document.getElementById("featuredFilterBar");
+  const featuredGrid = document.getElementById("featuredProjectsGrid");
+  const projectsBar = document.getElementById("projectsFilterBar");
+  const projectsGrid = document.getElementById("projectsGrid");
+  const viewMoreBtn = document.getElementById("viewMoreProjectsBtn");
+
+  function setupFilterBar(bar, grid, isFeatured) {
+    if (!bar || !grid) return null;
+
+    const buttons = bar.querySelectorAll(".project-filter-btn");
+
+    function applyFilter(category) {
+      buttons.forEach((btn) => {
+        const isActive = btn.dataset.filter === category;
+        btn.classList.toggle("active", isActive);
+        btn.setAttribute("aria-selected", isActive ? "true" : "false");
+      });
+
+      filterProjects(grid, category, isFeatured);
+
+      if (isFeatured && viewMoreBtn) {
+        viewMoreBtn.href = category === "all" ? "projects.html" : `projects.html?filter=${encodeURIComponent(category)}`;
+      }
+    }
+
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const category = btn.dataset.filter || "all";
+        applyFilter(category);
+      });
+    });
+
+    return applyFilter;
+  }
+
+  setupFilterBar(featuredBar, featuredGrid, true);
+  const applyProjects = setupFilterBar(projectsBar, projectsGrid, false);
+
+  if (projectsBar && applyProjects) {
+    const params = new URLSearchParams(window.location.search);
+    const filterParam = params.get("filter");
+    const validFilters = ["interactive", "embedded", "ai"];
+    if (filterParam && validFilters.includes(filterParam)) {
+      applyProjects(filterParam);
+    }
+  }
+}
+
 function initProjectGrids() {
   const featuredGrid = document.getElementById("featuredProjectsGrid");
   const allProjectsGrid = document.getElementById("projectsGrid");
@@ -131,6 +224,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   initProjectGrids();
+  initProjectFilters();
 
   const navToggle = document.getElementById("navToggle");
   const mobileMenu = document.getElementById("mobileMenu");

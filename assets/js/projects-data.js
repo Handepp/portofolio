@@ -2,6 +2,7 @@ window.PROJECTS_DATA = {
   "linear-position": {
     id: "linear-position",
     tag: "Interactive Embedded System",
+    categories: ["interactive","embedded"],
     title: "Linear Position Tracking System for Interactive Experience",
     img: "labore.png",
     summary:
@@ -78,6 +79,7 @@ window.PROJECTS_DATA = {
   sgm: {
     id: "sgm",
     tag: "AI Computer Vision",
+    categories: ["ai","interactive"],
     title: "AI Face Processing and Virtual Makeup System",
     img: "sgm.jpeg",
     summary:
@@ -138,6 +140,7 @@ window.PROJECTS_DATA = {
   "giias-rmbg": {
     id: "giias-rmbg",
     tag: "AI Computer Vision",
+    categories: ["ai","interactive"],
     title: "Real-Time AI Background Removal Photobooth System",
     img: "giias_rmbg.jpg",
     summary:
@@ -210,6 +213,7 @@ window.PROJECTS_DATA = {
   "giias-footstep": {
     id: "giias-footstep",
     tag: "Interactive Embedded System",
+    categories: ["interactive","embedded"],
     title: "Interactive Footstep Game Controller System",
     img: "giias_footstep.jpg",
     summary:
@@ -280,6 +284,7 @@ window.PROJECTS_DATA = {
   "giias-arcade": {
     id: "giias-arcade",
     tag: "Interactive Embedded System",
+    categories: ["interactive","embedded"],
     title: "Bluetooth Arcade Controller System",
     img: "giias_arcade.jpg",
     summary:
@@ -348,6 +353,7 @@ window.PROJECTS_DATA = {
   fitbar: {
     id: "fitbar",
     tag: "Interactive Embedded System",
+    categories: ["interactive","embedded"],
     title: "Rotational Speed Monitoring and Interactive Feedback System",
     img: "fitbar.jpg",
     summary:
@@ -421,6 +427,7 @@ window.PROJECTS_DATA = {
   "lift-and-learn": {
     id: "lift-and-learn",
     tag: "Interactive Embedded System",
+    categories: ["interactive","embedded"],
     title: "Load Cell Interactive Display System",
     img: "liftandlearn.jpeg",
     summary:
@@ -488,6 +495,7 @@ window.PROJECTS_DATA = {
   "presence-detection": {
     id: "presence-detection",
     tag: "Interactive Embedded System",
+    categories: ["interactive","embedded"],
     title: "Interactive Presence Detection System",
     img: "haluuxbintang_presence.jpg",
     summary:
@@ -556,6 +564,7 @@ window.PROJECTS_DATA = {
   "sequential-control": {
     id: "sequential-control",
     tag: "Interactive Embedded System",
+    categories: ["interactive","embedded"],
     title: "Interactive Installation Sequential Control System",
     img: "haluuxbintang_button.jpg",
     summary:
@@ -624,6 +633,7 @@ window.PROJECTS_DATA = {
   wardah: {
     id: "wardah",
     tag: "AI Computer Vision",
+    categories: ["ai","interactive"],
     title: "Real-Time Object Detection Interactive Game System",
     img: "wardah_1.jpg",
     summary:
@@ -690,6 +700,7 @@ window.PROJECTS_DATA = {
   savibot: {
     id: "savibot",
     tag: "AI Integrated Robotics",
+    categories: ["ai","embedded"],
     title: "SAVI - AI Voice Assistant for Autonomous Vehicle Control",
     img: "savi.jpg",
 
@@ -756,6 +767,7 @@ window.PROJECTS_DATA = {
   "iot-syergie": {
     id: "iot-syergie",
     tag: "IoT & Connected Systems",
+    categories: ["embedded"],
     title: "IoT Monitoring and Control Dashboard System",
     img: "gui_syergie.jpg",
 
@@ -821,6 +833,7 @@ window.PROJECTS_DATA = {
   bestibot: {
     id: "bestibot",
     tag: "AI Natural Language Processing",
+    categories: ["ai"],
     title: "BestiBot - Mental Health Support Chatbot using BERT",
     img: "Bestibot.png",
 
@@ -884,6 +897,7 @@ window.PROJECTS_DATA = {
   "face-recognition": {
     id: "face-recognition",
     tag: "AI Computer Vision",
+    categories: ["ai"],
     title: "Face Recognition Security Access System",
     img: "facerecog.png",
 
@@ -940,6 +954,7 @@ window.PROJECTS_DATA = {
   "handwashing-station": {
     id: "handwashing-station",
     tag: "Embedded System",
+    categories: ["embedded"],
     title: "Automatic Contactless Handwashing Station",
     img: "keran.png",
 
@@ -999,6 +1014,7 @@ window.PROJECTS_DATA = {
   "smart-glove": {
     id: "smart-glove",
     tag: "Assistive Embedded System",
+    categories: ["embedded"],
     title: "Ultrasonic Smart Glove for Obstacle Detection",
     img: "sarung.png",
 

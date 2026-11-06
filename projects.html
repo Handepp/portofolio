@@ -26,7 +26,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100;300;400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/tailwind.css?v=1" />
-  <link rel="stylesheet" href="assets/css/style.css?v=47" />
+  <link rel="stylesheet" href="assets/css/style.css?v=48" />
 </head>
 <body class="font-sans antialiased selection:bg-brand selection:text-surface bg-surface text-slate-200">
 
@@ -73,6 +73,14 @@
 
   <section class="pb-24 reveal-section">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Project Category Filters -->
+      <div class="project-filter-bar mb-12" id="projectsFilterBar" role="tablist" aria-label="Filter all projects">
+        <button type="button" class="project-filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
+        <button type="button" class="project-filter-btn" data-filter="interactive" role="tab" aria-selected="false">Interactive/Gamification</button>
+        <button type="button" class="project-filter-btn" data-filter="embedded" role="tab" aria-selected="false">Embedded &amp; IoT</button>
+        <button type="button" class="project-filter-btn" data-filter="ai" role="tab" aria-selected="false">Artificial Intelligence</button>
+      </div>
+
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projectsGrid"></div>
     </div>
   </section>
@@ -173,7 +181,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/projects-data.js?v=9"></script>
-  <script src="assets/js/script.js?v=11"></script>
+  <script src="assets/js/projects-data.js?v=10"></script>
+  <script src="assets/js/script.js?v=12"></script>
 </body>
 </html>
