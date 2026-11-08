@@ -4,7 +4,7 @@ window.PROJECTS_DATA = {
     tag: "Interactive Embedded System",
     categories: ["interactive","embedded"],
     title: "Linear Position Tracking System for Interactive Experience",
-    img: "labore.png",
+    img: "labore.webp",
     summary:
       "A real-time embedded tracking system that transforms linear motion into interactive digital input using an ESP32-based controller and rotary encoder.",
     tech: [
@@ -53,8 +53,8 @@ window.PROJECTS_DATA = {
     ],
 
     gallery: [
-      "labore.png",
-      "assets/img/projects/gallery/linear-position/byd/slider_byd.jpg"
+      "labore.webp",
+      "assets/img/projects/gallery/linear-position/byd/slider_byd.webp"
     ],
 
     clientDeployments: [
@@ -81,7 +81,7 @@ window.PROJECTS_DATA = {
     tag: "AI Computer Vision",
     categories: ["ai","interactive"],
     title: "AI Face Processing and Virtual Makeup System",
-    img: "sgm.jpeg",
+    img: "sgm.webp",
     summary:
       "An AI-powered facial processing pipeline that enables virtual makeup experiences through real-time face analysis and image enhancement.",
 
@@ -128,7 +128,7 @@ window.PROJECTS_DATA = {
     ],
 
     gallery: [
-      "sgm.jpeg"
+      "sgm.webp"
     ],
 
     clientDeployments: [],
@@ -142,7 +142,7 @@ window.PROJECTS_DATA = {
     tag: "AI Computer Vision",
     categories: ["ai","interactive"],
     title: "Real-Time AI Background Removal Photobooth System",
-    img: "giias_rmbg.jpg",
+    img: "giias_rmbg.webp",
     summary:
       "A real-time computer vision system that removes photo backgrounds and creates customized visual experiences for exhibition environments.",
 
@@ -191,10 +191,10 @@ window.PROJECTS_DATA = {
     ],
 
     gallery: [
-      "giias_rmbg.jpg",
-      "assets/img/projects/gallery/giias-rmbg/dsc09936.jpg",
-      "assets/img/projects/gallery/giias-rmbg/img_6138.jpg",
-      "assets/img/projects/gallery/giias-rmbg/img_6192.jpg"
+      "giias_rmbg.webp",
+      "assets/img/projects/gallery/giias-rmbg/dsc09936.webp",
+      "assets/img/projects/gallery/giias-rmbg/img_6138.webp",
+      "assets/img/projects/gallery/giias-rmbg/img_6192.webp"
     ],
 
     clientDeployments: [
@@ -215,7 +215,7 @@ window.PROJECTS_DATA = {
     tag: "Interactive Embedded System",
     categories: ["interactive","embedded"],
     title: "Interactive Footstep Game Controller System",
-    img: "giias_footstep.jpg",
+    img: "giias_footstep.webp",
     summary:
       "A physical interaction controller that transforms user footsteps into responsive game inputs for interactive installations.",
 
@@ -264,9 +264,9 @@ window.PROJECTS_DATA = {
     ],
 
     gallery: [
-      "giias_footstep.jpg",
-      "assets/img/projects/gallery/giias-footstep/img_6186.jpg",
-      "assets/img/projects/gallery/giias-footstep/img_6350.jpg"
+      "giias_footstep.webp",
+      "assets/img/projects/gallery/giias-footstep/img_6186.webp",
+      "assets/img/projects/gallery/giias-footstep/img_6350.webp"
     ],
 
     clientDeployments: [
@@ -286,7 +286,7 @@ window.PROJECTS_DATA = {
     tag: "Interactive Embedded System",
     categories: ["interactive","embedded"],
     title: "Bluetooth Arcade Controller System",
-    img: "giias_arcade.jpg",
+    img: "giias_arcade.webp",
     summary:
       "A custom arcade-style embedded controller designed for responsive gameplay interaction through Bluetooth connectivity.",
 
@@ -334,9 +334,9 @@ window.PROJECTS_DATA = {
     ],
 
     gallery: [
-      "giias_arcade.jpg",
-      "assets/img/projects/gallery/giias-arcade/img_6189.jpg",
-      "assets/img/projects/gallery/giias-arcade/img_6271.jpg"
+      "giias_arcade.webp",
+      "assets/img/projects/gallery/giias-arcade/img_6189.webp",
+      "assets/img/projects/gallery/giias-arcade/img_6271.webp"
     ],
 
     clientDeployments: [
@@ -355,7 +355,7 @@ window.PROJECTS_DATA = {
     tag: "Interactive Embedded System",
     categories: ["interactive","embedded"],
     title: "Rotational Speed Monitoring and Interactive Feedback System",
-    img: "fitbar.jpg",
+    img: "fitbar.webp",
     summary:
       "An embedded monitoring system that detects rotational speed and transforms mechanical movement into real-time visual and physical feedback.",
 
@@ -406,10 +406,10 @@ window.PROJECTS_DATA = {
     ],
 
     gallery: [
-      "fitbar.jpg",
-      "assets/img/projects/gallery/fitbar/img_5731.jpg",
-      "assets/img/projects/gallery/fitbar/img_5732.jpg",
-      "assets/img/projects/gallery/fitbar/img_5743.jpg"
+      "fitbar.webp",
+      "assets/img/projects/gallery/fitbar/img_5731.webp",
+      "assets/img/projects/gallery/fitbar/img_5732.webp",
+      "assets/img/projects/gallery/fitbar/img_5743.webp"
     ],
 
     clientDeployments: [
@@ -429,7 +429,7 @@ window.PROJECTS_DATA = {
     tag: "Interactive Embedded System",
     categories: ["interactive","embedded"],
     title: "Load Cell Interactive Display System",
-    img: "liftandlearn.jpeg",
+    img: "liftandlearn.webp",
     summary:
       "An interactive product experience system that uses weight sensing to trigger real-time digital feedback.",
 
@@ -477,7 +477,7 @@ window.PROJECTS_DATA = {
     ],
 
     gallery: [
-      "liftandlearn.jpeg"
+      "liftandlearn.webp"
     ],
 
     clientDeployments: [
@@ -497,7 +497,7 @@ window.PROJECTS_DATA = {
     tag: "Interactive Embedded System",
     categories: ["interactive","embedded"],
     title: "Interactive Presence Detection System",
-    img: "haluuxbintang_presence.jpg",
+    img: "haluuxbintang_presence.webp",
     summary:
       "A proximity-based embedded system that detects user presence and automatically activates interactive digital experiences.",
 
@@ -546,7 +546,7 @@ window.PROJECTS_DATA = {
     ],
 
     gallery: [
-      "haluuxbintang_presence.jpg"
+      "haluuxbintang_presence.webp"
     ],
 
     clientDeployments: [
@@ -566,7 +566,7 @@ window.PROJECTS_DATA = {
     tag: "Interactive Embedded System",
     categories: ["interactive","embedded"],
     title: "Interactive Installation Sequential Control System",
-    img: "haluuxbintang_button.jpg",
+    img: "haluuxbintang_button.webp",
     summary:
       "An embedded control system that manages multi-step interactive experiences through synchronized hardware triggers.",
 
@@ -615,7 +615,7 @@ window.PROJECTS_DATA = {
     ],
 
     gallery: [
-      "haluuxbintang_button.jpg"
+      "haluuxbintang_button.webp"
     ],
 
     clientDeployments: [
@@ -635,7 +635,7 @@ window.PROJECTS_DATA = {
     tag: "AI Computer Vision",
     categories: ["ai","interactive"],
     title: "Real-Time Object Detection Interactive Game System",
-    img: "wardah_1.jpg",
+    img: "wardah_1.webp",
     summary:
       "A computer vision-powered interactive game that recognizes real-world objects and converts them into gameplay interactions.",
 
@@ -685,7 +685,7 @@ window.PROJECTS_DATA = {
     ],
 
     gallery: [
-      "wardah_1.jpg"
+      "wardah_1.webp"
     ],
 
     clientDeployments: [
@@ -702,7 +702,7 @@ window.PROJECTS_DATA = {
     tag: "AI Integrated Robotics",
     categories: ["ai","embedded"],
     title: "SAVI - AI Voice Assistant for Autonomous Vehicle Control",
-    img: "savi.jpg",
+    img: "savi.webp",
 
     summary:
       "An AI-powered vehicle interaction system that combines natural language processing with embedded control for intelligent vehicle operation.",
@@ -753,10 +753,10 @@ window.PROJECTS_DATA = {
     ],
 
     gallery: [
-      "savi.jpg",
-      "savi2.png",
-      "assets/img/projects/gallery/savibot/savi_1.jpg",
-      "assets/img/projects/gallery/savibot/savi_2.jpg"
+      "savi.webp",
+      "savi2.webp",
+      "assets/img/projects/gallery/savibot/savi_1.webp",
+      "assets/img/projects/gallery/savibot/savi_2.webp"
     ],
 
     video:
@@ -769,7 +769,7 @@ window.PROJECTS_DATA = {
     tag: "IoT & Connected Systems",
     categories: ["embedded"],
     title: "IoT Monitoring and Control Dashboard System",
-    img: "gui_syergie.jpg",
+    img: "gui_syergie.webp",
 
     summary:
       "An IoT-based monitoring and control platform that connects embedded sensors with a real-time graphical dashboard.",
@@ -819,11 +819,11 @@ window.PROJECTS_DATA = {
     ],
 
     gallery: [
-      "gui_syergie.jpg",
-      "assets/img/projects/gallery/iot-syergie/dc1.jpg",
-      "assets/img/projects/gallery/iot-syergie/gui_head_2.jpg",
-      "assets/img/projects/gallery/iot-syergie/menit_2.jpg",
-      "assets/img/projects/gallery/iot-syergie/ruangan_normal.jpg"
+      "gui_syergie.webp",
+      "assets/img/projects/gallery/iot-syergie/dc1.webp",
+      "assets/img/projects/gallery/iot-syergie/gui_head_2.webp",
+      "assets/img/projects/gallery/iot-syergie/menit_2.webp",
+      "assets/img/projects/gallery/iot-syergie/ruangan_normal.webp"
     ],
 
     video: "",
@@ -835,7 +835,7 @@ window.PROJECTS_DATA = {
     tag: "AI Natural Language Processing",
     categories: ["ai"],
     title: "BestiBot - Mental Health Support Chatbot using BERT",
-    img: "Bestibot.png",
+    img: "Bestibot.webp",
 
     summary:
       "A conversational AI chatbot that uses natural language processing to provide context-aware responses through a web interface.",
@@ -883,11 +883,11 @@ window.PROJECTS_DATA = {
     ],
 
     gallery: [
-      "Bestibot.png",
-      "assets/img/projects/gallery/bestibot/bestibot_5.jpg",
-      "assets/img/projects/gallery/bestibot/bestibot_6.jpg",
-      "assets/img/projects/gallery/bestibot/bestibot_6_2.jpg",
-      "assets/img/projects/gallery/bestibot/bestibot_7.jpg"
+      "Bestibot.webp",
+      "assets/img/projects/gallery/bestibot/bestibot_5.webp",
+      "assets/img/projects/gallery/bestibot/bestibot_6.webp",
+      "assets/img/projects/gallery/bestibot/bestibot_6_2.webp",
+      "assets/img/projects/gallery/bestibot/bestibot_7.webp"
     ],
 
     video: "",
@@ -899,7 +899,7 @@ window.PROJECTS_DATA = {
     tag: "AI Computer Vision",
     categories: ["ai"],
     title: "Face Recognition Security Access System",
-    img: "facerecog.png",
+    img: "facerecog.webp",
 
     summary:
       "A computer vision-based access control prototype that uses facial recognition to identify registered users.",
@@ -944,7 +944,7 @@ window.PROJECTS_DATA = {
     ],
 
     gallery: [
-      "facerecog.png"
+      "facerecog.webp"
     ],
 
     video: "",
@@ -956,7 +956,7 @@ window.PROJECTS_DATA = {
     tag: "Embedded System",
     categories: ["embedded"],
     title: "Automatic Contactless Handwashing Station",
-    img: "keran.png",
+    img: "keran.webp",
 
     summary:
       "An embedded automation system that enables touchless water control using infrared-based hand detection.",
@@ -1002,9 +1002,9 @@ window.PROJECTS_DATA = {
     ],
 
     gallery: [
-      "keran.png",
-      "assets/img/projects/gallery/handwashing-station/keran_2.jpg",
-      "assets/img/projects/gallery/handwashing-station/keran_3.jpg"
+      "keran.webp",
+      "assets/img/projects/gallery/handwashing-station/keran_2.webp",
+      "assets/img/projects/gallery/handwashing-station/keran_3.webp"
     ],
 
     video: "",
@@ -1016,7 +1016,7 @@ window.PROJECTS_DATA = {
     tag: "Assistive Embedded System",
     categories: ["embedded"],
     title: "Ultrasonic Smart Glove for Obstacle Detection",
-    img: "sarung.png",
+    img: "sarung.webp",
 
     summary:
       "A wearable assistive device that uses ultrasonic sensing to detect obstacles and provide proximity feedback.",
@@ -1062,7 +1062,7 @@ window.PROJECTS_DATA = {
     ],
 
     gallery: [
-      "sarung.png"
+      "sarung.webp"
     ],
 
     video: "",

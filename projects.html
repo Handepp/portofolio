@@ -1,187 +1,88 @@
 <!DOCTYPE html>
-<html class="scroll-smooth" lang="en">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>All Projects | Reyhan Devara</title>
-  <meta name="description" content="Explore AI, embedded systems, and software projects by Reyhan Devara — from computer vision and IoT to interactive installations." />
+  <meta name="description" content="All projects by Reyhan Devara in AI, embedded systems, IoT and interactive hardware." />
+  <meta name="theme-color" content="#faf7f2" />
   <link rel="canonical" href="https://handep.my.id/projects.html" />
   <link rel="icon" type="image/png" href="assets/img/Name_Logo.png" />
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://handep.my.id/projects.html" />
   <meta property="og:title" content="All Projects | Reyhan Devara" />
-  <meta property="og:description" content="Explore AI, embedded systems, and software projects by Reyhan Devara — from computer vision and IoT to interactive installations." />
+  <meta property="og:description" content="All projects by Reyhan Devara in AI, embedded systems, IoT and interactive hardware." />
   <meta property="og:image" content="https://handep.my.id/assets/img/og-card.jpg" />
-  <meta property="og:image:secure_url" content="https://handep.my.id/assets/img/og-card.jpg" />
-  <meta property="og:image:type" content="image/jpeg" />
-  <meta property="og:image:width" content="1280" />
-  <meta property="og:image:height" content="720" />
-  <meta property="og:locale" content="en_US" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="All Projects | Reyhan Devara" />
-  <meta name="twitter:description" content="Explore AI, embedded systems, and software projects by Reyhan Devara — from computer vision and IoT to interactive installations." />
-  <meta name="twitter:image" content="https://handep.my.id/assets/img/og-card.jpg" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100;300;400;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/tailwind.css?v=1" />
-  <link rel="stylesheet" href="assets/css/style.css?v=48" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css?v=62" />
 </head>
-<body class="font-sans antialiased selection:bg-brand selection:text-surface bg-surface text-slate-200">
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-  <nav class="fixed top-0 w-full z-50 bg-surface-lowest/80 backdrop-blur-md border-b border-white/5 transition-all duration-300" id="mainNavbar">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between h-20 items-center">
-        <a href="index.html#home" class="flex-shrink-0"><img src="assets/img/Name_Logo.png" alt="Logo" class="h-10 w-auto" /></a>
-        <div class="hidden md:flex space-x-10 text-sm font-semibold tracking-wide uppercase">
-          <a class="hover:text-brand transition-colors" href="index.html#home">Home</a>
-          <a class="hover:text-brand transition-colors" href="index.html#about">About</a>
-          <a class="hover:text-brand transition-colors" href="index.html#skills">Skills</a>
-          <a class="text-brand" href="projects.html">Projects</a>
-          <a class="hover:text-brand transition-colors" href="index.html#journey">Journey</a>
-          <a class="hover:text-brand transition-colors" href="index.html#contact">Contact</a>
-        </div>
-        <button type="button" class="md:hidden p-2 text-slate-300 hover:text-brand" id="navToggle" aria-label="Toggle navigation">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-        </button>
-      </div>
-      <div class="hidden md:hidden pb-4" id="mobileMenu">
-        <div class="flex flex-col gap-2 text-sm font-semibold tracking-wide uppercase">
-          <a class="py-2 hover:text-brand" href="index.html#home">Home</a>
-          <a class="py-2 hover:text-brand" href="index.html#about">About</a>
-          <a class="py-2 hover:text-brand" href="index.html#skills">Skills</a>
-          <a class="py-2 text-brand" href="projects.html">Projects</a>
-          <a class="py-2 hover:text-brand" href="index.html#journey">Journey</a>
-          <a class="py-2 hover:text-brand" href="index.html#contact">Contact</a>
-        </div>
-      </div>
-    </div>
-  </nav>
-
-  <section class="pt-36 pb-12 reveal-section">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <span class="text-brand font-bold text-sm uppercase tracking-widest block mb-4">Portfolio</span>
-      <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">All Projects</h1>
-      <p class="text-slate-400 max-w-2xl mx-auto text-lg mb-8">A collection of projects in AI, embedded systems, and software development.</p>
-      <a href="index.html#projects" class="inline-flex items-center px-6 py-3 border border-brand/30 text-brand font-bold rounded-custom hover:bg-brand/10 transition-colors">
-        <svg class="mr-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
-        Back to Home
-      </a>
-    </div>
-  </section>
-
-  <section class="pb-24 reveal-section">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <!-- Project Category Filters -->
-      <div class="project-filter-bar mb-12" id="projectsFilterBar" role="tablist" aria-label="Filter all projects">
-        <button type="button" class="project-filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
-        <button type="button" class="project-filter-btn" data-filter="interactive" role="tab" aria-selected="false">Interactive/Gamification</button>
-        <button type="button" class="project-filter-btn" data-filter="embedded" role="tab" aria-selected="false">Embedded &amp; IoT</button>
-        <button type="button" class="project-filter-btn" data-filter="ai" role="tab" aria-selected="false">Artificial Intelligence</button>
-      </div>
-
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projectsGrid"></div>
-    </div>
-  </section>
-
-  <div id="projectModal" class="project-modal hidden" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalProjectTitle">
-    <div class="project-modal-overlay" data-modal-close></div>
-    <div class="project-modal-dialog">
-      <button type="button" class="project-modal-close" data-modal-close aria-label="Close project details">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>
-      <div class="project-modal-body">
-        <div class="project-modal-workspace">
-          <aside class="project-modal-media">
-            <div class="project-modal-slider" id="modalImageSlider">
-              <button type="button" class="slider-btn slider-prev" id="modalSliderPrev" aria-label="Previous image">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-              </button>
-              <div class="slider-viewport">
-                <div class="slider-track" id="modalSliderTrack"></div>
-              </div>
-              <button type="button" class="slider-btn slider-next" id="modalSliderNext" aria-label="Next image">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </button>
-              <div class="slider-counter" id="modalSliderCounter">1 / 1</div>
-              <div class="slider-dots" id="modalSliderDots"></div>
-            </div>
-
-            <div class="project-modal-section project-modal-media-section" id="modalVideoSection">
-              <h3 class="project-modal-section-title">Demo Video</h3>
-              <div id="modalVideoDeployments" class="project-modal-video-deployments hidden" role="group" aria-label="Select deployment video"></div>
-              <div class="project-modal-video-wrap" id="modalVideoWrap">
-                <div id="modalVideoContainer" class="project-modal-video hidden"></div>
-                <div id="modalVideoPlaceholder" class="project-modal-video-placeholder">
-                  <svg class="w-10 h-10 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                  <p>Demo video will be available soon.</p>
-                </div>
-              </div>
-            </div>
-          </aside>
-
-          <div class="project-modal-content">
-            <div class="project-modal-hero-content">
-              <span id="modalProjectMeta" class="project-modal-badge">Project</span>
-              <h2 id="modalProjectTitle" class="project-modal-title">Project Title</h2>
-              <p id="modalProjectSummary" class="project-modal-summary"></p>
-              <div id="modalProjectTech" class="project-modal-tech"></div>
-              <div class="project-modal-actions">
-                <a id="modalProjectLinkBtn" href="#" target="_blank" rel="noopener noreferrer" class="project-modal-btn project-modal-btn-primary hidden">
-                  <span id="modalProjectLinkIcon" class="inline-flex" aria-hidden="true"></span>
-                  <span id="modalProjectLinkLabel">View Project</span>
-                </a>
-              </div>
-            </div>
-
-            <div class="project-modal-section project-modal-about">
-              <h3 class="project-modal-section-title">About the Project</h3>
-              <p id="modalAbout" class="project-modal-about-text"></p>
-            </div>
-
-            <div class="project-modal-section project-modal-deployments-section hidden" id="modalDeploymentsSection">
-              <h3 class="project-modal-section-title">Project Context</h3>
-              <div id="modalDeployments" class="project-modal-deployments"></div>
-            </div>
-
-            <div class="project-modal-section hidden" id="modalHowItWorksSection">
-              <h3 class="project-modal-section-title">How It Works</h3>
-              <p id="modalHowItWorks" class="project-modal-about-text"></p>
-            </div>
-
-            <div class="project-modal-section hidden" id="modalContributionsSection">
-              <h3 class="project-modal-section-title">My Contributions</h3>
-              <ul id="modalContributions" class="project-modal-list"></ul>
-            </div>
-
-            <div class="project-modal-section hidden" id="modalFeaturesSection">
-              <h3 class="project-modal-section-title">Key Features</h3>
-              <ul id="modalFeatures" class="project-modal-list"></ul>
-            </div>
-
-            <div class="project-modal-section hidden" id="modalChallengesSection">
-              <h3 class="project-modal-section-title">Challenges</h3>
-              <ul id="modalChallenges" class="project-modal-list"></ul>
-            </div>
-
-            <div class="project-modal-section hidden" id="modalResultsSection">
-              <h3 class="project-modal-section-title">Results</h3>
-              <ul id="modalResults" class="project-modal-list"></ul>
-            </div>
+  <header class="site-header">
+    <div class="wrap">
+      <div class="bar">
+        <a class="wordmark" href="index.html">Reyhan Devara</a>
+        <nav aria-label="Main">
+          <div class="nav-links">
+            <a href="index.html#about">About</a>
+            <a href="index.html#skills">Skills</a>
+            <a href="projects.html" aria-current="true">Projects</a>
+            <a href="index.html#experience">Experience</a>
+            <a href="index.html#contact">Contact</a>
           </div>
-        </div>
+          <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu">Menu</button>
+        </nav>
+      </div>
+      <div class="mobile-menu hidden" id="mobileMenu">
+        <a href="index.html#about">About</a>
+        <a href="index.html#skills">Skills</a>
+        <a href="projects.html" aria-current="true">Projects</a>
+        <a href="index.html#experience">Experience</a>
+        <a href="index.html#contact">Contact</a>
       </div>
     </div>
-  </div>
+    <div class="progress" aria-hidden="true"></div>
+  </header>
 
-  <footer class="py-12 border-t border-white/5 bg-surface-lowest reveal-section">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <p class="text-slate-500 text-sm">© 2026 Reyhan Devara. All rights reserved.</p>
+  <main id="main">
+    <section class="page-title">
+      <div class="wrap">
+        <h1 class="display" data-enter>All projects</h1>
+        <p data-enter style="--i:1">Everything I have built in AI, embedded systems and interactive hardware. <a class="link" href="index.html#projects">Back to home</a></p>
+      </div>
+    </section>
+
+    <section class="section--tight" style="padding-bottom:clamp(4rem,9vw,8rem)">
+      <div class="wrap">
+        <div class="filters" id="projectsFilterBar" role="group" aria-label="Filter all projects">
+          <button type="button" class="project-filter-btn active" data-filter="all" aria-pressed="true">All</button>
+          <button type="button" class="project-filter-btn" data-filter="interactive" aria-pressed="false">Interactive / Gamification</button>
+          <button type="button" class="project-filter-btn" data-filter="embedded" aria-pressed="false">Embedded &amp; IoT</button>
+          <button type="button" class="project-filter-btn" data-filter="ai" aria-pressed="false">Artificial Intelligence</button>
+        </div>
+
+        <div class="project-grid project-grid--list" id="projectsGrid" aria-live="polite">
+          <p class="project-grid-empty">Loading projects.</p>
+        </div>
+        <noscript><p class="project-grid-error">Projects need JavaScript to load. Enable it, or <a class="link" href="https://github.com/Handepp">browse my GitHub</a>.</p></noscript>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>&copy; 2026 Reyhan Devara</p>
+      <a class="link" href="#main">Back to top</a>
     </div>
   </footer>
 
-  <script src="assets/js/projects-data.js?v=10"></script>
-  <script src="assets/js/script.js?v=12"></script>
+  <script src="assets/js/projects-data.js?v=11" defer></script>
+  <script src="assets/js/script.js?v=14" defer></script>
 </body>
 </html>

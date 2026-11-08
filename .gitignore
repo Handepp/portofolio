@@ -3,3 +3,15 @@ assets/projects/
 
 # Dependencies
 node_modules/
+
+# AI Agent skills & local tool state
+.agents/
+.claude/
+agent/
+skills-lock.json
+.taste-skill/
+anti-slop/
+
+# OS metadata
+.DS_Store
+Thumbs.db

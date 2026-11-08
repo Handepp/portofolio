@@ -1,16 +1,106 @@
 const PROJECT_THUMB_BASE = "assets/img/projects/thumbnail/";
-const PROJECT_FALLBACK_IMAGE = "assets/img/handep-no-bg.png";
-const FEATURED_PROJECT_COUNT = 6;
+const PROJECT_FALLBACK_IMAGE = "assets/img/handep-no-bg.webp";
+const FEATURED_PROJECT_COUNT = 5;
+const REDUCE_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+document.documentElement.classList.add("js");
 
-const GITHUB_LINK_ICON = `<svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.042-1.416-4.042-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>`;
+let activeTech = null;
+const filterAppliers = [];
 
-const EXTERNAL_LINK_ICON = `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>`;
+function matchesTech(project, tech) {
+  const t = tech.toLowerCase();
+  return project.tech.some((item) => item.toLowerCase().includes(t));
+}
+
+const GITHUB_LINK_ICON = `<svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.042-1.416-4.042-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>`;
+
+const EXTERNAL_LINK_ICON = `<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>`;
+
+const MODAL_TEMPLATE = `
+  <div id="projectModal" class="project-modal hidden" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalProjectTitle">
+    <div class="project-modal-overlay" data-modal-close></div>
+    <div class="project-modal-dialog">
+      <button type="button" class="project-modal-close" data-modal-close aria-label="Close project details">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+      <div class="project-modal-body">
+        <div class="project-modal-workspace">
+          <aside class="project-modal-media">
+            <div class="project-modal-slider" id="modalImageSlider">
+              <button type="button" class="slider-btn slider-prev" id="modalSliderPrev" aria-label="Previous image">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+              </button>
+              <div class="slider-viewport"><div class="slider-track" id="modalSliderTrack"></div></div>
+              <button type="button" class="slider-btn slider-next" id="modalSliderNext" aria-label="Next image">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+              </button>
+              <div class="slider-counter" id="modalSliderCounter">1 / 1</div>
+              <div class="slider-dots" id="modalSliderDots"></div>
+            </div>
+
+            <div class="project-modal-section" id="modalVideoSection">
+              <h3 class="project-modal-section-title">Demo video</h3>
+              <div id="modalVideoDeployments" class="project-modal-video-deployments hidden" role="group" aria-label="Select deployment video"></div>
+              <div class="project-modal-video-wrap" id="modalVideoWrap">
+                <div id="modalVideoContainer" class="project-modal-video hidden"></div>
+                <div id="modalVideoPlaceholder" class="project-modal-video-placeholder"><p>Demo video will be available soon.</p></div>
+              </div>
+            </div>
+          </aside>
+
+          <div class="project-modal-content">
+            <div>
+              <span id="modalProjectMeta" class="project-modal-badge"></span>
+              <h2 id="modalProjectTitle" class="project-modal-title"></h2>
+              <p id="modalProjectSummary" class="project-modal-summary"></p>
+              <div id="modalProjectTech" class="project-modal-tech"></div>
+              <div class="project-modal-actions">
+                <a id="modalProjectLinkBtn" href="#" target="_blank" rel="noopener noreferrer" class="project-modal-btn project-modal-btn-primary hidden">
+                  <span id="modalProjectLinkIcon" class="inline-flex" aria-hidden="true"></span>
+                  <span id="modalProjectLinkLabel">View project</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="project-modal-section">
+              <h3 class="project-modal-section-title">About the project</h3>
+              <p id="modalAbout" class="project-modal-about-text"></p>
+            </div>
+            <div class="project-modal-section hidden" id="modalDeploymentsSection">
+              <h3 class="project-modal-section-title">Project context</h3>
+              <div id="modalDeployments" class="project-modal-deployments"></div>
+            </div>
+            <div class="project-modal-section hidden" id="modalHowItWorksSection">
+              <h3 class="project-modal-section-title">How it works</h3>
+              <p id="modalHowItWorks" class="project-modal-about-text"></p>
+            </div>
+            <div class="project-modal-section hidden" id="modalContributionsSection">
+              <h3 class="project-modal-section-title">My contributions</h3>
+              <ul id="modalContributions" class="project-modal-list"></ul>
+            </div>
+            <div class="project-modal-section hidden" id="modalFeaturesSection">
+              <h3 class="project-modal-section-title">Key features</h3>
+              <ul id="modalFeatures" class="project-modal-list"></ul>
+            </div>
+            <div class="project-modal-section hidden" id="modalChallengesSection">
+              <h3 class="project-modal-section-title">Challenges</h3>
+              <ul id="modalChallenges" class="project-modal-list"></ul>
+            </div>
+            <div class="project-modal-section hidden" id="modalResultsSection">
+              <h3 class="project-modal-section-title">Results</h3>
+              <ul id="modalResults" class="project-modal-list"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>`;
 
 function getProjectLinkLabel(project, url) {
   if (project.projectLinkLabel) return project.projectLinkLabel;
   if (url.includes("linkedin.com")) return "View on LinkedIn";
   if (url.includes("unictive.com")) return "View on Unictive";
-  return "View Project";
+  return "View project";
 }
 
 function getProjectLink(project) {
@@ -50,67 +140,68 @@ function addImageFallback(image, altText) {
 
 function createProjectCard(project) {
   const article = document.createElement("article");
-  article.className =
-    "project-card project-card-trigger glass-card rounded-custom overflow-hidden group border border-white/5 cursor-pointer";
-  article.dataset.projectId = project.id;
-  article.tabIndex = 0;
-  article.setAttribute("role", "button");
-  article.setAttribute("aria-label", `View ${project.title} details`);
+  article.className = "project-card";
 
   const media = document.createElement("div");
-  media.className = "aspect-video relative overflow-hidden";
+  media.className = "project-card-media";
 
   const image = document.createElement("img");
-  image.alt = project.title;
-  image.className = "w-full h-full object-cover group-hover:scale-105 transition-transform duration-500";
+  image.alt = "";
+  image.width = 1000;
+  image.height = 625;
+  image.loading = "lazy";
   addImageFallback(image, project.title);
   image.src = `${PROJECT_THUMB_BASE}${project.img}`;
-
-  const tag = document.createElement("span");
-  tag.className =
-    "absolute top-4 left-4 px-3 py-1 bg-brand text-surface text-[10px] font-bold uppercase rounded-sm";
-  tag.textContent = project.tag;
-
-  media.append(image, tag);
+  media.append(image);
 
   const body = document.createElement("div");
-  body.className = "p-6";
+
+  const meta = document.createElement("p");
+  meta.className = "project-card-meta";
+  meta.textContent = `${project.tag} · ${project.year} · ${project.org}`;
 
   const title = document.createElement("h3");
-  title.className = "text-xl font-bold leading-tight mb-4";
-  title.textContent = project.title;
+  title.className = "project-card-title";
+  const trigger = document.createElement("button");
+  trigger.type = "button";
+  trigger.className = "project-card-trigger";
+  trigger.dataset.projectId = project.id;
+  trigger.textContent = project.title;
+  title.append(trigger);
 
   const summary = document.createElement("p");
-  summary.className = "text-slate-400 text-sm mb-6 line-clamp-3";
+  summary.className = "project-card-summary";
   summary.textContent = project.summary;
 
-  const techWrap = document.createElement("div");
-  techWrap.className = "flex flex-wrap gap-2 mb-4";
+  const techWrap = document.createElement("ul");
+  techWrap.className = "project-card-tech";
   project.tech.slice(0, 4).forEach((item) => {
-    const techTag = document.createElement("span");
-    techTag.className = "tech-tag";
+    const techTag = document.createElement("li");
     techTag.textContent = item;
     techWrap.appendChild(techTag);
   });
 
-  const meta = document.createElement("p");
-  meta.className = "text-xs text-slate-500 font-bold uppercase";
-  meta.textContent = `Year: ${project.year} · ${project.org}`;
-
-  body.append(title, summary, techWrap, meta);
+  body.append(meta, title, summary, techWrap);
   article.append(media, body);
 
   return article;
 }
 
-function renderProjectCards(container, projectIds = []) {
+function renderProjectCards(container, projectIds = [], animate = false) {
   if (!container || !window.PROJECTS_DATA) return;
 
   container.replaceChildren();
 
-  projectIds.forEach((id) => {
+  projectIds.forEach((id, index) => {
     const project = PROJECTS_DATA[id];
-    if (project) container.appendChild(createProjectCard(project));
+    if (!project) return;
+    const card = createProjectCard(project);
+    // Motion purpose: the list just changed, so the new cards settle in once.
+    if (animate && !REDUCE_MOTION) {
+      card.classList.add("is-new");
+      card.style.setProperty("--i", Math.min(index, 8));
+    }
+    container.appendChild(card);
   });
 }
 
@@ -119,420 +210,224 @@ function getFilteredProjectIds(category, isFeatured = false) {
   const data = window.PROJECTS_DATA;
   if (!order || !data) return [];
 
-  if (category === "all") {
-    return isFeatured ? order.slice(0, FEATURED_PROJECT_COUNT) : order;
-  }
+  let ids =
+    category === "all"
+      ? order
+      : order.filter((id) => data[id]?.categories?.includes(category));
 
-  const filtered = order.filter((id) => {
-    const project = data[id];
-    return (
-      project &&
-      Array.isArray(project.categories) &&
-      project.categories.includes(category)
-    );
-  });
+  if (activeTech) ids = ids.filter((id) => data[id] && matchesTech(data[id], activeTech));
 
-  return isFeatured ? filtered.slice(0, FEATURED_PROJECT_COUNT) : filtered;
+  return isFeatured && !activeTech ? ids.slice(0, FEATURED_PROJECT_COUNT) : ids;
 }
 
-function filterProjects(container, category, isFeatured = false) {
+function filterProjects(container, category, isFeatured = false, animate = false) {
   if (!container) return;
 
   const projectIds = getFilteredProjectIds(category, isFeatured);
-  renderProjectCards(container, projectIds);
+  renderProjectCards(container, projectIds, animate);
 
   if (projectIds.length === 0) {
     const empty = document.createElement("p");
     empty.className = "project-grid-empty";
-    empty.textContent = "No projects found in this category.";
+    empty.textContent = "No projects in this category yet. Pick another filter.";
     container.appendChild(empty);
   }
-
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (!prefersReducedMotion && typeof window.initPortfolioAnimations === "function") {
-    window.initPortfolioAnimations();
-  } else {
-    container.querySelectorAll(".project-card").forEach((card) => {
-      card.classList.add("is-visible");
-    });
-  }
 }
 
-function initProjectFilters() {
-  const featuredBar = document.getElementById("featuredFilterBar");
-  const featuredGrid = document.getElementById("featuredProjectsGrid");
-  const projectsBar = document.getElementById("projectsFilterBar");
-  const projectsGrid = document.getElementById("projectsGrid");
+function setupFilterBar(bar, grid, isFeatured) {
+  if (!bar || !grid) return null;
+
+  const buttons = bar.querySelectorAll(".project-filter-btn");
   const viewMoreBtn = document.getElementById("viewMoreProjectsBtn");
 
-  function setupFilterBar(bar, grid, isFeatured) {
-    if (!bar || !grid) return null;
+  const status = document.createElement("p");
+  status.className = "tech-status";
+  status.hidden = true;
+  status.innerHTML = `<span></span><button type="button" class="link">Clear</button>`;
+  bar.after(status);
+  status.querySelector("button").addEventListener("click", () => setTechFilter(null));
 
-    const buttons = bar.querySelectorAll(".project-filter-btn");
+  let current = "all";
 
-    function applyFilter(category) {
-      buttons.forEach((btn) => {
-        const isActive = btn.dataset.filter === category;
-        btn.classList.toggle("active", isActive);
-        btn.setAttribute("aria-selected", isActive ? "true" : "false");
-      });
-
-      filterProjects(grid, category, isFeatured);
-
-      if (isFeatured && viewMoreBtn) {
-        viewMoreBtn.href = category === "all" ? "projects.html" : `projects.html?filter=${encodeURIComponent(category)}`;
-      }
-    }
-
+  function applyFilter(category = current, animate = true) {
+    current = category;
     buttons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const category = btn.dataset.filter || "all";
-        applyFilter(category);
-      });
+      const isActive = btn.dataset.filter === category;
+      btn.classList.toggle("active", isActive);
+      btn.setAttribute("aria-pressed", isActive ? "true" : "false");
     });
 
-    return applyFilter;
-  }
+    filterProjects(grid, category, isFeatured, animate);
 
-  setupFilterBar(featuredBar, featuredGrid, true);
-  const applyProjects = setupFilterBar(projectsBar, projectsGrid, false);
+    status.hidden = !activeTech;
+    if (activeTech) {
+      const n = grid.querySelectorAll(".project-card").length;
+      status.firstChild.textContent = `${n} ${n === 1 ? "project uses" : "projects use"} ${activeTech}. `;
+    }
 
-  if (projectsBar && applyProjects) {
-    const params = new URLSearchParams(window.location.search);
-    const filterParam = params.get("filter");
-    const validFilters = ["interactive", "embedded", "ai"];
-    if (filterParam && validFilters.includes(filterParam)) {
-      applyProjects(filterParam);
+    if (isFeatured && viewMoreBtn) {
+      const params = new URLSearchParams();
+      if (category !== "all") params.set("filter", category);
+      if (activeTech) params.set("tech", activeTech);
+      const query = params.toString();
+      viewMoreBtn.href = query ? `projects.html?${query}` : "projects.html";
     }
   }
+
+  filterAppliers.push(applyFilter);
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => applyFilter(btn.dataset.filter || "all"));
+  });
+
+  return applyFilter;
 }
 
-function initProjectGrids() {
+function initProjects() {
   const featuredGrid = document.getElementById("featuredProjectsGrid");
-  const allProjectsGrid = document.getElementById("projectsGrid");
+  const allGrid = document.getElementById("projectsGrid");
 
-  if (featuredGrid && window.PROJECTS_ORDER) {
-    renderProjectCards(featuredGrid, PROJECTS_ORDER.slice(0, FEATURED_PROJECT_COUNT));
+  if (!window.PROJECTS_DATA || !window.PROJECTS_ORDER) {
+    [featuredGrid, allGrid].forEach((grid) => {
+      if (grid) grid.innerHTML = `<p class="project-grid-error">Projects could not be loaded. Reload the page, or <a class="link" href="https://github.com/Handepp">browse my GitHub</a>.</p>`;
+    });
+    return;
   }
 
-  if (allProjectsGrid && window.PROJECTS_ORDER) {
-    renderProjectCards(allProjectsGrid, PROJECTS_ORDER);
+  const applyFeatured = setupFilterBar(document.getElementById("featuredFilterBar"), featuredGrid, true);
+  const applyAll = setupFilterBar(document.getElementById("projectsFilterBar"), allGrid, false);
+
+  const params = new URLSearchParams(window.location.search);
+  const techParam = params.get("tech");
+  if (techParam && window.PROJECTS_ORDER.some((id) => matchesTech(PROJECTS_DATA[id], techParam))) activeTech = techParam;
+
+  applyFeatured?.("all", false);
+
+  const filterParam = params.get("filter");
+  const validFilters = ["interactive", "embedded", "ai"];
+  applyAll?.(validFilters.includes(filterParam) ? filterParam : "all", false);
+
+  initSkillLinks();
+}
+
+function setTechFilter(tech) {
+  activeTech = tech;
+  filterAppliers.forEach((apply) => apply());
+}
+
+// Interaction purpose: a skill is a claim, so each one that appears in a project opens those projects.
+function initSkillLinks() {
+  document.querySelectorAll(".skill-tags li").forEach((li) => {
+    const tech = li.textContent.trim();
+    if (!window.PROJECTS_ORDER.some((id) => matchesTech(PROJECTS_DATA[id], tech))) return;
+
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "skill-tag-btn";
+    button.textContent = tech;
+    button.title = `Show projects that use ${tech}`;
+    button.addEventListener("click", () => {
+      setTechFilter(tech);
+      document.getElementById("projects")?.scrollIntoView({ behavior: REDUCE_MOTION ? "auto" : "smooth" });
+    });
+    li.replaceChildren(button);
+  });
+}
+
+function initExtras() {
+  const bar = document.querySelector(".progress");
+  if (bar) {
+    const update = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.setProperty("--p", max > 0 ? Math.min(window.scrollY / max, 1) : 0);
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
   }
-}
 
-document.addEventListener("DOMContentLoaded", () => {
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  initProjectGrids();
-  initProjectFilters();
-
-  const navToggle = document.getElementById("navToggle");
-  const mobileMenu = document.getElementById("mobileMenu");
-  const navbar = document.getElementById("mainNavbar");
-
-  if (navToggle && mobileMenu) {
-    navToggle.addEventListener("click", () => {
-      mobileMenu.classList.toggle("hidden");
-    });
-
-    mobileMenu.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        mobileMenu.classList.add("hidden");
-      });
-    });
-  }
-
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", (event) => {
-      const targetId = anchor.getAttribute("href");
-      if (!targetId || targetId === "#") return;
-
-      const target = document.querySelector(targetId);
-      if (!target) return;
-
-      event.preventDefault();
-      target.scrollIntoView({ behavior: "smooth" });
-    });
-  });
-
-  initProjectModal();
-
-  if (!prefersReducedMotion) {
-    initNavbarScroll(navbar);
-    initSectionBackgrounds();
-    initSectionMotion();
-    initScrollReveal();
-    initActiveNavHighlight();
-
-    if (
-      document.querySelector("#projectsGrid .project-card, #featuredProjectsGrid .project-card")
-    ) {
-      initPortfolioAnimations();
-    }
-  } else {
-    initSectionBackgrounds();
-    document.querySelectorAll(".reveal, .timeline-item").forEach((el) => {
-      el.classList.add("is-visible");
-    });
-  }
-});
-
-function initNavbarScroll(navbar) {
-  if (!navbar) return;
-
-  const onScroll = () => {
-    navbar.classList.toggle("nav-scrolled", window.scrollY > 24);
-  };
-
-  onScroll();
-  window.addEventListener("scroll", onScroll, { passive: true });
-}
-
-const revealRegistry = new Set();
-
-function registerReveal(el, observer, { variant = "", delay = 0, scale = false } = {}) {
-  if (!el || revealRegistry.has(el)) return;
-  revealRegistry.add(el);
-
-  el.classList.add("reveal");
-  if (variant) el.classList.add(`reveal-${variant}`);
-  if (scale) el.classList.add("reveal-scale");
-  if (delay) el.style.transitionDelay = `${delay}s`;
-
-  observer.observe(el);
-}
-
-function createRevealObserver() {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
-  );
-
-  return observer;
-}
-
-function initScrollReveal() {
-  const observer = createRevealObserver();
-
-  document.querySelectorAll(".reveal-section").forEach((section) => {
-    if (section.id === "about") {
-      const [imgCol, textCol] = section.querySelectorAll(".grid > div");
-      registerReveal(imgCol, observer, { variant: "left", scale: true });
-      registerReveal(textCol?.querySelector("span"), observer, { variant: "right", delay: 0.06 });
-      registerReveal(textCol?.querySelector("h2"), observer, { variant: "right", delay: 0.12 });
-      textCol?.querySelectorAll(".space-y-6 > p").forEach((paragraph, index) => {
-        registerReveal(paragraph, observer, { delay: 0.18 + index * 0.1 });
-      });
-    } else if (section.id === "contact") {
-      const infoCol = section.querySelector(".contact-intro");
-      const panel = section.querySelector(".contact-panel");
-      registerReveal(infoCol?.querySelector("span"), observer, { variant: "left" });
-      registerReveal(infoCol?.querySelector("h2"), observer, { variant: "left", delay: 0.08 });
-      registerReveal(infoCol?.querySelector("p.text-slate-400"), observer, { variant: "left", delay: 0.16 });
-      registerReveal(panel, observer, { variant: "right", delay: 0.1 });
-    } else if (section.id === "projects") {
-      const header = section.querySelector(":scope > .max-w-7xl > .flex");
-      registerReveal(header?.querySelector(":scope > div"), observer, { variant: "left" });
-      registerReveal(header?.querySelector("p"), observer, { variant: "right", delay: 0.12 });
-      registerReveal(section.querySelector(".mt-16 a"), observer, { scale: true, delay: 0.2 });
-    } else {
-      const intro = section.querySelector(
-        ":scope > .max-w-7xl > .text-center, :scope > .max-w-7xl > .flex.flex-col:not(.md\\:flex-row)"
-      );
-      registerReveal(intro, observer);
-      section.querySelectorAll(":scope > .max-w-7xl a.inline-flex").forEach((link) => {
-        registerReveal(link, observer, { scale: true, delay: 0.15 });
-      });
-    }
-
-    section.querySelectorAll(".glass-card, .project-card").forEach((card, index) => {
-      registerReveal(card, observer, { delay: (index % 6) * 0.08 });
-    });
-
-    section.querySelectorAll("h3.border-l-4").forEach((heading, index) => {
-      registerReveal(heading, observer, { variant: "left", delay: index * 0.08 });
-    });
-  });
-
-  initTimelineReveal(observer);
-  initFooterReveal(observer);
-}
-
-function initTimelineReveal(observer) {
-  document.querySelectorAll("#journey .relative.pl-8 > .relative").forEach((item, index) => {
-    if (revealRegistry.has(item)) return;
-    revealRegistry.add(item);
-    item.classList.add("timeline-item");
-    item.style.transitionDelay = `${index * 0.12}s`;
-    observer.observe(item);
-  });
-}
-
-function initFooterReveal(observer) {
-  document.querySelectorAll("footer .max-w-7xl").forEach((inner) => {
-    inner.querySelectorAll(":scope > *").forEach((child, index) => {
-      registerReveal(child, observer, { delay: index * 0.1 });
-    });
-  });
-}
-
-const SECTION_DECO_RING = `
-  <svg class="hero-deco hero-deco--accent" viewBox="0 0 180 180" fill="none">
-    <circle class="hero-deco-ring" cx="90" cy="90" r="62" />
-    <circle class="hero-deco-ring hero-deco-ring--inner" cx="90" cy="90" r="38" />
-    <path class="hero-deco-spark" d="M90 24v28M90 128v28M24 90h28M128 90h28" />
-  </svg>`;
-
-const SECTION_DECO_BLOB_A = `
-  <svg class="hero-deco hero-deco--blob-a" viewBox="0 0 240 240" fill="none">
-    <path class="hero-deco-blob" d="M58 128c-28-36-8-88 42-98 34-7 72 12 88 44 18 36-2 84-44 98-36 12-74-2-86-44Z" />
-  </svg>`;
-
-const SECTION_DECO_BLOB_B = `
-  <svg class="hero-deco hero-deco--blob-b" viewBox="0 0 200 200" fill="none">
-    <path class="hero-deco-blob hero-deco-blob--soft" d="M42 104c-18-30 6-68 46-74 28-4 56 14 64 42 10 34-14 66-48 72-30 5-54-16-62-40Z" />
-  </svg>`;
-
-const SECTION_DECO_VARIANTS = {
-  v0: `
-    ${SECTION_DECO_BLOB_A}
-    ${SECTION_DECO_RING}
-    <span class="hero-deco-dot hero-deco-dot--1"></span>
-    <span class="hero-deco-dot hero-deco-dot--3"></span>
-    <span class="hero-deco-plus hero-deco-plus--1">+</span>
-  `,
-  v1: `
-    ${SECTION_DECO_BLOB_B}
-    <span class="hero-deco-dot hero-deco-dot--2"></span>
-    <span class="hero-deco-plus hero-deco-plus--2">+</span>
-    <span class="hero-deco-plus hero-deco-plus--1">+</span>
-  `,
-  v2: `
-    ${SECTION_DECO_BLOB_A}
-    ${SECTION_DECO_BLOB_B}
-    ${SECTION_DECO_RING}
-    <span class="hero-deco-dot hero-deco-dot--1"></span>
-    <span class="hero-deco-dot hero-deco-dot--2"></span>
-  `,
-  footer: `
-    <span class="hero-deco-dot hero-deco-dot--2"></span>
-  `,
-};
-
-const SECTION_DECO_BY_ID = {
-  about: "v0",
-  skills: "v1",
-  projects: "v2",
-  journey: "v0",
-  contact: "v1",
-};
-
-function buildSectionDecoLayer(variant) {
-  const layer = document.createElement("div");
-  layer.className = `section-deco-layer section-deco-layer--${variant}`;
-  layer.setAttribute("aria-hidden", "true");
-  layer.innerHTML = `
-    <div class="section-bg-glow"></div>
-    <div class="section-grid-pattern"></div>
-    <div class="section-vectors">${SECTION_DECO_VARIANTS[variant] || SECTION_DECO_VARIANTS.v0}</div>
-  `;
-  return layer;
-}
-
-function initSectionBackgrounds() {
-  let fallbackIndex = 0;
-
-  document.querySelectorAll("section.reveal-section, footer.reveal-section").forEach((section) => {
-    if (section.querySelector(".section-deco-layer")) return;
-
-    const isFooter = section.tagName === "FOOTER";
-    const variant = isFooter
-      ? "footer"
-      : SECTION_DECO_BY_ID[section.id] || `v${fallbackIndex++ % 3}`;
-
-    section.insertBefore(buildSectionDecoLayer(variant), section.firstChild);
-  });
-}
-
-function initSectionMotion() {
-  const sections = Array.from(
-    document.querySelectorAll("header.hero-section, section.reveal-section, footer.reveal-section")
-  );
-
-  if (!sections.length) return;
-
-  const visibility = new Map(sections.map((section) => [section, 0]));
-  const updateActiveSection = () => {
-    const activeSection = sections.reduce((current, section) => {
-      if (!current || visibility.get(section) > visibility.get(current)) {
-        return section;
+  const copyBtn = document.getElementById("copyEmail");
+  const copyStatus = document.getElementById("copyStatus");
+  if (copyBtn && copyStatus) {
+    copyBtn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText("handep789@gmail.com");
+        copyStatus.textContent = "Copied.";
+      } catch {
+        copyStatus.textContent = "Copy failed. Select the address above instead.";
       }
-      return current;
-    }, null);
-
-    sections.forEach((section) => {
-      section.classList.toggle("is-motion-active", section === activeSection);
+      setTimeout(() => (copyStatus.textContent = ""), 3000);
     });
-  };
+  }
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        visibility.set(entry.target, entry.isIntersecting ? entry.intersectionRatio : 0);
-      });
-      updateActiveSection();
-    },
-    {
-      threshold: [0, 0.15, 0.3, 0.5, 0.75, 1],
-      rootMargin: "-12% 0px -12% 0px",
-    }
+  if (REDUCE_MOTION) return;
+
+  // Motion purpose: a new section heading marks where a new topic starts.
+  const headings = document.querySelectorAll("main .h2, .contact h2");
+  const seen = new IntersectionObserver(
+    (entries) => entries.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add("is-in"); seen.unobserve(e.target); }
+    }),
+    { rootMargin: "0px 0px -12% 0px" }
   );
+  headings.forEach((h) => { h.classList.add("reveal"); seen.observe(h); });
 
-  sections.forEach((section) => observer.observe(section));
+  // Interaction purpose: the whole card is clickable, and the label says what a click does.
+  if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    const tip = document.createElement("div");
+    tip.className = "cursor-tip";
+    tip.setAttribute("aria-hidden", "true");
+    tip.textContent = "Open";
+    document.body.append(tip);
+    document.addEventListener("pointermove", (e) => {
+      const over = e.target.closest?.(".project-card");
+      tip.classList.toggle("is-on", Boolean(over));
+      if (over) tip.style.transform = `translate(${e.clientX + 16}px, ${e.clientY + 16}px)`;
+    });
+    document.addEventListener("pointerleave", () => tip.classList.remove("is-on"));
+  }
 }
 
-function initActiveNavHighlight() {
-  const sections = document.querySelectorAll("section[id], header[id]");
-  const navLinks = document.querySelectorAll('#mainNavbar a[href^="#"]');
+function initNav() {
+  const toggle = document.getElementById("navToggle");
+  const menu = document.getElementById("mobileMenu");
 
-  if (!sections.length || !navLinks.length) return;
+  if (toggle && menu) {
+    const setOpen = (open) => {
+      menu.classList.toggle("hidden", !open);
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    };
+    toggle.addEventListener("click", () => setOpen(menu.classList.contains("hidden")));
+    menu.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setOpen(false)));
+  }
+
+  const links = document.querySelectorAll('.nav-links a[href^="#"]');
+  const sections = [...links].map((l) => document.querySelector(l.getAttribute("href"))).filter(Boolean);
+  if (!sections.length) return;
 
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
-
-        const id = entry.target.getAttribute("id");
-        navLinks.forEach((link) => {
-          const isActive = link.getAttribute("href") === `#${id}`;
-          link.classList.toggle("text-brand", isActive);
-          link.classList.toggle("opacity-100", isActive);
-          link.classList.toggle("opacity-70", !isActive);
+        links.forEach((link) => {
+          const isCurrent = link.getAttribute("href") === `#${entry.target.id}`;
+          if (isCurrent) link.setAttribute("aria-current", "true");
+          else link.removeAttribute("aria-current");
         });
       });
     },
-    { threshold: 0.35, rootMargin: "-20% 0px -55% 0px" }
+    { rootMargin: "-45% 0px -50% 0px" }
   );
-
   sections.forEach((section) => observer.observe(section));
 }
 
-window.initPortfolioAnimations = function initPortfolioAnimations() {
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-  const observer = createRevealObserver();
-
-  document.querySelectorAll("#projectsGrid .project-card, #featuredProjectsGrid .project-card").forEach((card, index) => {
-    registerReveal(card, observer, { delay: (index % 6) * 0.08 });
-  });
-};
+document.addEventListener("DOMContentLoaded", () => {
+  document.body.insertAdjacentHTML("beforeend", MODAL_TEMPLATE);
+  initProjects();
+  initNav();
+  initExtras();
+  initProjectModal();
+});
 
 function initProjectModal() {
   const modal = document.getElementById("projectModal");
@@ -642,7 +537,7 @@ function initProjectModal() {
         [
           "Event",
           deployment.event === ""
-            ? "—"
+            ? "Not listed"
             : deployment.event || "[Event name placeholder]",
         ],
       ];
@@ -975,14 +870,6 @@ function initProjectModal() {
   });
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Enter" || event.key === " ") {
-      const trigger = event.target.closest(".project-card-trigger");
-      if (!trigger || event.target.closest("#projectModal")) return;
-
-      event.preventDefault();
-      openModal(trigger.getAttribute("data-project-id"));
-    }
-
     if (!modal.classList.contains("is-open")) return;
 
     if (event.key === "Escape") {
