@@ -362,15 +362,17 @@ function initExtras() {
 
   if (REDUCE_MOTION) return;
 
-  // Motion purpose: a new section heading marks where a new topic starts.
-  const headings = document.querySelectorAll("main .h2, .contact h2");
+  // Motion purpose: section headings and content blocks settle into view gently as the reader scrolls.
+  const targets = document.querySelectorAll(
+    "main .h2, .contact h2, .about-photo, .about-copy, .skill-row, .xp-item, .contact-mail, .contact-list"
+  );
   const seen = new IntersectionObserver(
     (entries) => entries.forEach((e) => {
       if (e.isIntersecting) { e.target.classList.add("is-in"); seen.unobserve(e.target); }
     }),
-    { rootMargin: "0px 0px -12% 0px" }
+    { rootMargin: "0px 0px -8% 0px" }
   );
-  headings.forEach((h) => { h.classList.add("reveal"); seen.observe(h); });
+  targets.forEach((el) => { el.classList.add("reveal"); seen.observe(el); });
 
   // Interaction purpose: the whole card is clickable, and the label says what a click does.
   if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {

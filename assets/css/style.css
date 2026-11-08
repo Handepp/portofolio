@@ -4,8 +4,8 @@
   - One accent (#B92D07, a signal orange from PCB silkscreen and indicator LEDs), used only on the
     primary button, the active filter, link hover and the closing headline. 5.7:1 on paper.
   - Fraunces for display (large, editorial tension), Instrument Sans for text (readable, not the usual default).
-  - Radius 4px everywhere; no pills. No shadows except the modal. No gradients, glow or glass.
-  - Motion: hover states plus one hero entrance on load. Nothing animates on scroll.
+  - Radius 4px everywhere; no pills. One offset hairline frame on the About portrait; modal carries the only elevation shadow.
+  - Motion: hero entrance on load, gentle scroll-reveal on content blocks, and quiet hover lifts.
 */
 
 :root {
@@ -152,8 +152,20 @@ button { font: inherit; color: inherit; }
 .hero-name { font-size: clamp(4.25rem, 17vw, 10rem); letter-spacing: -0.03em; line-height: 0.92; }
 .hero-lead { max-width: 30rem; color: var(--muted); font-size: 1.1875rem; }
 .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem; margin-top: 1.75rem; }
-.hero-portrait { margin-inline: calc(var(--edge) * -1); background: var(--surface); display: flex; justify-content: center; align-items: flex-end; padding-top: 2rem; }
-.hero-portrait img { width: min(100%, 26rem); height: auto; }
+.hero-portrait { position: relative; margin-inline: calc(var(--edge) * -1); background: var(--surface); display: flex; justify-content: center; align-items: flex-end; padding-top: 2rem; overflow: hidden; }
+/* Decoration purpose: an editorial arch behind the cutout portrait gives the right panel depth without competing with the face. */
+.hero-portrait::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: min(76%, 22rem);
+  height: 78%;
+  border: 1px solid #cfc6b6;
+  border-bottom: 0;
+  border-radius: 999px 999px 0 0;
+  pointer-events: none;
+}
+.hero-portrait img { position: relative; z-index: 1; width: min(100%, 26rem); height: auto; }
 .hero-panel { display: none; }
 
 @media (min-width: 64rem) {
@@ -164,6 +176,7 @@ button { font: inherit; color: inherit; }
   .hero-name { font-size: clamp(4.5rem, min(11vw, 18svh), 10.5rem); }
   .hero-lead { max-width: 28rem; }
   .hero-portrait { margin: 0; background: none; padding: 0; align-self: end; justify-content: center; }
+  .hero-portrait::before { width: min(82%, 25rem); height: 82%; }
   .hero-portrait img { width: auto; max-width: 100%; height: auto; max-height: min(calc(100svh - 5.75rem), 54rem); }
 }
 @media (min-width: 80rem) { .hero-lead { max-width: 32rem; } }
@@ -179,7 +192,21 @@ button { font: inherit; color: inherit; }
 
 /* About */
 .about-grid { display: grid; gap: 3rem; }
-.about-photo { aspect-ratio: 4 / 5; object-fit: cover; object-position: top; width: 100%; max-width: 24rem; border-radius: var(--radius); }
+/* Decoration purpose: an offset hairline frame echoes print editorial plates and responds subtly on hover. */
+.about-photo {
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: top;
+  width: 100%;
+  max-width: 24rem;
+  border-radius: var(--radius);
+  box-shadow: 10px 10px 0 -1px var(--surface), 10px 10px 0 0 var(--ink);
+  transition: box-shadow 0.25s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.about-photo:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 13px 13px 0 -1px var(--surface), 13px 13px 0 0 var(--accent);
+}
 .about-copy { display: grid; gap: 1.25rem; margin-top: 2.5rem; color: var(--muted); max-width: 40rem; }
 @media (min-width: 64rem) {
   .about-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 5rem; align-items: start; }
@@ -420,13 +447,16 @@ button { font: inherit; color: inherit; }
 @keyframes rise { from { transform: translateY(105%); } to { transform: none; } }
 @media (prefers-reduced-motion: no-preference) {
   .hero-name .line > span { animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: calc(var(--i, 0) * 110ms); }
-  .js .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1); }
+  .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); transition-delay: calc(var(--d, 0) * 70ms); }
   .js .reveal.is-in { opacity: 1; transform: none; }
   .project-card.is-new { animation: enter 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: calc(var(--i, 0) * 60ms); }
   .project-modal.is-open .project-modal-dialog { animation: enter 0.3s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
   .project-modal.is-open .project-modal-overlay { animation: fade 0.3s both; }
 }
 @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+.project-grid--featured .project-card { transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.project-grid--featured .project-card:hover { transform: translateY(-3px); }
 
 .skill-row { transition: background-color 0.2s, padding-inline 0.2s; }
 .skill-row:hover { background: var(--surface); padding-inline: 1rem; }
@@ -456,6 +486,6 @@ button { font: inherit; color: inherit; }
 .tech-status .link { background: none; border: 0; padding: 0.5rem 0; font: inherit; }
 
 .social { display: flex; gap: 0.5rem; margin-top: 1.5rem; }
-.social a { display: inline-flex; align-items: center; justify-content: center; width: 2.75rem; height: 2.75rem; border: 1px solid #8a8477; border-radius: var(--radius); transition: background-color 0.15s, color 0.15s, border-color 0.15s; }
-.social a:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.social a { display: inline-flex; align-items: center; justify-content: center; width: 2.75rem; height: 2.75rem; border: 1px solid #8a8477; border-radius: var(--radius); transition: background-color 0.15s, color 0.15s, border-color 0.15s, transform 0.15s; }
+.social a:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); transform: translateY(-2px); }
 .social svg { width: 1.25rem; height: 1.25rem; }
