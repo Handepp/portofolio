@@ -894,6 +894,417 @@ window.PROJECTS_DATA = {
   },
 
 
+  "house-price-prediction": {
+    id: "house-price-prediction",
+    tag: "Machine Learning & Web Deployment",
+    categories: ["ai"],
+    title: "House Price Prediction Web Interface using Flask & Scikit-Learn",
+    img: "house_prediction.jpg",
+
+    summary:
+      "An interactive web-based machine learning application that predicts residential property prices in real time using a trained K-Nearest Neighbors regression model and Flask backend.",
+
+    tech: [
+      "Python",
+      "Flask",
+      "Scikit-Learn",
+      "Pandas",
+      "NumPy",
+      "Joblib",
+      "jQuery",
+      "Bootstrap"
+    ],
+
+    year: "2022",
+    org: "Orbit Future Academy",
+
+    github:
+      "https://github.com/Handepp/House-Price-Prediction-Web-Interface-Flask",
+
+    overview:
+      "Developed as part of the AI Domain Deployment curriculum at Orbit Future Academy (AI Mastery - Kampus Merdeka Batch 3 by Team Ewako 5). The application enables prospective home buyers to estimate property prices by adjusting intuitive sliders for physical housing dimensions and receiving immediate price evaluations.",
+
+    howItWorks:
+      "A regression model was trained on property transaction datasets using scikit-learn's K-Nearest Neighbors algorithm. The model was serialized with Joblib and served via a Flask REST API. When users adjust specifications on the web interface, an asynchronous AJAX request sends the features (building area, land area, bedrooms, bathrooms, and garage) to the server, returning price estimations and housing tier visuals without page reload.",
+
+    contributions: [
+      "Developed Flask backend routing and asynchronous prediction REST API endpoint",
+      "Integrated trained scikit-learn KNN regression model for live inference",
+      "Built responsive web interface with dynamic range sliders and real-time calculation display",
+      "Implemented output tier classification logic (affordable, moderate, and luxury housing)"
+    ],
+
+    features: [
+      "Interactive multi-parameter property specification sliders",
+      "Instantaneous price estimation powered by KNN regression",
+      "Automated visual categorization based on price thresholds",
+      "Asynchronous client-server communication via jQuery AJAX and Flask"
+    ],
+
+    challenges: [
+      "Ensuring consistent feature normalization and schema between offline training data and live API input",
+      "Providing responsive UI feedback during continuous slider value adjustments"
+    ],
+
+    results: [
+      "Successfully deployed an end-to-end machine learning web service for property valuation",
+      "Completed practical AI domain deployment coursework with Team Ewako 5 at Orbit Future Academy"
+    ],
+
+    gallery: [
+      "house_prediction.jpg",
+      "assets/img/projects/gallery/house-prediction/rumah_2.jpg",
+      "assets/img/projects/gallery/house-prediction/rumah_3.jpg",
+      "assets/img/projects/gallery/house-prediction/rumah_sederhana.jpeg"
+    ],
+
+    video: "",
+  },
+
+
+  "hdi-prediction": {
+    id: "hdi-prediction",
+    tag: "Machine Learning & Data Science",
+    categories: ["ai"],
+    title: "Human Development Index (IPM) Prediction using Ensemble & Non-Ensemble Algorithms",
+    img: "hdi_prediction.png",
+
+    summary:
+      "A comparative machine learning study evaluating ensemble (Random Forest, AdaBoost) and non-ensemble (KNN, Decision Tree) algorithms to predict Indonesia's Human Development Index tiers with up to 97.45% accuracy.",
+
+    tech: [
+      "Python",
+      "Scikit-Learn",
+      "Random Forest",
+      "Decision Tree",
+      "KNN",
+      "AdaBoost",
+      "Pandas",
+      "NumPy",
+      "Seaborn",
+      "Matplotlib"
+    ],
+
+    year: "2022",
+    org: "Orbit Future Academy",
+
+    github:
+      "https://github.com/Handepp/Human-development-index-prediction-using-ensemble-and-non-ensemble-decision-tree-knn-technique",
+
+    overview:
+      "Developed as part of the Data Science curriculum at Orbit Future Academy (Kelas Ewako). The project benchmarks non-ensemble and ensemble machine learning algorithms to classify regional Human Development Index (Indeks Pembangunan Manusia / IPM) in Indonesia based on socioeconomic indicators: Expected Years of Schooling, Mean Years of Schooling, Per Capita Expenditure, and Life Expectancy.",
+
+    howItWorks:
+      "The dataset comprising 2,196 regional records from BPS was preprocessed, cleaned of anomalies, standardized, and split into 75% training and 25% testing sets. Four distinct algorithms were implemented and trained: K-Nearest Neighbors (k=5, Euclidean metric), Decision Tree (Gini impurity criterion), AdaBoost (50 estimators), and Random Forest (100 estimators). Models were evaluated using precision, recall, F1-score, and overall classification accuracy.",
+
+    contributions: [
+      "Conducted comprehensive Exploratory Data Analysis (EDA) on 2,196 BPS socioeconomic records",
+      "Implemented feature standardization, correlation analysis, and data mapping for multi-class classification",
+      "Trained and fine-tuned four machine learning architectures across ensemble and non-ensemble paradigms",
+      "Performed comparative performance benchmarking and classification metric reporting"
+    ],
+
+    features: [
+      "Multi-model comparative benchmark: Random Forest vs. Decision Tree vs. KNN vs. AdaBoost",
+      "Detailed statistical EDA with pairwise distribution and correlation heatmaps",
+      "Classification across Human Development Index tiers (Low, Medium, High, Very High)",
+      "Standardized feature pipeline resilient to outliers and disparate indicator scales"
+    ],
+
+    challenges: [
+      "Handling skewed feature distributions and outliers in regional socioeconomic spending data",
+      "Preventing class imbalance bias across extreme low and high HDI classifications in AdaBoost"
+    ],
+
+    results: [
+      "Achieved 97.45% classification accuracy with Random Forest, emerging as the top-performing model",
+      "Demonstrated that ensemble bagging (Random Forest) significantly outperformed boosting and standalone trees for regional demographic prediction"
+    ],
+
+    gallery: [
+      "hdi_prediction.png",
+      "assets/img/projects/gallery/hdi-prediction/hdi_correlation_heatmap.png",
+      "assets/img/projects/gallery/hdi-prediction/hdi_distribution.png",
+      "assets/img/projects/gallery/hdi-prediction/hdi_feature_hls.png"
+    ],
+
+    video: "",
+  },
+
+
+  "emotion-detection": {
+    id: "emotion-detection",
+    tag: "Natural Language Processing & Deep Learning",
+    categories: ["ai"],
+    title: "Indonesian Tweet Emotion Classification: Classical ML vs. Transfer Learning BERT",
+    img: "emotion_detection.png",
+
+    summary:
+      "An end-to-end NLP comparative study classifying 4,401 Indonesian tweets into five emotion classes (anger, joy, sadness, fear, love), comparing classical ML models against a fine-tuned BERT transformer reaching 98.05% validation accuracy.",
+
+    tech: [
+      "Python",
+      "PyTorch",
+      "BERT",
+      "Hugging Face",
+      "TF-IDF",
+      "Scikit-Learn",
+      "Sastrawi",
+      "Logistic Regression",
+      "Naive Bayes",
+      "Pandas"
+    ],
+
+    year: "2022",
+    org: "Orbit Future Academy",
+
+    github:
+      "https://github.com/Handepp/Emotion-detection-indonesian-tweet-with-machine-learning-and-transfer-learning-BERT",
+
+    overview:
+      "A natural language processing project that classifies nuanced emotional states in Indonesian social media text across five distinct categories: anger, joy, sadness, fear, and love. The study investigates the performance gap between classical machine learning approaches (TF-IDF + Chi-Square with NB, SVM, KNN, DT, and Logistic Regression) and modern transformer-based Transfer Learning using fine-tuned BERT architecture.",
+
+    howItWorks:
+      "A corpus of 4,401 Indonesian tweets was cleansed through text normalization (slang word dictionary mapping, case folding, regex cleaning, and Sastrawi stemming). For classical ML, features were extracted with N-gram TF-IDF and selected using Chi-Square. For deep learning, tweets were tokenized with BERT WordPiece tokenizer with special [CLS]/[SEP] tokens, positional embeddings, and attention masks. The BERT model was fine-tuned with AdamW optimizer, categorical cross-entropy, and learning rate scheduling.",
+
+    contributions: [
+      "Engineered an Indonesian NLP preprocessing pipeline including slang word mapping and Sastrawi root stemming",
+      "Constructed TF-IDF feature extraction and Chi-Square statistical feature selection pipelines",
+      "Benchmarked five classical ML classifiers: Logistic Regression (67.08%), Multinomial NB (61.41%), Gaussian NB, DT, and KNN",
+      "Implemented BERT transformer transfer learning architecture, achieving 98.05% validation accuracy with minimal loss (0.0695)"
+    ],
+
+    features: [
+      "5-class Indonesian emotion classification: Anger (1,101), Joy (1,017), Sadness (997), Fear (649), Love (637)",
+      "Comparative evaluation highlighting a +30.97% accuracy jump from Logistic Regression (67.08%) to BERT (98.05%)",
+      "Learning curve analysis tracking training loss convergence and validation accuracy across epochs",
+      "Exported trained PyTorch/TensorFlow weights ready for inference deployment"
+    ],
+
+    challenges: [
+      "Normalizing informal Indonesian slang, colloquial grammar, and typographical variations common on Twitter",
+      "Resolving semantic ambiguities between overlapping emotional tones that classical Bag-of-Words/TF-IDF models failed to capture"
+    ],
+
+    results: [
+      "Fine-tuned BERT achieved 98.05% validation accuracy, outperforming all classical machine learning baselines",
+      "Demonstrated the efficacy of contextual transformer attention for low-resource and informal Indonesian NLP tasks"
+    ],
+
+    gallery: [
+      "emotion_detection.png",
+      "assets/img/projects/gallery/emotion-detection/bert_loss_curve.png",
+      "assets/img/projects/gallery/emotion-detection/emotion_distribution.png",
+      "assets/img/projects/gallery/emotion-detection/bert_token_distribution.png"
+    ],
+
+    video: "",
+  },
+
+
+  "densenet-animals": {
+    id: "densenet-animals",
+    tag: "Computer Vision & Deep Learning",
+    categories: ["ai"],
+    title: "4-Class Animal Image Classification: DenseNet-201 Optimizer Benchmark",
+    img: "densenet_animals.jpg",
+
+    summary:
+      "A deep transfer learning study benchmarking six optimizers (SGD, RMSprop, Adagrad, Adamax, Adadelta, Adam) on DenseNet-201 to classify animal images (deer, dog, horse, cat), achieving 97.50% validation accuracy with SGD.",
+
+    tech: [
+      "Python",
+      "TensorFlow",
+      "Keras",
+      "DenseNet-201",
+      "Transfer Learning",
+      "Computer Vision",
+      "SGD",
+      "Adam",
+      "Matplotlib",
+      "NumPy"
+    ],
+
+    year: "2022",
+    org: "Orbit Future Academy",
+
+    github:
+      "https://github.com/Handepp/Classification-of-4-animals-using-DenseNet201-with-various-optimizers",
+
+    overview:
+      "Developed as part of the Deep Learning & Computer Vision track at Orbit Future Academy (Kelas Ewako). The project explores transfer learning performance on a 4-class animal dataset (deer, dog, horse, and cat) using DenseNet-201 architecture across six different optimization algorithms to analyze training dynamics, convergence speed, and generalization accuracy.",
+
+    howItWorks:
+      "A pre-trained DenseNet-201 convolutional neural network was fine-tuned on 2,800 animal images. Six separate training runs were conducted under identical epoch and batch schedules, varying only the optimizer: SGD with momentum, RMSprop, Adagrad, Adamax, Adadelta, and Adam. Training/validation loss and accuracy trajectories were tracked and visualized to identify the optimal optimization strategy.",
+
+    contributions: [
+      "Constructed image data augmentation and pipeline loading for 2,800 multi-class animal images",
+      "Fine-tuned pre-trained DenseNet-201 transfer learning architecture in TensorFlow/Keras",
+      "Implemented and tested six distinct optimizers: SGD, RMSprop, Adagrad, Adamax, Adadelta, and Adam",
+      "Analyzed learning curves and generated final competition-style test predictions"
+    ],
+
+    features: [
+      "4-class animal classification pipeline covering deer, dog, horse, and cat",
+      "Rigorous 6-optimizer empirical benchmark with convergence and loss curve tracking",
+      "DenseNet-201 dense connection feature reuse preventing gradient vanishing",
+      "Automated test prediction generation and submission pipeline"
+    ],
+
+    challenges: [
+      "Mitigating overfitting on complex high-dimensional CNN feature maps across varying learning rates",
+      "Stabilizing adaptive gradient optimizers (RMSprop/Adadelta) which struggled with plateau convergence"
+    ],
+
+    results: [
+      "SGD achieved the highest validation accuracy of 97.50% with low validation loss (0.0778), demonstrating superior generalization",
+      "Adagrad (96.43%) and Adamax (96.25%) also achieved strong competitive stability on DenseNet-201"
+    ],
+
+    gallery: [
+      "densenet_animals.jpg",
+      "assets/img/projects/gallery/densenet-animals/densenet_sgd_accuracy.png",
+      "assets/img/projects/gallery/densenet-animals/densenet_sgd_loss.png",
+      "assets/img/projects/gallery/densenet-animals/densenet_class_distribution.png"
+    ],
+
+    video: "",
+  },
+
+
+  "qlearning-navigation": {
+    id: "qlearning-navigation",
+    tag: "Reinforcement Learning & Robotics",
+    categories: ["ai"],
+    title: "Autonomous Medical Robot Navigation Simulation with Q-Learning",
+    img: "qlearning_navigation.jpg",
+
+    summary:
+      "A reinforcement learning simulation implementing tabular Q-Learning for an autonomous medical robot navigating a 7x7 hospital ward grid environment with 12 dynamic/static obstacles to reach patient disinfection targets.",
+
+    tech: [
+      "Python",
+      "Reinforcement Learning",
+      "Q-Learning",
+      "Tkinter",
+      "NumPy",
+      "Matplotlib",
+      "Pandas",
+      "Markov Decision Process"
+    ],
+
+    year: "2022",
+    org: "Orbit Future Academy",
+
+    github:
+      "https://github.com/Handepp/Q-Learning-Medical-Robot-Navigation-Simulation",
+
+    overview:
+      "Developed during the AI & Robotics curriculum at Orbit Future Academy (Kelas Ewako). The project simulates an autonomous disinfection/medical delivery robot navigating through a hospital room. The environment is modeled as a 7x7 grid world with 49 discrete states, containing multiple fixed obstacles (patients, medical beds, tables, and chairs), requiring the agent to learn the shortest collision-free path to its target via reinforcement learning.",
+
+    howItWorks:
+      "The system implements tabular Q-Learning with an epsilon-greedy action selection policy (alpha=0.1, gamma=0.9, epsilon=0.1). Over 800 training episodes, the agent explores 4 directional actions (Up, Down, Right, Left) and receives positive reward (+1) upon reaching the target and negative penalty (-1) when colliding with obstacles. The Q-table iteratively converges, yielding the optimal trajectory between start (0,0) and target coordinates.",
+
+    contributions: [
+      "Modeled custom 7x7 discrete hospital ward simulation environment using Python and Tkinter canvas",
+      "Implemented tabular Q-Learning algorithm from scratch with epsilon-greedy exploration and Bellman updates",
+      "Constructed state-action Q-table mapping 49 states across 4 discrete navigation vectors",
+      "Visualized learned optimal path tracking, episode step reduction, and cumulative Q-value convergence curves"
+    ],
+
+    features: [
+      "49-state discrete Markov Decision Process (MDP) grid simulation",
+      "Multi-obstacle hospital room environment with customized asset sprites",
+      "Soft epsilon-greedy exploration mechanism balancing path discovery and exploitation",
+      "Live trajectory rendering demonstrating shortest path convergence"
+    ],
+
+    challenges: [
+      "Balancing exploration and exploitation rates to avoid local minima around clusters of obstacles",
+      "Ensuring rapid policy convergence within 800 training episodes without excessive oscillation"
+    ],
+
+    results: [
+      "Agent successfully converged to the global shortest collision-free trajectory across 800 simulation episodes",
+      "Demonstrated practical application of model-free reinforcement learning for healthcare robotics path planning"
+    ],
+
+    gallery: [
+      "qlearning_navigation.jpg",
+      "assets/img/projects/gallery/qlearning-navigation/qlearning_simulation_map.png",
+      "assets/img/projects/gallery/qlearning-navigation/robot.png",
+      "assets/img/projects/gallery/qlearning-navigation/disinfectant.png"
+    ],
+
+    video: "",
+  },
+
+
+  "canny-edge-detector": {
+    id: "canny-edge-detector",
+    tag: "Computer Vision & Edge Detection",
+    categories: ["ai"],
+    title: "Real-Time Object Detection & Contour Analysis using Canny Edge Detector",
+    img: "canny_edge.jpg",
+
+    summary:
+      "A real-time computer vision system built with OpenCV that applies Canny edge detection, dynamic Gaussian filtering, and polygon contour approximation to identify and dimension obstacle boundaries via live camera feed.",
+
+    tech: [
+      "Python",
+      "OpenCV",
+      "Canny Edge Detection",
+      "Computer Vision",
+      "Gaussian Blur",
+      "Contour Analysis",
+      "NumPy"
+    ],
+
+    year: "2021",
+    org: "Universitas Padjadjaran",
+
+    github:
+      "https://github.com/Handepp/Object-detection-using-canny-edge-detector",
+
+    overview:
+      "Developed during academic research at Universitas Padjadjaran (and published in the Internetworking Indonesia Journal). The project implements a live computer vision pipeline designed to assist autonomous mobile robots and 2D RPLiDAR sensors in recognizing physical obstacle boundaries. By processing camera frames in real time, the system extracts precise object edges and geometric properties that laser distance sensors alone may struggle to resolve.",
+
+    howItWorks:
+      "The live video stream is captured at 640x480, preprocessed with a 7x7 Gaussian blur to eliminate high-frequency noise, and converted to grayscale. Dual-threshold Canny edge detection is dynamically calibrated via interactive GUI trackbars (Threshold1, Threshold2, and Minimum Area). The resulting edge map undergoes morphological dilation, followed by contour extraction and polygon approximation (cv2.approxPolyDP) to compute vertices, area, and bounding boxes for real-time obstacle tracking.",
+
+    contributions: [
+      "Developed OpenCV real-time video capture and frame processing pipeline",
+      "Implemented dual-threshold Canny edge detection with interactive trackbar calibration GUI",
+      "Integrated morphological dilation and contour approximation for robust obstacle boundary extraction",
+      "Calculated live geometric metrics including vertex points, surface area, and bounding boxes"
+    ],
+
+    features: [
+      "Real-time 30 FPS webcam edge extraction and object bounding",
+      "Interactive OpenCV trackbar interface for on-the-fly threshold and area tuning",
+      "Noise resilience via parameterized Gaussian blurring and morphological operations",
+      "Dynamic polygon approximation (approxPolyDP) classifying object geometry"
+    ],
+
+    challenges: [
+      "Filtering out background lighting noise without losing critical object edges",
+      "Maintaining low-latency processing (<33ms per frame) for real-time robotic navigation compatibility"
+    ],
+
+    results: [
+      "Successfully implemented an effective real-time visual obstacle detection system",
+      "Served as the foundational vision algorithm in published research assisting RPLiDAR sensor mapping"
+    ],
+
+    gallery: [
+      "canny_edge.jpg",
+      "assets/img/projects/gallery/canny-edge/canny_detection_demo.jpg"
+    ],
+
+    video: "",
+  },
+
+
   "face-recognition": {
     id: "face-recognition",
     tag: "AI Computer Vision",
@@ -1083,6 +1494,12 @@ window.PROJECTS_ORDER = [
   "savibot",
   "iot-syergie",
   "bestibot",
+  "house-price-prediction",
+  "hdi-prediction",
+  "emotion-detection",
+  "densenet-animals",
+  "qlearning-navigation",
+  "canny-edge-detector",
   "face-recognition",
   "handwashing-station",
   "smart-glove",
