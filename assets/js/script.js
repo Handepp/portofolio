@@ -383,12 +383,25 @@ function initExtras() {
     tip.setAttribute("aria-hidden", "true");
     tip.textContent = "Open";
     document.body.append(tip);
+    const heroEl = document.querySelector(".hero");
     document.addEventListener("pointermove", (e) => {
       const over = e.target.closest?.(".project-card");
       tip.classList.toggle("is-on", Boolean(over));
       if (over) tip.style.transform = `translate(${e.clientX + 16}px, ${e.clientY + 16}px)`;
       document.documentElement.style.setProperty("--mx", ((e.clientX / window.innerWidth) * 2 - 1).toFixed(3));
       document.documentElement.style.setProperty("--my", ((e.clientY / window.innerHeight) * 2 - 1).toFixed(3));
+      if (heroEl) {
+        const rect = heroEl.getBoundingClientRect();
+        if (e.clientY >= rect.top && e.clientY <= rect.bottom && e.clientX >= rect.left && e.clientX <= rect.right) {
+          const hx = (((e.clientX - rect.left) / rect.width) * 100).toFixed(1);
+          const hy = (((e.clientY - rect.top) / rect.height) * 100).toFixed(1);
+          document.documentElement.style.setProperty("--hx", `${hx}%`);
+          document.documentElement.style.setProperty("--hy", `${hy}%`);
+          document.documentElement.style.setProperty("--hero-hover", "1");
+        } else {
+          document.documentElement.style.setProperty("--hero-hover", "0.2");
+        }
+      }
     });
     document.addEventListener("pointerleave", () => tip.classList.remove("is-on"));
   }
