@@ -122,7 +122,26 @@ button { font: inherit; color: inherit; }
   border-bottom: 1px solid var(--rule);
 }
 .site-header .bar { display: flex; align-items: center; justify-content: space-between; min-height: 4.25rem; }
-.wordmark { font-family: var(--serif); font-size: 1.25rem; font-weight: 600; text-decoration: none; letter-spacing: -0.01em; }
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+.wordmark-logo {
+  display: block;
+  height: 2.125rem;
+  width: auto;
+  border-radius: var(--radius);
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+.wordmark:hover .wordmark-logo {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
 .nav-links { display: none; gap: 2rem; font-size: 0.9375rem; font-weight: 500; }
 .nav-links a { text-decoration: none; padding: 0.5rem 0; border-bottom: 2px solid transparent; }
 .nav-links a:hover { border-bottom-color: var(--ink); }

@@ -407,6 +407,19 @@ function initNav() {
     menu.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setOpen(false)));
   }
 
+  document.querySelectorAll('.wordmark, a[href="#top"], a[href="#hero"]').forEach((el) => {
+    el.addEventListener("click", (e) => {
+      const href = el.getAttribute("href");
+      if (href === "#top" || href === "#hero") {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: REDUCE_MOTION ? "auto" : "smooth" });
+        if (window.location.hash) {
+          history.pushState(null, "", window.location.pathname + window.location.search);
+        }
+      }
+    });
+  });
+
   const links = document.querySelectorAll('.nav-links a[href^="#"]');
   const sections = [...links].map((l) => document.querySelector(l.getAttribute("href"))).filter(Boolean);
   if (!sections.length) return;
