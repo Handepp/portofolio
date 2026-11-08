@@ -339,7 +339,9 @@ function initExtras() {
   if (bar) {
     const update = () => {
       const max = document.documentElement.scrollHeight - window.innerHeight;
-      bar.style.setProperty("--p", max > 0 ? Math.min(window.scrollY / max, 1) : 0);
+      const p = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
+      bar.style.setProperty("--p", p);
+      document.documentElement.style.setProperty("--p", p.toFixed(3));
     };
     update();
     window.addEventListener("scroll", update, { passive: true });
@@ -385,6 +387,8 @@ function initExtras() {
       const over = e.target.closest?.(".project-card");
       tip.classList.toggle("is-on", Boolean(over));
       if (over) tip.style.transform = `translate(${e.clientX + 16}px, ${e.clientY + 16}px)`;
+      document.documentElement.style.setProperty("--mx", ((e.clientX / window.innerWidth) * 2 - 1).toFixed(3));
+      document.documentElement.style.setProperty("--my", ((e.clientY / window.innerHeight) * 2 - 1).toFixed(3));
     });
     document.addEventListener("pointerleave", () => tip.classList.remove("is-on"));
   }

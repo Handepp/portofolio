@@ -1,11 +1,11 @@
 /*
   Design notes (one line per decision)
-  - Warm paper ground (#FAF7F2) with ink text: an editorial reading page, not a dashboard.
+  - Warm paper ground (#FAF7F2) with ink text and a soft warm-terracotta ambient wash on the hero and closing sections.
   - One accent (#B92D07, a signal orange from PCB silkscreen and indicator LEDs), used only on the
     primary button, the active filter, link hover and the closing headline. 5.7:1 on paper.
   - Fraunces for display (large, editorial tension), Instrument Sans for text (readable, not the usual default).
   - Radius 4px everywhere; no pills. One offset hairline frame on the About portrait; modal carries the only elevation shadow.
-  - Motion: hero entrance on load, gentle scroll-reveal on content blocks, and quiet hover lifts.
+  - Motion: hero entrance and ambient wash bloom on load, gentle cursor/scroll drift, scroll-reveal on content blocks, and quiet hover lifts.
 */
 
 :root {
@@ -144,15 +144,43 @@ button { font: inherit; color: inherit; }
   .nav-toggle, .mobile-menu { display: none !important; }
 }
 
-/* Hero: a poster. The name sits on a ground rule, the portrait stands on the same rule over a flat panel. */
-.hero { position: relative; border-bottom: 2px solid var(--ink); }
+/* Hero: a poster. The name sits on a ground rule, the portrait stands on the same rule over a warm-lit panel. */
+.hero { position: relative; isolation: isolate; overflow: hidden; border-bottom: 2px solid var(--ink); }
+/* Hierarchy purpose: a low-chroma warm terracotta and sand wash separates the hero and closing statement from the reading sections. */
+.hero::before,
+.page-title::before,
+.contact::before {
+  content: "";
+  position: absolute;
+  inset: -12%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(38% 44% at 18% 28%, rgba(185, 45, 7, 0.085), transparent 72%),
+    radial-gradient(42% 48% at 76% 68%, rgba(214, 154, 88, 0.14), transparent 74%),
+    radial-gradient(32% 36% at 52% 18%, rgba(239, 232, 220, 0.85), transparent 70%);
+  transform: translate3d(calc(var(--mx, 0) * 18px), calc(var(--my, 0) * 14px + var(--p, 0) * -24px), 0);
+  transition: transform 1.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
 .hero-inner { display: grid; }
 .hero-copy { display: grid; align-content: center; gap: 1rem; padding-top: clamp(1.5rem, 4vw, 3rem); padding-bottom: 2.5rem; }
 .hero-role { font-family: var(--serif); font-style: italic; font-size: clamp(1.375rem, 2.6vw, 2.125rem); margin-top: 0.25rem; }
 .hero-name { font-size: clamp(4.25rem, 17vw, 10rem); letter-spacing: -0.03em; line-height: 0.92; }
 .hero-lead { max-width: 30rem; color: var(--muted); font-size: 1.1875rem; }
 .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem; margin-top: 1.75rem; }
-.hero-portrait { position: relative; margin-inline: calc(var(--edge) * -1); background: var(--surface); display: flex; justify-content: center; align-items: flex-end; padding-top: 2rem; overflow: hidden; }
+.hero-portrait {
+  position: relative;
+  margin-inline: calc(var(--edge) * -1);
+  background:
+    radial-gradient(64% 70% at 50% 42%, rgba(250, 247, 242, 0.75), transparent 74%),
+    radial-gradient(48% 54% at 82% 88%, rgba(185, 45, 7, 0.06), transparent 72%),
+    var(--surface);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-top: 2rem;
+  overflow: hidden;
+}
 /* Decoration purpose: an editorial arch behind the cutout portrait gives the right panel depth without competing with the face. */
 .hero-portrait::before {
   content: "";
@@ -170,7 +198,19 @@ button { font: inherit; color: inherit; }
 
 @media (min-width: 64rem) {
   .hero { min-height: calc(100svh - 4.25rem); display: flex; }
-  .hero-panel { display: block; position: absolute; top: 0; right: 0; bottom: 0; width: 46%; background: var(--surface); }
+  .hero-panel {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 46%;
+    z-index: -1;
+    background:
+      radial-gradient(64% 70% at 50% 42%, rgba(250, 247, 242, 0.75), transparent 74%),
+      radial-gradient(50% 56% at 84% 88%, rgba(185, 45, 7, 0.065), transparent 72%),
+      var(--surface);
+  }
   .hero-inner { flex: 1; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 3rem; position: relative; }
   .hero-copy { gap: 1.25rem; padding-block: clamp(2.5rem, 5vh, 4rem); }
   .hero-name { font-size: clamp(4.5rem, min(11vw, 18svh), 10.5rem); }
@@ -314,7 +354,13 @@ button { font: inherit; color: inherit; }
 }
 
 /* Contact */
-.contact { padding-block: clamp(5rem, 11vw, 10rem) clamp(3rem, 6vw, 5rem); }
+.contact { position: relative; isolation: isolate; overflow: hidden; padding-block: clamp(5rem, 11vw, 10rem) clamp(3rem, 6vw, 5rem); }
+.contact::before {
+  background:
+    radial-gradient(44% 50% at 82% 24%, rgba(185, 45, 7, 0.08), transparent 72%),
+    radial-gradient(46% 52% at 16% 82%, rgba(214, 154, 88, 0.14), transparent 74%),
+    radial-gradient(40% 44% at 48% 50%, rgba(250, 247, 242, 0.55), transparent 72%);
+}
 .contact h2 { font-size: clamp(2.5rem, 7.5vw, 6.5rem); max-width: 16ch; }
 .contact h2 em { font-style: italic; color: var(--accent); }
 .contact-mail { display: inline-block; margin-top: 2.5rem; font-family: var(--serif); font-size: clamp(1.375rem, 4vw, 2.75rem); overflow-wrap: anywhere; }
@@ -327,7 +373,7 @@ button { font: inherit; color: inherit; }
 .site-footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
 
 /* Page title (projects.html) */
-.page-title { padding-block: clamp(3rem, 8vw, 6rem) 2rem; }
+.page-title { position: relative; isolation: isolate; overflow: hidden; padding-block: clamp(3rem, 8vw, 6rem) 2rem; }
 .page-title h1 { font-size: clamp(3rem, 9vw, 7.5rem); }
 .page-title p { margin-top: 1.25rem; max-width: 32rem; color: var(--muted); font-size: 1.1875rem; }
 
@@ -445,7 +491,9 @@ button { font: inherit; color: inherit; }
 .hero-name .line { display: block; overflow: hidden; padding-bottom: 0.1em; margin-bottom: -0.1em; }
 .hero-name .line > span { display: block; }
 @keyframes rise { from { transform: translateY(105%); } to { transform: none; } }
+@keyframes ambient-bloom { from { opacity: 0; transform: scale(0.94); } to { opacity: 1; } }
 @media (prefers-reduced-motion: no-preference) {
+  .hero::before, .page-title::before, .contact::before { animation: ambient-bloom 2.2s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
   .hero-name .line > span { animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: calc(var(--i, 0) * 110ms); }
   .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); transition-delay: calc(var(--d, 0) * 70ms); }
   .js .reveal.is-in { opacity: 1; transform: none; }
