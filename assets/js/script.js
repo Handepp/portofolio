@@ -454,6 +454,7 @@ function initNav() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  initExperienceAccordion();
   document.body.insertAdjacentHTML("beforeend", MODAL_TEMPLATE);
   initProjects();
   initNav();
@@ -936,5 +937,83 @@ function initProjectModal() {
 
   modal.querySelectorAll("[data-modal-close]").forEach((el) => {
     el.addEventListener("click", closeModal);
+  });
+}
+
+function initExperienceAccordion() {
+  const items = document.querySelectorAll("details.xp-item");
+  if (!items.length) return;
+
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  items.forEach((details) => {
+    const summary = details.querySelector(".xp-summary");
+    const body = details.querySelector(".xp-body");
+    if (!summary || !body) return;
+
+    let anim = null;
+
+    summary.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      if (prefersReduced) {
+        details.open = !details.open;
+        return;
+      }
+
+      if (anim) {
+        anim.cancel();
+      }
+
+      if (details.open) {
+        // Closing animation: smoothly collapse height and fade out
+        const startHeight = body.offsetHeight;
+        body.style.overflow = "hidden";
+        anim = body.animate(
+          [
+            { height: `${startHeight}px`, opacity: 1 },
+            { height: "0px", opacity: 0 }
+          ],
+          {
+            duration: 240,
+            easing: "cubic-bezier(0.2, 0.7, 0.2, 1)"
+          }
+        );
+
+        anim.onfinish = () => {
+          details.open = false;
+          body.style.overflow = "";
+          anim = null;
+        };
+        anim.oncancel = () => {
+          body.style.overflow = "";
+          anim = null;
+        };
+      } else {
+        // Opening animation: smoothly expand height and fade in
+        details.open = true;
+        const targetHeight = body.offsetHeight;
+        body.style.overflow = "hidden";
+        anim = body.animate(
+          [
+            { height: "0px", opacity: 0 },
+            { height: `${targetHeight}px`, opacity: 1 }
+          ],
+          {
+            duration: 260,
+            easing: "cubic-bezier(0.2, 0.7, 0.2, 1)"
+          }
+        );
+
+        anim.onfinish = () => {
+          body.style.overflow = "";
+          anim = null;
+        };
+        anim.oncancel = () => {
+          body.style.overflow = "";
+          anim = null;
+        };
+      }
+    });
   });
 }

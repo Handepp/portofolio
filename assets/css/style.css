@@ -419,20 +419,59 @@ button { font: inherit; color: inherit; }
 /* Experience */
 .xp-grid { display: grid; gap: 2.5rem; }
 .xp-list { display: grid; gap: 0; }
-.xp-item { display: grid; gap: 0.5rem; padding-block: 1.75rem; border-top: 1px solid var(--ink); }
-.xp-item:last-child { border-bottom: 1px solid var(--ink); }
+details.xp-item {
+  display: block;
+  border-top: 1px solid var(--ink);
+  transition: background-color 0.2s ease, padding-inline 0.2s ease;
+  border-radius: var(--radius);
+}
+details.xp-item:last-child {
+  border-bottom: 1px solid var(--ink);
+}
+details.xp-item:hover,
+details.xp-item[open] {
+  background: var(--surface);
+  padding-inline: 1rem;
+}
+.xp-summary {
+  display: grid;
+  gap: 0.5rem;
+  padding-block: 1.5rem;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+.xp-summary::-webkit-details-marker { display: none; }
+.xp-summary::marker { display: none; }
 .xp-when { font-size: 0.9375rem; color: var(--muted); }
-.xp-role { font-family: var(--serif); font-weight: 500; font-size: 1.625rem; line-height: 1.2; letter-spacing: -0.01em; }
+.xp-head { display: grid; gap: 0.25rem; }
+.xp-role {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 1.625rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  transition: color 0.2s ease;
+}
+details.xp-item:hover .xp-role {
+  color: var(--accent);
+}
 .xp-org { font-weight: 600; }
+.xp-body {
+  padding-bottom: 1.75rem;
+}
+.xp-desc { margin-top: 0.25rem; color: var(--muted); font-size: 1rem; }
 .xp-points { display: grid; gap: 0.375rem; margin-top: 0.75rem; color: var(--muted); }
 .xp-points li { padding-left: 1.125rem; position: relative; }
 .xp-points li::before { content: ""; position: absolute; left: 0; top: 0.7em; width: 0.5rem; height: 1px; background: var(--ink); }
 .xp-group + .xp-group { margin-top: 3.5rem; }
 .xp-group-title { font-size: 0.9375rem; font-weight: 600; margin-bottom: 1rem; }
+
 @media (min-width: 64rem) {
   .xp-grid { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 5rem; }
   .xp-grid > header { position: sticky; top: 7rem; align-self: start; }
-  .xp-item { grid-template-columns: 11rem minmax(0, 1fr); gap: 2rem; }
+  .xp-summary { grid-template-columns: 11rem minmax(0, 1fr); gap: 2rem; align-items: baseline; }
+  .xp-body { padding-left: 13rem; }
 }
 
 /* Contact */

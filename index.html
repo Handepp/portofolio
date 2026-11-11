@@ -27,7 +27,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css?v=69" />
+  <link rel="stylesheet" href="assets/css/style.css?v=73" />
 </head>
 <body id="top">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -189,7 +189,7 @@
       </div>
     </section>
 
-    <section class="section" id="experience" aria-labelledby="experience-title">
+        <section class="section" id="experience" aria-labelledby="experience-title">
       <div class="wrap xp-grid">
         <header>
           <h2 class="h2" id="experience-title">Where I have worked, studied, and published</h2>
@@ -198,65 +198,90 @@
           <div class="xp-group">
             <h3 class="xp-group-title">Professional experience</h3>
             <div class="xp-list">
-              <article class="xp-item">
-                <p class="xp-when">Jan 2025 - Present</p>
-                <div>
-                  <h4 class="xp-role">Embedded System Engineer</h4>
-                  <p class="xp-org">Unictive</p>
+              <details class="xp-item">
+                <summary class="xp-summary">
+                  <p class="xp-when">Jan 2025 - Present</p>
+                  <div class="xp-head">
+                    <h4 class="xp-role">Embedded Systems Engineer</h4>
+                    <p class="xp-org">Unictive</p>
+                  </div>
+                </summary>
+                <div class="xp-body">
+                  <p class="xp-desc">Design and develop embedded systems for interactive installations and gamification projects, covering firmware, hardware prototyping, PCB design, and software integration.</p>
                   <ul class="xp-points">
-                    <li>Developed sensor-based systems using ESP32 and Arduino</li>
-                    <li>Integrated hardware with Unity, web platforms, and Python systems</li>
-                    <li>Built motion tracking, presence detection, and control systems</li>
-                    <li>Designed PCBs using EasyEDA</li>
-                    <li>Conducted R&amp;D using FreeRTOS for real-time systems</li>
+                    <li>Develop ESP32 and Arduino firmware using PlatformIO and Arduino IDE, integrating sensors and actuators for real-time interaction.</li>
+                    <li>Design schematics and custom PCBs using EasyEDA, including circuit assembly, soldering, and hardware prototyping.</li>
+                    <li>Integrate embedded systems with Unity, web, and Python applications via HTTP/REST APIs, sockets, Bluetooth, and wired interfaces.</li>
+                    <li>Conduct technical research, rapid prototyping, and Proof of Concept (PoC) development to validate project solutions.</li>
+                    <li>Perform firmware debugging, hardware testing, troubleshooting, and system validation to ensure reliable operation.</li>
                   </ul>
                 </div>
-              </article>
-              <article class="xp-item">
-                <p class="xp-when">Oct 2024 - Present</p>
-                <div>
-                  <h4 class="xp-role">AI Engineer</h4>
-                  <p class="xp-org">Unictive</p>
+              </details>
+
+              <details class="xp-item">
+                <summary class="xp-summary">
+                  <p class="xp-when">Oct 2024 - Present</p>
+                  <div class="xp-head">
+                    <h4 class="xp-role">AI Engineer</h4>
+                    <p class="xp-org">Unictive</p>
+                  </div>
+                </summary>
+                <div class="xp-body">
+                  <p class="xp-desc">Develop and integrate real-time AI and computer vision solutions for interactive installations, gamification, and web applications, including technical research and Proof of Concept (PoC) development.</p>
                   <ul class="xp-points">
-                    <li>Developed object detection systems using YOLO and OpenCV</li>
-                    <li>Built AI pipelines integrated with web apps using FastAPI &amp; Flask</li>
-                    <li>Implemented Mediapipe Face Mesh and GFPGAN for image processing</li>
-                    <li>Developed AI Agents, RAG systems using LangChain and vector databases</li>
-                    <li>Integrated AI systems with PostgreSQL databases</li>
+                    <li>Build real-time computer vision pipelines using YOLO (Ultralytics), OpenCV, and MediaPipe for object detection, tracking, and pose/keypoint detection.</li>
+                    <li>Prepare and manage custom datasets using Roboflow, including annotation, augmentation, and data splitting, along with custom YOLO model training and evaluation.</li>
+                    <li>Develop local AI inference services using Python, FastAPI, and Flask, integrating AI models with Unity applications and web platforms.</li>
+                    <li>Research and prototype generative AI workflows using ComfyUI for image generation and AI-powered image processing.</li>
+                    <li>Explore local LLMs and AI agents using Ollama, Hermes, and LangChain, including MCP, external tool integration, and RAG with Chroma Vector Database.</li>
                   </ul>
                 </div>
-              </article>
-              <article class="xp-item">
-                <p class="xp-when">Jan 2022 - Mar 2022</p>
-                <div>
-                  <h4 class="xp-role">Electrical Engineering Intern</h4>
-                  <p class="xp-org">PT Syergie Indo Prima</p>
+              </details>
+
+              <details class="xp-item">
+                <summary class="xp-summary">
+                  <p class="xp-when">Jan 2022 - Mar 2022</p>
+                  <div class="xp-head">
+                    <h4 class="xp-role">Electrical Engineering Intern</h4>
+                    <p class="xp-org">PT Syergie Indo Prima</p>
+                  </div>
+                </summary>
+                <div class="xp-body">
                   <ul class="xp-points">
                     <li>Designed PCB layouts using Eagle</li>
                     <li>Developed monitoring GUI using QML and Python</li>
                     <li>Implemented MQTT communication for real-time data</li>
                   </ul>
                 </div>
-              </article>
+              </details>
             </div>
           </div>
 
           <div class="xp-group">
             <h3 class="xp-group-title">Education</h3>
             <div class="xp-list">
-              <article class="xp-item">
-                <p class="xp-when">Aug 2019 - Apr 2024</p>
-                <div>
-                  <h4 class="xp-role">Bachelor of Electrical Engineering</h4>
-                  <p class="xp-org">Universitas Padjadjaran, Indonesia</p>
-                  <p class="muted" style="margin-top:.75rem">GPA 3.72 / 4.00. Focused on artificial intelligence, embedded systems, control systems, and hardware-software integration. Final thesis: SAVIBot, a virtual assistant bot using BERT.</p>
+              <details class="xp-item">
+                <summary class="xp-summary">
+                  <p class="xp-when">Aug 2019 - Apr 2024</p>
+                  <div class="xp-head">
+                    <h4 class="xp-role">Bachelor of Electrical Engineering</h4>
+                    <p class="xp-org">Universitas Padjadjaran, Indonesia</p>
+                  </div>
+                </summary>
+                <div class="xp-body">
+                  <p class="muted">GPA 3.72 / 4.00. Focused on artificial intelligence, embedded systems, control systems, and hardware-software integration. Final thesis: SAVIBot, a virtual assistant bot using BERT.</p>
                 </div>
-              </article>
-              <article class="xp-item">
-                <p class="xp-when">Aug 2022 - Dec 2022</p>
-                <div>
-                  <h4 class="xp-role">Artificial Intelligence Mastery Program</h4>
-                  <p class="xp-org">Orbit Future Academy &amp; Kampus Merdeka, Remote</p>
+              </details>
+
+              <details class="xp-item">
+                <summary class="xp-summary">
+                  <p class="xp-when">Aug 2022 - Dec 2022</p>
+                  <div class="xp-head">
+                    <h4 class="xp-role">Artificial Intelligence Mastery Program</h4>
+                    <p class="xp-org">Orbit Future Academy &amp; Kampus Merdeka, Remote</p>
+                  </div>
+                </summary>
+                <div class="xp-body">
                   <ul class="xp-points">
                     <li>Studied AI focusing on data science, computer vision, NLP, and reinforcement learning</li>
                     <li>Implemented Artificial Intelligence models to solve case problems</li>
@@ -264,18 +289,22 @@
                     <li>Achieved 2nd Place in AI Mastery Habibie TechFest 2022</li>
                   </ul>
                 </div>
-              </article>
+              </details>
             </div>
           </div>
 
           <div class="xp-group">
             <h3 class="xp-group-title">Publications</h3>
             <div class="xp-list">
-              <article class="xp-item">
-                <p class="xp-when">Dec 2021</p>
-                <div>
-                  <h4 class="xp-role">Real Time Object Edge Detection System to Assist RPLidar Sensor Performance</h4>
-                  <p class="xp-org">Internetworking Indonesia Journal &bull; Vol. 13, No. 2, pp. 23&ndash;28</p>
+              <details class="xp-item">
+                <summary class="xp-summary">
+                  <p class="xp-when">Dec 2021</p>
+                  <div class="xp-head">
+                    <h4 class="xp-role">Real Time Object Edge Detection System to Assist RPLidar Sensor Performance</h4>
+                    <p class="xp-org">Internetworking Indonesia Journal &bull; Vol. 13, No. 2, pp. 23&ndash;28</p>
+                  </div>
+                </summary>
+                <div class="xp-body">
                   <ul class="xp-points">
                     <li>Co-authored research on real-time visual edge detection with OpenCV to improve 2D RPLiDAR obstacle mapping.</li>
                   </ul>
@@ -283,7 +312,7 @@
                     <a class="link" href="https://internetworkingindonesia.org/index.php/iij/article/view/61" target="_blank" rel="noopener noreferrer">Read article &nearr;</a>
                   </p>
                 </div>
-              </article>
+              </details>
             </div>
           </div>
         </div>
@@ -328,6 +357,6 @@
   </footer>
 
   <script src="assets/js/projects-data.js?v=18" defer></script>
-  <script src="assets/js/script.js?v=20" defer></script>
+  <script src="assets/js/script.js?v=23" defer></script>
 </body>
 </html>
