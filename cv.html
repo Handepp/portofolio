@@ -28,10 +28,14 @@
       </div>
       <div class="cv-toolbar-right">
         <span class="cv-toolbar-tip screen-only">Format: ATS Standard &bull; A4 Vector PDF</span>
-        <button type="button" class="cv-download-btn" id="downloadPdfBtn" aria-label="Download CV as PDF">
+        <button type="button" class="cv-print-btn screen-only" id="printCvBtn" title="Print document" aria-label="Print CV">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+          Print
+        </button>
+        <a href="assets/docs/Reyhan_Devara_CV_ATS.pdf" download="Reyhan_Devara_CV_ATS.pdf" class="cv-download-btn" id="downloadPdfBtn" aria-label="Download CV as PDF">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
           Download PDF
-        </button>
+        </a>
       </div>
     </div>
   </aside>
@@ -200,9 +204,9 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      var downloadBtn = document.getElementById('downloadPdfBtn');
-      if (downloadBtn) {
-        downloadBtn.addEventListener('click', function () {
+      var printBtn = document.getElementById('printCvBtn');
+      if (printBtn) {
+        printBtn.addEventListener('click', function () {
           window.print();
         });
       }

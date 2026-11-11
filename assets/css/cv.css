@@ -102,15 +102,38 @@ body.cv-body {
   cursor: pointer;
   transition: all 0.15s ease;
   font-family: inherit;
+  text-decoration: none;
 }
 
 .cv-download-btn:hover {
   background-color: #33312e;
+  color: #ffffff;
   transform: translateY(-1px);
 }
 
 .cv-download-btn:active {
   transform: translateY(0);
+}
+
+.cv-print-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--cv-text);
+  background: transparent;
+  padding: 0.45rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid var(--cv-border);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.cv-print-btn:hover {
+  background: #f4efe7;
+  border-color: #cbbead;
 }
 
 .cv-toolbar-tip {
