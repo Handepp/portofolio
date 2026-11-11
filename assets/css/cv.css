@@ -1,0 +1,461 @@
+/* ==========================================================================
+   CV / Resume Stylesheet (ATS-Friendly & Print-Optimized)
+   Reyhan Devara - AI & Embedded Systems Engineer
+   ========================================================================== */
+
+:root {
+  --cv-bg: #faf7f2;
+  --cv-paper: #ffffff;
+  --cv-text: #1a1918;
+  --cv-text-muted: #55524e;
+  --cv-border: #e2ded7;
+  --cv-primary: #1e3a8a;
+  --cv-primary-hover: #172554;
+  --cv-rule: #2a2928;
+  --cv-font: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --cv-font-serif: "Fraunces", Georgia, serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body.cv-body {
+  background-color: var(--cv-bg);
+  color: var(--cv-text);
+  font-family: var(--cv-font);
+  font-size: 10pt;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --------------------------------------------------------------------------
+   Top Toolbar (Screen Only)
+   -------------------------------------------------------------------------- */
+.cv-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: rgba(250, 247, 242, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--cv-border);
+  padding: 0.75rem 1rem;
+}
+
+.cv-toolbar-wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.cv-toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.cv-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--cv-text);
+  text-decoration: none;
+  padding: 0.45rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid var(--cv-border);
+  background: #ffffff;
+  transition: all 0.15s ease;
+}
+
+.cv-back-link:hover {
+  background: #f4efe7;
+  border-color: #cbbead;
+}
+
+.cv-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.cv-download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #1a1918;
+  padding: 0.5rem 1.1rem;
+  border-radius: 6px;
+  border: 1px solid #1a1918;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.cv-download-btn:hover {
+  background-color: #33312e;
+  transform: translateY(-1px);
+}
+
+.cv-download-btn:active {
+  transform: translateY(0);
+}
+
+.cv-toolbar-tip {
+  font-size: 0.78rem;
+  color: var(--cv-text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Paper Document Container (A4 Proportioned on Screen)
+   -------------------------------------------------------------------------- */
+.cv-container {
+  max-width: 860px;
+  margin: 1.5rem auto 3rem;
+  padding: 0 1rem;
+}
+
+.cv-paper {
+  background: var(--cv-paper);
+  color: #111111;
+  border: 1px solid var(--cv-border);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  padding: 24mm 22mm;
+  border-radius: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   ATS-Friendly Document Typography & Content
+   -------------------------------------------------------------------------- */
+.cv-header {
+  text-align: center;
+  margin-bottom: 1.4rem;
+  padding-bottom: 1rem;
+  border-bottom: 1.5px solid #111111;
+}
+
+.cv-name {
+  font-size: 20pt;
+  font-weight: 700;
+  color: #111111;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+}
+
+.cv-tagline {
+  font-size: 11pt;
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 0.5rem;
+}
+
+.cv-contact {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem 0.6rem;
+  font-size: 9pt;
+  color: #333333;
+  list-style: none;
+}
+
+.cv-contact li {
+  display: inline-flex;
+  align-items: center;
+}
+
+.cv-contact li:not(:last-child)::after {
+  content: "|";
+  margin-left: 0.6rem;
+  color: #888888;
+}
+
+.cv-contact a {
+  color: #111111;
+  text-decoration: none;
+}
+
+.cv-contact a:hover {
+  text-decoration: underline;
+}
+
+/* Section Headings */
+.cv-section {
+  margin-bottom: 1.35rem;
+}
+
+.cv-section-title {
+  font-size: 11.5pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #111111;
+  border-bottom: 1px solid #222222;
+  padding-bottom: 0.2rem;
+  margin-bottom: 0.65rem;
+}
+
+/* Paragraphs & Text */
+.cv-summary {
+  font-size: 9.5pt;
+  line-height: 1.55;
+  color: #222222;
+  text-align: justify;
+}
+
+/* Job & Education Entries */
+.cv-item {
+  margin-bottom: 1rem;
+}
+
+.cv-item:last-child {
+  margin-bottom: 0;
+}
+
+.cv-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  margin-bottom: 0.15rem;
+}
+
+.cv-item-title {
+  font-size: 10pt;
+  font-weight: 700;
+  color: #111111;
+}
+
+.cv-item-subtitle {
+  font-size: 9.5pt;
+  font-weight: 600;
+  color: #222222;
+}
+
+.cv-item-meta {
+  font-size: 9pt;
+  font-weight: 500;
+  color: #444444;
+  white-space: nowrap;
+}
+
+.cv-item-desc {
+  font-size: 9.25pt;
+  color: #333333;
+  line-height: 1.5;
+  margin: 0.25rem 0 0.4rem;
+}
+
+/* Bullet Points */
+.cv-bullets {
+  list-style-type: disc;
+  margin-left: 1.25rem;
+  margin-top: 0.35rem;
+}
+
+.cv-bullets li {
+  font-size: 9.25pt;
+  line-height: 1.5;
+  color: #222222;
+  margin-bottom: 0.3rem;
+  padding-left: 0.15rem;
+}
+
+.cv-bullets li:last-child {
+  margin-bottom: 0;
+}
+
+/* Skills Layout */
+.cv-skills-list {
+  list-style: none;
+}
+
+.cv-skills-list li {
+  font-size: 9.25pt;
+  line-height: 1.55;
+  color: #222222;
+  margin-bottom: 0.35rem;
+}
+
+.cv-skill-label {
+  font-weight: 700;
+  color: #111111;
+}
+
+/* Awards */
+.cv-awards-list {
+  list-style: disc;
+  margin-left: 1.25rem;
+}
+
+.cv-awards-list li {
+  font-size: 9.25pt;
+  line-height: 1.55;
+  color: #222222;
+  margin-bottom: 0.3rem;
+}
+
+/* --------------------------------------------------------------------------
+   Mobile Adjustments
+   -------------------------------------------------------------------------- */
+@media (max-width: 680px) {
+  .cv-toolbar {
+    padding: 0.6rem 0.75rem;
+  }
+  .cv-toolbar-wrap {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+  .cv-toolbar-left,
+  .cv-toolbar-right {
+    justify-content: space-between;
+    width: 100%;
+  }
+  .cv-container {
+    margin: 0.75rem auto 2rem;
+    padding: 0 0.5rem;
+  }
+  .cv-paper {
+    padding: 1.25rem 1rem;
+    box-shadow: none;
+    border-radius: 0;
+  }
+  .cv-name {
+    font-size: 16pt;
+  }
+  .cv-contact {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .cv-contact li:not(:last-child)::after {
+    display: none;
+  }
+  .cv-item-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .cv-summary {
+    text-align: left;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   PRINT ENGINE (@media print)
+   Generates pixel-perfect, vector, ATS-friendly A4 PDF
+   -------------------------------------------------------------------------- */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm 14mm 12mm 14mm;
+  }
+
+  /* Reset layout for paper */
+  html, body.cv-body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 9.5pt !important;
+    line-height: 1.45 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+
+  /* Hide screen elements */
+  .cv-toolbar,
+  .screen-only {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  .cv-container {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .cv-paper {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  /* Ensure text contrast */
+  .cv-name,
+  .cv-section-title,
+  .cv-item-title,
+  .cv-skill-label {
+    color: #000000 !important;
+  }
+
+  .cv-tagline,
+  .cv-item-subtitle,
+  .cv-item-meta,
+  .cv-summary,
+  .cv-bullets li,
+  .cv-skills-list li,
+  .cv-awards-list li {
+    color: #111111 !important;
+  }
+
+  .cv-contact a {
+    color: #000000 !important;
+    text-decoration: none !important;
+  }
+
+  /* Don't append URLs in print for ATS clarity */
+  a[href]::after {
+    content: none !important;
+  }
+
+  /* Page break rules for clean multi-page A4 */
+  .cv-header {
+    margin-bottom: 1rem !important;
+    padding-bottom: 0.75rem !important;
+  }
+
+  .cv-section {
+    margin-bottom: 1.15rem !important;
+    page-break-inside: auto;
+    break-inside: auto;
+  }
+
+  .cv-section-title {
+    page-break-after: avoid;
+    break-after: avoid;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .cv-item {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin-bottom: 0.85rem !important;
+  }
+
+  .cv-bullets li {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin-bottom: 0.2rem !important;
+  }
+}
