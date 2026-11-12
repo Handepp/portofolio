@@ -83,8 +83,30 @@
 </ul>
           </div>
         </div>
-        <div class="hero-portrait" data-enter style="--i:1">
-          <img src="assets/img/handep-no-bg.webp" alt="Portrait of Reyhan Devara" width="954" height="1297" fetchpriority="high" />
+        <div class="hero-visual" data-enter style="--i:1">
+          <div class="hero-view-switch" role="tablist" aria-label="Visual view toggle">
+            <button type="button" class="hero-switch-btn active" id="heroBtn3d" role="tab" aria-selected="true" aria-controls="hero3dView">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+              3D Hardware
+            </button>
+            <button type="button" class="hero-switch-btn" id="heroBtnPhoto" role="tab" aria-selected="false" aria-controls="heroPortraitView">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              Portrait
+            </button>
+          </div>
+
+          <!-- 3D Hardware View (Option 1 Preview) -->
+          <div class="hero-3d-wrap active" id="hero3dView" role="tabpanel" aria-label="Interactive 3D Hardware Board">
+            <div id="hero3dCanvasWrap" class="hero-3d-canvas"></div>
+            <div class="hero-3d-hint">
+              <span>Drag to rotate 3D &bull; Click to pulse signal</span>
+            </div>
+          </div>
+
+          <!-- Original Portrait Photo -->
+          <div class="hero-portrait hidden" id="heroPortraitView" role="tabpanel" aria-label="Portrait of Reyhan Devara">
+            <img src="assets/img/handep-no-bg.webp" alt="Portrait of Reyhan Devara" width="954" height="1297" fetchpriority="high" />
+          </div>
         </div>
       </div>
     </section>
@@ -359,6 +381,8 @@
   </footer>
 
   <script src="assets/js/projects-data.js?v=18" defer></script>
+  <script src="assets/js/three.min.js" defer></script>
+  <script src="assets/js/hero-3d.js?v=1" defer></script>
   <script src="assets/js/script.js?v=23" defer></script>
 </body>
 </html>
