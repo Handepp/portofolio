@@ -19,77 +19,90 @@ const EXTERNAL_LINK_ICON = `<svg width="16" height="16" fill="none" stroke="curr
 const MODAL_TEMPLATE = `
   <div id="projectModal" class="project-modal hidden" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalProjectTitle">
     <div class="project-modal-overlay" data-modal-close></div>
-    <div class="project-modal-dialog">
-      <button type="button" class="project-modal-close" data-modal-close aria-label="Close project details">
-        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>
+    <div class="project-modal-dialog" id="modalDialog">
       <div class="project-modal-body">
-        <div class="project-modal-workspace">
-          <aside class="project-modal-media">
-            <div class="project-modal-slider" id="modalImageSlider">
-              <button type="button" class="slider-btn slider-prev" id="modalSliderPrev" aria-label="Previous image">
-                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
-              </button>
-              <div class="slider-viewport"><div class="slider-track" id="modalSliderTrack"></div></div>
-              <button type="button" class="slider-btn slider-next" id="modalSliderNext" aria-label="Next image">
-                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-              </button>
-              <div class="slider-counter" id="modalSliderCounter">1 / 1</div>
-              <div class="slider-dots" id="modalSliderDots"></div>
+        <header class="project-modal-hero">
+          <span id="modalProjectMeta" class="project-modal-meta"></span>
+          <div class="project-modal-title-row">
+            <h2 id="modalProjectTitle" class="project-modal-title"></h2>
+            <button type="button" class="project-modal-close" data-modal-close aria-label="Close project details">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+          </div>
+          <p id="modalProjectSummary" class="project-modal-summary"></p>
+          <div class="project-modal-hero-foot">
+            <div id="modalProjectTech" class="project-modal-tech"></div>
+            <div class="project-modal-actions hidden" id="modalProjectActions">
+              <a id="modalProjectLinkBtn" href="#" target="_blank" rel="noopener noreferrer" class="project-modal-btn project-modal-btn-primary">
+                <span id="modalProjectLinkIcon" class="inline-flex" aria-hidden="true"></span>
+                <span id="modalProjectLinkLabel">View project</span>
+              </a>
+            </div>
+          </div>
+        </header>
+
+        <div class="project-modal-stage">
+          <div class="project-modal-stage-grid" id="modalStageGrid">
+            <div class="project-modal-media-photos" id="modalPhotoPane">
+              <h3 class="project-modal-section-title project-modal-photo-head">Gallery</h3>
+              <div class="project-modal-slider" id="modalImageSlider">
+                <button type="button" class="slider-btn slider-prev" id="modalSliderPrev" aria-label="Previous image">
+                  <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+                </button>
+                <div class="slider-viewport"><div class="slider-track" id="modalSliderTrack"></div></div>
+                <button type="button" class="slider-btn slider-next" id="modalSliderNext" aria-label="Next image">
+                  <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                </button>
+                <div class="slider-counter" id="modalSliderCounter">1 / 1</div>
+              </div>
+              <div class="slider-thumbs hidden" id="modalSliderThumbs" role="group" aria-label="Gallery thumbnails"></div>
             </div>
 
-            <div class="project-modal-section" id="modalVideoSection">
-              <h3 class="project-modal-section-title">Demo video</h3>
-              <div id="modalVideoDeployments" class="project-modal-video-deployments hidden" role="group" aria-label="Select deployment video"></div>
-              <div class="project-modal-video-wrap" id="modalVideoWrap">
-                <div id="modalVideoContainer" class="project-modal-video hidden"></div>
-                <div id="modalVideoPlaceholder" class="project-modal-video-placeholder"><p>Demo video will be available soon.</p></div>
+            <div class="project-modal-media-video hidden" id="modalVideoPane">
+              <div class="project-modal-video-head">
+                <h3 class="project-modal-section-title">Demo video</h3>
+                <div id="modalVideoDeployments" class="project-modal-video-deployments hidden" role="group" aria-label="Select deployment video"></div>
+              </div>
+              <div class="project-modal-video-frame" id="modalVideoFrame">
+                <div class="project-modal-video-wrap" id="modalVideoWrap">
+                  <div id="modalVideoContainer" class="project-modal-video"></div>
+                </div>
               </div>
             </div>
-          </aside>
 
-          <div class="project-modal-content">
-            <div>
-              <span id="modalProjectMeta" class="project-modal-badge"></span>
-              <h2 id="modalProjectTitle" class="project-modal-title"></h2>
-              <p id="modalProjectSummary" class="project-modal-summary"></p>
-              <div id="modalProjectTech" class="project-modal-tech"></div>
-              <div class="project-modal-actions">
-                <a id="modalProjectLinkBtn" href="#" target="_blank" rel="noopener noreferrer" class="project-modal-btn project-modal-btn-primary hidden">
-                  <span id="modalProjectLinkIcon" class="inline-flex" aria-hidden="true"></span>
-                  <span id="modalProjectLinkLabel">View project</span>
-                </a>
+            <div class="project-modal-context">
+              <div class="project-modal-context-block">
+                <h3 class="project-modal-section-title">Project context &amp; About</h3>
+                <p id="modalAbout" class="project-modal-about-text"></p>
+              </div>
+              <div class="project-modal-deployments-wrap hidden" id="modalDeploymentsSection">
+                <h3 class="project-modal-section-title">Client deployments</h3>
+                <div id="modalDeployments" class="project-modal-deployments"></div>
               </div>
             </div>
+          </div>
+        </div>
 
-            <div class="project-modal-section">
-              <h3 class="project-modal-section-title">About the project</h3>
-              <p id="modalAbout" class="project-modal-about-text"></p>
-            </div>
-            <div class="project-modal-section hidden" id="modalDeploymentsSection">
-              <h3 class="project-modal-section-title">Project context</h3>
-              <div id="modalDeployments" class="project-modal-deployments"></div>
-            </div>
-            <div class="project-modal-section hidden" id="modalHowItWorksSection">
-              <h3 class="project-modal-section-title">How it works</h3>
-              <p id="modalHowItWorks" class="project-modal-about-text"></p>
-            </div>
-            <div class="project-modal-section hidden" id="modalContributionsSection">
-              <h3 class="project-modal-section-title">My contributions</h3>
-              <ul id="modalContributions" class="project-modal-list"></ul>
-            </div>
-            <div class="project-modal-section hidden" id="modalFeaturesSection">
-              <h3 class="project-modal-section-title">Key features</h3>
-              <ul id="modalFeatures" class="project-modal-list"></ul>
-            </div>
-            <div class="project-modal-section hidden" id="modalChallengesSection">
-              <h3 class="project-modal-section-title">Challenges</h3>
-              <ul id="modalChallenges" class="project-modal-list"></ul>
-            </div>
-            <div class="project-modal-section hidden" id="modalResultsSection">
-              <h3 class="project-modal-section-title">Results</h3>
-              <ul id="modalResults" class="project-modal-list"></ul>
-            </div>
+        <div class="project-modal-specs">
+          <div class="project-modal-section hidden" id="modalHowItWorksSection">
+            <h3 class="project-modal-section-title">How it works</h3>
+            <p id="modalHowItWorks" class="project-modal-about-text"></p>
+          </div>
+          <div class="project-modal-section hidden" id="modalFeaturesSection">
+            <h3 class="project-modal-section-title">Key features</h3>
+            <ul id="modalFeatures" class="project-modal-list"></ul>
+          </div>
+          <div class="project-modal-section hidden" id="modalContributionsSection">
+            <h3 class="project-modal-section-title">My contributions</h3>
+            <ul id="modalContributions" class="project-modal-list"></ul>
+          </div>
+          <div class="project-modal-section hidden" id="modalChallengesSection">
+            <h3 class="project-modal-section-title">Challenges</h3>
+            <ul id="modalChallenges" class="project-modal-list"></ul>
+          </div>
+          <div class="project-modal-section project-modal-section--results hidden" id="modalResultsSection">
+            <h3 class="project-modal-section-title">Results</h3>
+            <ul id="modalResults" class="project-modal-list"></ul>
           </div>
         </div>
       </div>
@@ -467,23 +480,30 @@ function initProjectModal() {
   if (!modal || !window.PROJECTS_DATA) return;
 
   const els = {
+    dialog: document.getElementById("modalDialog"),
+    closeBtn: modal.querySelector(".project-modal-close"),
+    stageGrid: document.getElementById("modalStageGrid"),
+    photoPane: document.getElementById("modalPhotoPane"),
+    videoPane: document.getElementById("modalVideoPane"),
     slider: document.getElementById("modalImageSlider"),
     sliderTrack: document.getElementById("modalSliderTrack"),
     sliderPrev: document.getElementById("modalSliderPrev"),
     sliderNext: document.getElementById("modalSliderNext"),
     sliderCounter: document.getElementById("modalSliderCounter"),
-    sliderDots: document.getElementById("modalSliderDots"),
+    sliderThumbs: document.getElementById("modalSliderThumbs"),
     meta: document.getElementById("modalProjectMeta"),
     title: document.getElementById("modalProjectTitle"),
     summary: document.getElementById("modalProjectSummary"),
     tech: document.getElementById("modalProjectTech"),
+    actions: document.getElementById("modalProjectActions"),
     githubBtn: document.getElementById("modalProjectLinkBtn"),
     projectLinkIcon: document.getElementById("modalProjectLinkIcon"),
     projectLinkLabel: document.getElementById("modalProjectLinkLabel"),
+    videoFrame: document.getElementById("modalVideoFrame"),
     videoContainer: document.getElementById("modalVideoContainer"),
     videoWrap: document.getElementById("modalVideoWrap"),
-    videoPlaceholder: document.getElementById("modalVideoPlaceholder"),
     videoDeployments: document.getElementById("modalVideoDeployments"),
+    contextPane: modal.querySelector(".project-modal-context"),
     about: document.getElementById("modalAbout"),
     deploymentsSection: document.getElementById("modalDeploymentsSection"),
     deployments: document.getElementById("modalDeployments"),
@@ -502,6 +522,10 @@ function initProjectModal() {
   let currentSlide = 0;
   let slideCount = 0;
   let activeTrigger = null;
+  let currentProject = null;
+  let currentDeployments = [];
+  let activeVideoDeploymentIndex = 0;
+  let hasVideoAvailable = false;
 
   function getImageSrc(imagePath) {
     if (!imagePath) return "";
@@ -522,109 +546,157 @@ function initProjectModal() {
   }
 
   function getClientDeployments(project) {
-    if (project.org !== "Unictive") return [];
-
-    const deployments = Array.isArray(project.clientDeployments)
-      ? project.clientDeployments.filter(
-          (deployment) => deployment?.endClient || deployment?.client
-        )
-      : [];
-
-    if (Array.isArray(project.clientDeployments)) return deployments;
-
-    return [
-      {
-        endClient: "[End client / brand placeholder]",
-        event: "[Event name placeholder]",
-        video: project.video || "",
-      },
-    ];
+    if (!Array.isArray(project.clientDeployments)) return [];
+    return project.clientDeployments.filter(
+      (deployment) => deployment?.endClient || deployment?.client
+    );
   }
 
   function renderDeployments(deployments = []) {
+    els.contextPane?.classList.toggle("has-deployments", deployments.length > 0);
     if (!els.deploymentsSection || !els.deployments) return;
 
-    const values = deployments.filter(
-      (deployment) => deployment?.endClient || deployment?.client
-    );
-    if (!values.length) {
+    if (!deployments.length) {
       els.deploymentsSection.classList.add("hidden");
-      els.deploymentsSection.classList.remove("is-single");
       els.deployments.replaceChildren();
       return;
     }
 
     els.deploymentsSection.classList.remove("hidden");
-    els.deploymentsSection.classList.toggle("is-single", values.length === 1);
     els.deployments.replaceChildren();
 
-    values.forEach((deployment) => {
+    deployments.forEach((deployment) => {
       const card = document.createElement("article");
       card.className = "project-modal-deployment";
 
       const client = document.createElement("h4");
-      client.textContent =
-        deployment.endClient || deployment.client || "[End client / brand placeholder]";
-
-      const details = [
-        [
-          "Event",
-          deployment.event === ""
-            ? "Not listed"
-            : deployment.event || "[Event name placeholder]",
-        ],
-      ];
-
+      client.textContent = deployment.endClient || deployment.client || "";
       card.append(client);
-      details.forEach(([label, value]) => {
+
+      if (deployment.event) {
         const detail = document.createElement("p");
         const labelEl = document.createElement("span");
         labelEl.className = "project-modal-deployment-detail-label";
-        labelEl.textContent = `${label}: `;
-        detail.append(labelEl, document.createTextNode(value));
+        labelEl.textContent = "Event: ";
+        detail.append(labelEl, document.createTextNode(deployment.event));
         card.appendChild(detail);
-      });
+      }
+
       els.deployments.appendChild(card);
     });
   }
 
   function getDeploymentVideo(deployment, project, index) {
     if (deployment?.video) return deployment.video;
-    return index === 0 ? project.video || "" : "";
+    return index === 0 ? project?.video || "" : "";
   }
 
-  function renderDeploymentVideo(deployment, project, index) {
-    const videoProject = {
-      ...project,
-      videoPortrait: deployment?.videoPortrait ?? project.videoPortrait,
-    };
-    renderVideo(getDeploymentVideo(deployment, project, index), videoProject);
+  function countAvailableVideos(deployments, project) {
+    if (deployments.length > 0) {
+      return deployments.filter((deployment, index) =>
+        Boolean(getDeploymentVideo(deployment, project, index))
+      ).length;
+    }
+    return project?.video ? 1 : 0;
+  }
+
+  function normalizeYoutubeEmbed(url) {
+    if (!url) return "";
+    const patterns = [
+      /shorts\/([a-zA-Z0-9_-]+)/,
+      /embed\/([a-zA-Z0-9_-]+)/,
+      /youtu\.be\/([a-zA-Z0-9_-]+)/,
+      /[?&]v=([a-zA-Z0-9_-]+)/,
+    ];
+
+    for (const pattern of patterns) {
+      const match = url.match(pattern);
+      if (match) return `https://www.youtube.com/embed/${match[1]}`;
+    }
+
+    return url.split("?")[0];
+  }
+
+  function isPortraitVideo(url, project, deployment) {
+    if (deployment?.videoPortrait !== undefined) return Boolean(deployment.videoPortrait);
+    if (project?.videoPortrait) return true;
+    return /shorts\//i.test(url || "");
+  }
+
+  function getVideoEmbedUrl(url) {
+    const embedUrl = normalizeYoutubeEmbed(url);
+    if (!embedUrl) return "";
+    const separator = embedUrl.includes("?") ? "&" : "?";
+    return `${embedUrl}${separator}autoplay=1&mute=1&playsinline=1`;
+  }
+
+  function clearVideoEmbed() {
+    if (els.videoContainer) els.videoContainer.innerHTML = "";
+    els.videoWrap?.classList.remove("is-portrait");
+    els.videoContainer?.classList.remove("is-portrait");
+    els.stageGrid?.classList.remove("has-portrait-video");
+  }
+
+  function mountCurrentVideo() {
+    if (!els.videoContainer || !currentProject || !hasVideoAvailable) return;
+
+    const deployment = currentDeployments[activeVideoDeploymentIndex];
+    const videoUrl = deployment
+      ? getDeploymentVideo(deployment, currentProject, activeVideoDeploymentIndex)
+      : currentProject.video || "";
+
+    clearVideoEmbed();
+    if (!videoUrl) return;
+
+    const portrait = isPortraitVideo(videoUrl, currentProject, deployment);
+    els.videoWrap?.classList.toggle("is-portrait", portrait);
+    els.videoContainer.classList.toggle("is-portrait", portrait);
+    els.stageGrid?.classList.toggle("has-portrait-video", portrait);
+    els.videoContainer.innerHTML = `
+      <iframe
+        src="${getVideoEmbedUrl(videoUrl)}"
+        title="Project demo video"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    `;
   }
 
   function renderVideoDeploymentSelector(deployments, project) {
     if (!els.videoDeployments) return;
 
     els.videoDeployments.replaceChildren();
-    if (deployments.length <= 1) {
+    const videoEntries = deployments
+      .map((deployment, index) => ({
+        deployment,
+        index,
+        videoUrl: getDeploymentVideo(deployment, project, index),
+      }))
+      .filter((entry) => Boolean(entry.videoUrl));
+
+    if (videoEntries.length <= 1) {
       els.videoDeployments.classList.add("hidden");
       return;
     }
 
     els.videoDeployments.classList.remove("hidden");
-    deployments.forEach((deployment, index) => {
+    videoEntries.forEach(({ deployment, index }) => {
+      const isInitial = index === activeVideoDeploymentIndex;
       const button = document.createElement("button");
       button.type = "button";
-      button.className = `project-modal-video-deployment${index === 0 ? " is-active" : ""}`;
+      button.className = `project-modal-video-deployment${isInitial ? " is-active" : ""}`;
       button.textContent =
         deployment.endClient || deployment.client || `Deployment ${index + 1}`;
-      button.setAttribute("aria-pressed", index === 0 ? "true" : "false");
+      button.setAttribute("aria-pressed", isInitial ? "true" : "false");
       button.addEventListener("click", () => {
+        activeVideoDeploymentIndex = index;
         els.videoDeployments.querySelectorAll("button").forEach((item) => {
           const isActive = item === button;
           item.classList.toggle("is-active", isActive);
           item.setAttribute("aria-pressed", isActive ? "true" : "false");
         });
-        renderDeploymentVideo(deployment, project, index);
+        mountCurrentVideo();
       });
       els.videoDeployments.appendChild(button);
     });
@@ -639,17 +711,16 @@ function initProjectModal() {
 
   function renderProjectLink(project) {
     const link = getProjectLink(project);
-
-    if (!els.githubBtn) return;
+    if (!els.githubBtn || !els.actions) return;
 
     if (!link) {
-      els.githubBtn.classList.add("hidden");
+      els.actions.classList.add("hidden");
       els.githubBtn.removeAttribute("href");
       return;
     }
 
     els.githubBtn.href = link.url;
-    els.githubBtn.classList.remove("hidden");
+    els.actions.classList.remove("hidden");
 
     if (els.projectLinkIcon) els.projectLinkIcon.innerHTML = link.icon;
     if (els.projectLinkLabel) els.projectLinkLabel.textContent = link.label;
@@ -696,9 +767,11 @@ function initProjectModal() {
       els.sliderCounter.textContent = `${currentSlide + 1} / ${slideCount}`;
     }
 
-    if (els.sliderDots) {
-      els.sliderDots.querySelectorAll(".slider-dot").forEach((dot, index) => {
-        dot.classList.toggle("is-active", index === currentSlide);
+    if (els.sliderThumbs) {
+      els.sliderThumbs.querySelectorAll(".slider-thumb").forEach((thumb, index) => {
+        const isActive = index === currentSlide;
+        thumb.classList.toggle("is-active", isActive);
+        thumb.setAttribute("aria-pressed", String(isActive));
       });
     }
 
@@ -731,80 +804,32 @@ function initProjectModal() {
       addImageFallback(image, title);
     });
 
-    if (els.sliderDots) {
-      els.sliderDots.innerHTML = "";
+    if (els.sliderThumbs) {
+      els.sliderThumbs.replaceChildren();
+      els.sliderThumbs.classList.toggle("hidden", slideCount <= 1);
+
       if (slideCount > 1) {
-        uniqueImages.forEach((_, index) => {
-          const dot = document.createElement("button");
-          dot.type = "button";
-          dot.className = `slider-dot${index === 0 ? " is-active" : ""}`;
-          dot.setAttribute("aria-label", `Go to image ${index + 1}`);
-          dot.addEventListener("click", (event) => {
-            event.stopPropagation();
-            goToSlide(index);
-          });
-          els.sliderDots.appendChild(dot);
+        uniqueImages.forEach((img, index) => {
+          const thumbBtn = document.createElement("button");
+          thumbBtn.type = "button";
+          thumbBtn.className = `slider-thumb${index === 0 ? " is-active" : ""}`;
+          thumbBtn.setAttribute("aria-label", `Show image ${index + 1}`);
+          thumbBtn.setAttribute("aria-pressed", index === 0 ? "true" : "false");
+
+          const thumbImg = document.createElement("img");
+          thumbImg.src = getImageSrc(img);
+          thumbImg.alt = "";
+          thumbImg.loading = "lazy";
+          addImageFallback(thumbImg, title);
+
+          thumbBtn.appendChild(thumbImg);
+          thumbBtn.addEventListener("click", () => goToSlide(index));
+          els.sliderThumbs.appendChild(thumbBtn);
         });
       }
     }
 
     updateSliderPosition();
-  }
-
-  function normalizeYoutubeEmbed(url) {
-    if (!url) return "";
-    const patterns = [
-      /shorts\/([a-zA-Z0-9_-]+)/,
-      /embed\/([a-zA-Z0-9_-]+)/,
-      /youtu\.be\/([a-zA-Z0-9_-]+)/,
-      /[?&]v=([a-zA-Z0-9_-]+)/,
-    ];
-
-    for (const pattern of patterns) {
-      const match = url.match(pattern);
-      if (match) return `https://www.youtube.com/embed/${match[1]}`;
-    }
-
-    return url.split("?")[0];
-  }
-
-  function isPortraitVideo(url, project) {
-    if (project?.videoPortrait) return true;
-    return /shorts\//i.test(url || "");
-  }
-
-  function getVideoEmbedUrl(url) {
-    const embedUrl = normalizeYoutubeEmbed(url);
-    if (!embedUrl) return "";
-    const separator = embedUrl.includes("?") ? "&" : "?";
-    return `${embedUrl}${separator}autoplay=1&mute=1&playsinline=1`;
-  }
-
-  function renderVideo(videoUrl, project) {
-    if (!els.videoContainer || !els.videoPlaceholder) return;
-
-    els.videoContainer.innerHTML = "";
-    const portrait = isPortraitVideo(videoUrl, project);
-    els.videoWrap?.classList.toggle("is-portrait", portrait);
-    els.videoContainer.classList.toggle("is-portrait", portrait);
-
-    if (!videoUrl) {
-      els.videoContainer.classList.add("hidden");
-      els.videoPlaceholder.classList.remove("hidden");
-      els.videoWrap?.classList.remove("is-portrait");
-      return;
-    }
-
-    els.videoContainer.classList.remove("hidden");
-    els.videoPlaceholder.classList.add("hidden");
-    els.videoContainer.innerHTML = `
-      <iframe
-        src="${getVideoEmbedUrl(videoUrl)}"
-        title="Project demo video"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-      ></iframe>
-    `;
   }
 
   function getFocusableElements() {
@@ -816,42 +841,66 @@ function initProjectModal() {
   }
 
   function focusModal() {
+    if (els.closeBtn && !els.closeBtn.disabled) {
+      els.closeBtn.focus();
+      return;
+    }
     const focusableElements = getFocusableElements();
-    const firstElement = focusableElements[0];
-    if (firstElement) firstElement.focus();
+    if (focusableElements[0]) focusableElements[0].focus();
   }
 
-  function openModal(projectId, trigger = null) {
+  function openModal(projectId, trigger = null, options = {}) {
     const project = PROJECTS_DATA[projectId];
     if (!project) return;
 
-    activeTrigger = trigger;
-    renderSlider(project.gallery || [project.img], project.title);
+    currentProject = project;
+    activeTrigger = trigger || activeTrigger;
+
+    const images = project.gallery || [project.img];
+    renderSlider(images, project.title);
 
     if (els.meta) els.meta.textContent = `${project.tag} · ${project.year} · ${project.org}`;
     if (els.title) els.title.textContent = project.title;
     if (els.summary) els.summary.textContent = project.summary;
     if (els.about) els.about.textContent = getAboutText(project);
 
-    const deployments = getClientDeployments(project);
-    renderDeployments(deployments);
-    renderVideoDeploymentSelector(deployments, project);
+    currentDeployments = getClientDeployments(project);
+    renderDeployments(currentDeployments);
+
+    const videoCount = countAvailableVideos(currentDeployments, project);
+    hasVideoAvailable = videoCount > 0;
+    const firstVideoDeployIdx = currentDeployments.findIndex((deployment, index) =>
+      Boolean(getDeploymentVideo(deployment, project, index))
+    );
+    activeVideoDeploymentIndex = firstVideoDeployIdx >= 0 ? firstVideoDeployIdx : 0;
+
+    renderVideoDeploymentSelector(currentDeployments, project);
+    els.stageGrid?.classList.toggle("has-video", hasVideoAvailable);
+    els.videoPane?.classList.toggle("hidden", !hasVideoAvailable);
+    if (hasVideoAvailable) {
+      mountCurrentVideo();
+    } else {
+      clearVideoEmbed();
+    }
+
     toggleTextSection(els.howItWorksSection, els.howItWorks, project.howItWorks);
-    toggleListSection(els.contributionsSection, els.contributions, project.contributions);
     toggleListSection(els.featuresSection, els.features, project.features);
+    toggleListSection(els.contributionsSection, els.contributions, project.contributions);
     toggleListSection(els.challengesSection, els.challenges, project.challenges);
     toggleListSection(els.resultsSection, els.results, project.results);
 
     renderTech(project.tech);
-    renderDeploymentVideo(deployments[0], project, 0);
-
     renderProjectLink(project);
 
     modal.classList.remove("hidden");
     modal.classList.add("is-open");
     modal.setAttribute("aria-hidden", "false");
     document.body.classList.add("modal-open");
-    requestAnimationFrame(focusModal);
+    if (els.dialog) els.dialog.scrollTop = 0;
+
+    if (!options.preserveFocus) {
+      requestAnimationFrame(focusModal);
+    }
   }
 
   function closeModal() {
@@ -862,15 +911,14 @@ function initProjectModal() {
 
     const triggerToRestore = activeTrigger;
     activeTrigger = null;
-
+    currentProject = null;
+    currentDeployments = [];
+    hasVideoAvailable = false;
     currentSlide = 0;
-    if (els.videoContainer) {
-      els.videoContainer.innerHTML = "";
-      els.videoContainer.classList.add("hidden");
-      els.videoContainer.classList.remove("is-portrait");
-    }
-    if (els.videoWrap) els.videoWrap.classList.remove("is-portrait");
-    if (els.videoPlaceholder) els.videoPlaceholder.classList.remove("hidden");
+
+    clearVideoEmbed();
+    els.stageGrid?.classList.remove("has-video");
+    els.videoPane?.classList.add("hidden");
     if (els.videoDeployments) {
       els.videoDeployments.replaceChildren();
       els.videoDeployments.classList.add("hidden");

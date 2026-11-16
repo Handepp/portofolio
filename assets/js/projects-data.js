@@ -1,4 +1,74 @@
 window.PROJECTS_DATA = {
+  "byd-dashboard": {
+    id: "byd-dashboard",
+    tag: "Interactive Embedded System",
+    categories: ["interactive", "embedded"],
+    title: "EV vs. Conventional Dashboard Vibration Comparison System",
+    img: "byd_dashboard.webp",
+    summary:
+      "An interactive two-rig car dashboard installation built for BYD to contrast conventional engine vibration against silent EV cabin comfort using ESP32 controllers, a BTS7960 motor driver, Bluetooth Serial, and Python.",
+    tech: [
+      "Embedded C",
+      "ESP32",
+      "Python",
+      "BTS7960",
+      "Vibration Motor",
+      "Bluetooth Serial"
+    ],
+    year: "2026",
+    org: "Unictive",
+    github: "",
+
+    overview:
+      "This project developed a dual-unit physical comparison installation demonstrating cabin comfort differences between conventional combustion vehicles and electric vehicles. Visitors test both dashboards side-by-side with a glass of water placed on each console to visually observe vibration versus stillness.",
+
+    howItWorks:
+      "On the conventional rig, turning a digital ignition key signals an ESP32 to drive a vibration motor through a BTS7960 motor driver while sending commands over Bluetooth Serial to a Python application on a Mini PC to play engine sound effects, shaking the water glass on the dashboard. On the EV rig, pressing the start button signals an ESP32 integrated with a Python Mini PC application without a vibration motor, keeping the water glass completely still to represent silent driving comfort.",
+
+    contributions: [
+      "Designed embedded control architectures for both the conventional vibration rig and the vibration-free EV rig",
+      "Developed ESP32 firmware handling digital ignition key and push-button inputs",
+      "Integrated BTS7960 motor driver control for the conventional dashboard vibration motor",
+      "Implemented Bluetooth Serial communication between both ESP32 units and Python Mini PC applications"
+    ],
+
+    features: [
+      "Side-by-side physical comparison of conventional vibration vs. EV cabin stillness",
+      "Digital ignition key input driving BTS7960 vibration motor control",
+      "Push-button ESP32 trigger synced with Python audio-visual feedback on a Mini PC",
+      "Real-time Bluetooth Serial integration across embedded hardware and host applications"
+    ],
+
+    challenges: [
+      "Delivering repeatable vibration intensity on the conventional dashboard via the BTS7960 driver during public exhibition use",
+      "Synchronizing physical key and button triggers cleanly with Mini PC sound effects over Bluetooth Serial",
+      "Maintaining unmistakable visual contrast on both dashboards during the water glass stability test"
+    ],
+
+    results: [
+      "Deployed dual interactive dashboard simulators for the BYD DM Tech comparison experience",
+      "Demonstrated conventional engine vibration versus quiet, steady EV cabin comfort through direct hands-on testing"
+    ],
+
+    gallery: [
+      "byd_dashboard.webp",
+      "assets/img/projects/gallery/byd-dashboard/ev-booth.webp",
+      "assets/img/projects/gallery/byd-dashboard/ev-button.webp",
+      "assets/img/projects/gallery/byd-dashboard/conventional-key.webp",
+      "assets/img/projects/gallery/byd-dashboard/conventional-dashboard.webp"
+    ],
+
+    clientDeployments: [
+      {
+        endClient: "BYD",
+        event: "BYD M6 DM Launching and Tech-Culture Fest"
+      }
+    ],
+
+    video: "",
+  },
+
+
   "linear-position": {
     id: "linear-position",
     tag: "Interactive Embedded System",
@@ -1481,6 +1551,7 @@ window.PROJECTS_DATA = {
 };
 
 window.PROJECTS_ORDER = [
+  "byd-dashboard",
   "linear-position",
   "sgm",
   "giias-rmbg",
