@@ -40,9 +40,8 @@ window.PROJECTS_DATA = {
     ],
 
     challenges: [
-      "Delivering repeatable vibration intensity on the conventional dashboard via the BTS7960 driver during public exhibition use",
-      "Synchronizing physical key and button triggers cleanly with Mini PC sound effects over Bluetooth Serial",
-      "Maintaining unmistakable visual contrast on both dashboards during the water glass stability test"
+      "Coordinating on-site installation and setup for both dashboard rigs at the event venue",
+      "Ensuring reliable hardware and Mini PC operation during continuous public exhibition use"
     ],
 
     results: [
@@ -62,6 +61,72 @@ window.PROJECTS_DATA = {
       {
         endClient: "BYD",
         event: "BYD M6 DM Launching and Tech-Culture Fest"
+      }
+    ],
+
+    video: "",
+  },
+
+
+  "lidar-piano": {
+    id: "lidar-piano",
+    tag: "Interactive Installation",
+    categories: ["interactive", "embedded"],
+    title: "LiDAR Step Detection System for Interactive Giant Piano",
+    img: "lidar_piano.webp",
+    summary:
+      "A real-time LiDAR tracking system that turns footsteps on an LED floor into input for a Unity piano game.",
+    tech: [
+      "Python",
+      "YDLIDAR TIA-H",
+      "PyQt5",
+      "DBSCAN",
+      "TCP/UDP"
+    ],
+    year: "2026",
+    org: "Unictive",
+    github: "",
+
+    overview:
+      "This project built a physical-to-digital interaction system for a giant piano game shown on an LED floor. A YDLIDAR TIA-H sensor detects where visitors step, and a Python bridge converts the scan data into touch coordinates for the Unity game. The system was designed so every footstep plays a piano key in real time.",
+
+    howItWorks:
+      "The TIA-H sensor streams scan data to a Python application over TCP. The application keeps only the points inside the play area, groups them with DBSCAN so each foot becomes one point, and tracks them across frames. Confirmed positions are converted to LED floor pixel coordinates and sent to Unity over UDP as JSON.",
+
+    contributions: [
+      "Built the sensor-to-Unity bridge in Python using the YDLIDAR SDK",
+      "Implemented ROI filtering, DBSCAN clustering, tracking, and debounce",
+      "Developed the operator GUI for calibration and live visualization",
+      "Packaged the app as a Windows executable and calibrated it on site"
+    ],
+
+    features: [
+      "Real-time footstep detection with multi-point tracking",
+      "Operator GUI for on-site calibration and monitoring",
+      "Low-latency UDP link to Unity",
+      "Standalone Windows executable for easy setup"
+    ],
+
+    challenges: [
+      "Filtering sensor noise to avoid false key presses",
+      "Mapping sensor coordinates to LED floor pixels",
+      "Making the control GUI usable on an ultrawide 2016x504 monitor"
+    ],
+
+    results: [
+      "Delivered a working step-detection system for the live event",
+      "Enabled real-time sync between footsteps and the piano game",
+      "Gave operators a tool to recalibrate on site without editing code"
+    ],
+
+    gallery: [
+      "lidar_piano.webp"
+    ],
+
+    clientDeployments: [
+      {
+        endClient: "Daihatsu",
+        event: "GIIAS 2026"
       }
     ],
 
@@ -1552,6 +1617,7 @@ window.PROJECTS_DATA = {
 
 window.PROJECTS_ORDER = [
   "byd-dashboard",
+  "lidar-piano",
   "linear-position",
   "sgm",
   "giias-rmbg",
