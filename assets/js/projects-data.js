@@ -1755,13 +1755,13 @@ window.PROJECTS_DATA = {
 };
 
 window.PROJECTS_ORDER = [
-  "byd-dashboard",
+  "dual-linear-rail",
+  "aruco-auth",
   "lidar-piano",
+  "byd-dashboard",
   "linear-position",
   "sgm",
   "giias-rmbg",
-  "aruco-auth",
-  "dual-linear-rail",
   "giias-footstep",
   "giias-arcade",
   "fitbar",
