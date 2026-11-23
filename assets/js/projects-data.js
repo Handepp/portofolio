@@ -134,6 +134,145 @@ window.PROJECTS_DATA = {
   },
 
 
+  "aruco-auth": {
+    id: "aruco-auth",
+    tag: "Interactive Installation",
+    categories: ["interactive", "ai"],
+    title: "ArUco Marker Product Authentication System for Interactive Exhibition",
+    img: "",
+    summary:
+      "A real-time computer vision system that detects ArUco markers on automotive spare parts to distinguish genuine vs. counterfeit products and triggers interactive visual feedback in Unity.",
+    tech: [
+      "Python",
+      "OpenCV",
+      "ArUco Markers",
+      "Computer Vision",
+      "TCP Socket",
+      "Unity",
+      "PyInstaller"
+    ],
+    year: "2026",
+    org: "Unictive",
+    github: "",
+
+    overview:
+      "This project developed a physical-to-digital interaction system for the Daihatsu exhibition booth at GIIAS 2026. Visitors interact with physical Daihatsu automotive spare parts equipped with optical ArUco markers by placing them under an inspection camera. A real-time computer vision pipeline identifies whether the part being held is genuine (ASLI) or counterfeit (IMITASI), streaming detection events over a local network to an interactive Unity application to educate visitors through immediate dynamic visual feedback.",
+
+    howItWorks:
+      "An overhead camera captures live video feed using OpenCV's DirectShow backend. The Python vision module detects 4x4 ArUco markers, filters out false positives using contour-size thresholds, and smooths the readings through a sliding-window majority voting buffer. Once a stable marker is identified, its product ID is transmitted over a TCP socket to the Unity application. When the visitor removes the item from the camera's field of view, a lost-marker delay timer sends a reset signal to transition the Unity display back to its idle standby state.",
+
+    contributions: [
+      "Engineered the computer vision pipeline using Python and OpenCV (cv2.aruco)",
+      "Implemented noise filtering, minimum marker size validation, and temporal debouncing logic",
+      "Developed the low-latency TCP client bridge with automatic network reconnect logic",
+      "Created standalone debugging tools with real-time bounding boxes and status overlays",
+      "Packaged the application into a standalone Windows executable and calibrated the setup on site"
+    ],
+
+    features: [
+      "Real-time optical marker recognition using OpenCV ArUco dictionaries",
+      "Sliding-window majority voting buffer to eliminate detection flicker and false positives",
+      "State-aware marker-loss timeout for seamless transitions to standby screen",
+      "Resilient TCP socket client with automatic reconnection handling",
+      "Centralized JSON configuration for camera indices, network settings, and filter thresholds",
+      "Standalone Windows executable package for rapid on-site deployment without Python dependencies"
+    ],
+
+    challenges: [
+      "Eliminating detection flickering and jitter caused by exhibition ambient lighting, reflections, and hand occlusions",
+      "Balancing detection responsiveness with stability through a multi-frame majority voting buffer",
+      "Handling marker removal gracefully with delayed reset triggers to avoid abrupt screen flashes",
+      "Ensuring robust network resilience between the vision service and the Unity interactive application"
+    ],
+
+    results: [
+      "Delivered a robust, high-traffic product authentication experience for the GIIAS 2026 event",
+      "Provided visitors with an intuitive, hands-on demonstration comparing genuine Daihatsu parts with counterfeits",
+      "Achieved sub-second detection latency with zero flicker and stable continuous tracking throughout the exhibition"
+    ],
+
+    gallery: [],
+
+    clientDeployments: [
+      {
+        endClient: "Daihatsu",
+        event: "GIIAS 2026"
+      }
+    ],
+
+    video: "",
+  },
+
+
+  "dual-linear-rail": {
+    id: "dual-linear-rail",
+    tag: "Interactive Installation",
+    categories: ["interactive", "embedded"],
+    title: "Dual Linear Rail System for EV Incline Performance Demonstration",
+    img: "",
+    summary:
+      "A motorized dual linear rail system demonstrating the uphill climbing advantage of a BYD electric vehicle compared to a conventional car, controlled by an ESP32 with wireless Bluetooth tuning.",
+    tech: [
+      "ESP32",
+      "C++",
+      "PlatformIO",
+      "NEMA Stepper Motor",
+      "Linear Rail",
+      "Bluetooth SPP"
+    ],
+    year: "2026",
+    org: "Unictive",
+    github: "",
+
+    overview:
+      "This project created a physical interactive demonstration for the BYD booth at GIIAS Surabaya 2026. The installation showcases how BYD electric vehicles deliver superior uphill acceleration and torque compared to conventional internal combustion engine (ICE) cars. When visitors press a button, two diecast models (a BYD car and a conventional car) climb parallel inclined linear rails at different speeds to visually compare their climbing performance.",
+
+    howItWorks:
+      "When the start button is pressed, an ESP32 activates the booth relay and drives two NEMA stepper motors on linear rails using non-blocking pulse timing. The BYD diecast model moves faster up the incline to illustrate electric torque, while the conventional car climbs at a slower pace. Limit switches at the top detect when each car arrives; the first car waits for the second so visitors can clearly see the arrival difference. Once both reach the top, the motors automatically reverse direction to return the carriages to the starting position for the next visitor. Operators can tune forward and reverse speeds wirelessly via Bluetooth Classic, with settings saved to flash memory.",
+
+    contributions: [
+      "Developed the production ESP32 firmware in C++ using PlatformIO",
+      "Implemented non-blocking stepper pulse generation and limit switch debouncing",
+      "Built the Bluetooth SPP interface for live wireless speed calibration",
+      "Handled wiring, motor driver integration, and relay controls",
+      "Calibrated vehicle speeds, limits, and homing behavior on site"
+    ],
+
+    features: [
+      "Synchronized dual-rail motion demonstrating EV vs conventional uphill climbing",
+      "Non-blocking stepper motor pulse generation using ESP32",
+      "Automatic summit-hold and synchronized return homing via 4 limit switches",
+      "Wireless speed tuning and diagnostics via Bluetooth Classic",
+      "Persistent speed settings saved to flash memory across reboots",
+      "Integrated relay control for booth lighting and effects"
+    ],
+
+    challenges: [
+      "Suppressing stepper motor electrical noise to prevent false limit switch triggers",
+      "Mounting and aligning linear rails cleanly within the interactive booth enclosure",
+      "Fastening diecast cars securely to linear carriages without damaging the models",
+      "Adapting firmware and motion timing quickly to shifting client concept requests"
+    ],
+
+    results: [
+      "Delivered a reliable interactive showcase highlighting BYD's uphill performance advantage",
+      "Allowed on-site technicians to adjust motor speeds wirelessly from a phone without opening the enclosure",
+      "Maintained smooth and trouble-free operation throughout the entire exhibition"
+    ],
+
+    gallery: [],
+
+    clientDeployments: [
+      {
+        endClient: "BYD",
+        event: "GIIAS Surabaya 2026"
+      }
+    ],
+
+    video: "",
+  },
+
+
   "linear-position": {
     id: "linear-position",
     tag: "Interactive Embedded System",
@@ -1621,6 +1760,8 @@ window.PROJECTS_ORDER = [
   "linear-position",
   "sgm",
   "giias-rmbg",
+  "aruco-auth",
+  "dual-linear-rail",
   "giias-footstep",
   "giias-arcade",
   "fitbar",

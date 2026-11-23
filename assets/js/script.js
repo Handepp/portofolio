@@ -163,8 +163,14 @@ function createProjectCard(project) {
   image.width = 1000;
   image.height = 625;
   image.loading = "lazy";
-  addImageFallback(image, project.title);
-  image.src = `${PROJECT_THUMB_BASE}${project.img}`;
+  if (project.img) {
+    addImageFallback(image, project.title);
+    image.src = `${PROJECT_THUMB_BASE}${project.img}`;
+  } else {
+    image.src = PROJECT_FALLBACK_IMAGE;
+    image.alt = `${project.title} preview unavailable`;
+    image.classList.add("is-fallback");
+  }
   media.append(image);
 
   const body = document.createElement("div");
@@ -789,20 +795,24 @@ function initProjectModal() {
     if (!els.sliderTrack || !els.slider) return;
 
     const uniqueImages = [...new Set(images.filter(Boolean))];
-    slideCount = uniqueImages.length || 1;
+    const hasCustomImages = uniqueImages.length > 0;
+    const slides = hasCustomImages ? uniqueImages : [PROJECT_FALLBACK_IMAGE];
+    slideCount = slides.length;
     currentSlide = 0;
 
     els.slider.classList.toggle("is-single", slideCount <= 1);
 
-    els.sliderTrack.innerHTML = uniqueImages
+    els.sliderTrack.innerHTML = slides
       .map(
         (img) =>
-          `<div class="slider-slide"><img src="${getImageSrc(img)}" alt="${title}" loading="lazy" /></div>`
+          `<div class="slider-slide"><img src="${hasCustomImages ? getImageSrc(img) : img}" alt="${hasCustomImages ? title : `${title} preview unavailable`}" loading="lazy"${hasCustomImages ? "" : ' class="is-fallback"'} /></div>`
       )
       .join("");
-    els.sliderTrack.querySelectorAll("img").forEach((image) => {
-      addImageFallback(image, title);
-    });
+    if (hasCustomImages) {
+      els.sliderTrack.querySelectorAll("img").forEach((image) => {
+        addImageFallback(image, title);
+      });
+    }
 
     if (els.sliderThumbs) {
       els.sliderThumbs.replaceChildren();
