@@ -284,6 +284,81 @@ window.PROJECTS_DATA = {
   },
 
 
+  "smart-spray-can": {
+    id: "smart-spray-can",
+    tag: "Interactive Installation",
+    categories: ["interactive", "embedded", "ai"],
+    title: "Smart Spray Can Tracking System for Interactive Digital Graffiti",
+    img: "smart_spray_can.webp",
+    summary:
+      "An interactive digital graffiti system integrating an AI-powered visual tracking pipeline and a custom wireless smart spray can to paint virtual neon artwork on a digital canvas.",
+    tech: [
+      "Python",
+      "YOLO (ONNX)",
+      "OpenCV",
+      "Homography",
+      "ESP32-C3",
+      "BLE HID",
+      "EasyEDA",
+      "Unity"
+    ],
+    year: "2026",
+    org: "Unictive",
+    github: "",
+
+    overview:
+      "This project created an interactive digital graffiti installation for the Daihatsu booth at GIIAS 2026. Visitors interact by holding a physical, custom-engineered spray can and pointing it at a large display to paint virtual neon graffiti in real time. The installation bridges physical and digital spaces by combining an overhead camera running an ONNX-based object detection model with a custom wireless embedded spray can acting as an input trigger.",
+
+    howItWorks:
+      "An overhead camera captures the visitor's movement while a YOLO object detection model running on the ONNX runtime tracks the spray can's nozzle position in real time. Perspective-correcting homography transforms the camera coordinates to normalized screen coordinates, and an exponential smoothing filter eliminates pointer jitter before updating the Windows system cursor. Inside the physical spray can, an ESP32-C3 Mini on a custom 1-layer PCB reads the nozzle trigger button and communicates wirelessly with the PC as a BLE HID mouse. When the visitor presses the nozzle, the spray can sends mouse click and hold events over BLE, triggering instantaneous virtual spray paint strokes in the Unity display application.",
+
+    contributions: [
+      "Trained and deployed the custom YOLO nozzle-detection model using the ONNX runtime",
+      "Implemented perspective homography calibration, occlusion handling, and cursor smoothing algorithms",
+      "Designed the custom 1-layer PCB in EasyEDA to fit the internal dimensions of the spray can",
+      "Programmed the ESP32-C3 firmware in C++ for BLE HID mouse emulation and button debouncing",
+      "Integrated the vision pipeline and wireless trigger directly with the host OS and Unity application"
+    ],
+
+    features: [
+      "Real-time optical tracking of spray can nozzle using YOLO on the ONNX runtime",
+      "4-point homography calibration mapping camera perspective directly to screen space",
+      "Coordinate smoothing and occlusion-aware anchor heuristics for stable pointer control",
+      "Custom 1-layer circular PCB housed inside a physical spray can form factor",
+      "Wireless BLE HID mouse emulation delivering low-latency spray triggers",
+      "Touch-friendly calibration tool for fast on-site alignment"
+    ],
+
+    challenges: [
+      "Redesigning the custom 1-layer PCB to adapt to iterative 3D enclosure revisions from the industrial design team",
+      "Retraining the YOLO model on site after drastic venue lighting shifts degraded initial detection accuracy",
+      "Eliminating erratic cursor jumps caused by partial hand occlusions and variable can tilt angles",
+      "Mitigating intermittent Bluetooth connection drops caused by heavy RF interference on the exhibition floor"
+    ],
+
+    results: [
+      "Successfully delivered an intuitive, highly popular tangible digital graffiti experience at GIIAS 2026",
+      "Achieved smooth, low-latency spray tracking with reliable wireless trigger actuation",
+      "Established a rapid on-site calibration workflow allowing quick recalibration during booth maintenance"
+    ],
+
+    gallery: [
+      "smart_spray_can.webp",
+      "assets/img/projects/gallery/smart-spray-can/spray-can-closeup.webp",
+      "assets/img/projects/gallery/smart-spray-can/rocky-action-demo.webp"
+    ],
+
+    clientDeployments: [
+      {
+        endClient: "Daihatsu",
+        event: "GIIAS 2026"
+      }
+    ],
+
+    video: "",
+  },
+
+
   "linear-position": {
     id: "linear-position",
     tag: "Interactive Embedded System",
@@ -1767,6 +1842,7 @@ window.PROJECTS_DATA = {
 
 window.PROJECTS_ORDER = [
   "dual-linear-rail",
+  "smart-spray-can",
   "aruco-auth",
   "lidar-piano",
   "byd-dashboard",
