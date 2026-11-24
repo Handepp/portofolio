@@ -216,7 +216,7 @@ window.PROJECTS_DATA = {
     tag: "Interactive Installation",
     categories: ["interactive", "embedded"],
     title: "Dual Linear Rail System for EV Incline Performance Demonstration",
-    img: "",
+    img: "dual_linear_rail.webp",
     summary:
       "A motorized dual linear rail system demonstrating the uphill climbing advantage of a BYD electric vehicle compared to a conventional car, controlled by an ESP32 with wireless Bluetooth tuning.",
     tech: [
@@ -267,7 +267,11 @@ window.PROJECTS_DATA = {
       "Maintained smooth and trouble-free operation throughout the entire exhibition"
     ],
 
-    gallery: [],
+    gallery: [
+      "dual_linear_rail.webp",
+      "assets/img/projects/gallery/dual-linear-rail/start-button-summit.webp",
+      "assets/img/projects/gallery/dual-linear-rail/booth-race-demo.webp"
+    ],
 
     clientDeployments: [
       {
