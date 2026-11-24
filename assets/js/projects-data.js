@@ -120,7 +120,10 @@ window.PROJECTS_DATA = {
     ],
 
     gallery: [
-      "lidar_piano.webp"
+      "lidar_piano.webp",
+      "assets/img/projects/gallery/lidar-piano/gameplay-active.webp",
+      "assets/img/projects/gallery/lidar-piano/floor-interaction.webp",
+      "assets/img/projects/gallery/lidar-piano/roi-detector-gui.webp"
     ],
 
     clientDeployments: [
@@ -139,7 +142,7 @@ window.PROJECTS_DATA = {
     tag: "Interactive Installation",
     categories: ["interactive", "ai"],
     title: "ArUco Marker Product Authentication System for Interactive Exhibition",
-    img: "",
+    img: "aruco_auth.webp",
     summary:
       "A real-time computer vision system that detects ArUco markers on automotive spare parts to distinguish genuine vs. counterfeit products and triggers interactive visual feedback in Unity.",
     tech: [
@@ -191,7 +194,11 @@ window.PROJECTS_DATA = {
       "Achieved sub-second detection latency with zero flicker and stable continuous tracking throughout the exhibition"
     ],
 
-    gallery: [],
+    gallery: [
+      "aruco_auth.webp",
+      "assets/img/projects/gallery/aruco-auth/booth-overview.webp",
+      "assets/img/projects/gallery/aruco-auth/parts-camera.webp"
+    ],
 
     clientDeployments: [
       {
