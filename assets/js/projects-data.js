@@ -1,4 +1,289 @@
 window.PROJECTS_DATA = {
+  "byd-dashboard": {
+    id: "byd-dashboard",
+    tag: "Interactive Embedded System",
+    categories: ["interactive", "embedded"],
+    title: "EV vs. Conventional Dashboard Vibration Comparison System",
+    img: "byd_dashboard.webp",
+    summary:
+      "An interactive two-rig car dashboard installation built for BYD to contrast conventional engine vibration against silent EV cabin comfort using ESP32 controllers, a BTS7960 motor driver, Bluetooth Serial, and Python.",
+    tech: [
+      "Embedded C",
+      "ESP32",
+      "Python",
+      "BTS7960",
+      "Vibration Motor",
+      "Bluetooth Serial"
+    ],
+    year: "2026",
+    org: "Unictive",
+    github: "",
+
+    overview:
+      "This project developed a dual-unit physical comparison installation demonstrating cabin comfort differences between conventional combustion vehicles and electric vehicles. Visitors test both dashboards side-by-side with a glass of water placed on each console to visually observe vibration versus stillness.",
+
+    howItWorks:
+      "On the conventional rig, turning a digital ignition key signals an ESP32 to drive a vibration motor through a BTS7960 motor driver while sending commands over Bluetooth Serial to a Python application on a Mini PC to play engine sound effects, shaking the water glass on the dashboard. On the EV rig, pressing the start button signals an ESP32 integrated with a Python Mini PC application without a vibration motor, keeping the water glass completely still to represent silent driving comfort.",
+
+    contributions: [
+      "Designed embedded control architectures for both the conventional vibration rig and the vibration-free EV rig",
+      "Developed ESP32 firmware handling digital ignition key and push-button inputs",
+      "Integrated BTS7960 motor driver control for the conventional dashboard vibration motor",
+      "Implemented Bluetooth Serial communication between both ESP32 units and Python Mini PC applications"
+    ],
+
+    features: [
+      "Side-by-side physical comparison of conventional vibration vs. EV cabin stillness",
+      "Digital ignition key input driving BTS7960 vibration motor control",
+      "Push-button ESP32 trigger synced with Python audio-visual feedback on a Mini PC",
+      "Real-time Bluetooth Serial integration across embedded hardware and host applications"
+    ],
+
+    challenges: [
+      "Coordinating on-site installation and setup for both dashboard rigs at the event venue",
+      "Ensuring reliable hardware and Mini PC operation during continuous public exhibition use"
+    ],
+
+    results: [
+      "Deployed dual interactive dashboard simulators for the BYD DM Tech comparison experience",
+      "Demonstrated conventional engine vibration versus quiet, steady EV cabin comfort through direct hands-on testing"
+    ],
+
+    gallery: [
+      "byd_dashboard.webp",
+      "assets/img/projects/gallery/byd-dashboard/ev-booth.webp",
+      "assets/img/projects/gallery/byd-dashboard/ev-button.webp",
+      "assets/img/projects/gallery/byd-dashboard/conventional-key.webp",
+      "assets/img/projects/gallery/byd-dashboard/conventional-dashboard.webp"
+    ],
+
+    clientDeployments: [
+      {
+        endClient: "BYD",
+        event: "BYD M6 DM Launching and Tech-Culture Fest"
+      }
+    ],
+
+    video: "",
+  },
+
+
+  "lidar-piano": {
+    id: "lidar-piano",
+    tag: "Interactive Installation",
+    categories: ["interactive", "embedded"],
+    title: "LiDAR Step Detection System for Interactive Giant Piano",
+    img: "lidar_piano.webp",
+    summary:
+      "A real-time LiDAR tracking system that turns footsteps on an LED floor into input for a Unity piano game.",
+    tech: [
+      "Python",
+      "YDLIDAR TIA-H",
+      "PyQt5",
+      "DBSCAN",
+      "TCP/UDP"
+    ],
+    year: "2026",
+    org: "Unictive",
+    github: "",
+
+    overview:
+      "This project built a physical-to-digital interaction system for a giant piano game shown on an LED floor. A YDLIDAR TIA-H sensor detects where visitors step, and a Python bridge converts the scan data into touch coordinates for the Unity game. The system was designed so every footstep plays a piano key in real time.",
+
+    howItWorks:
+      "The TIA-H sensor streams scan data to a Python application over TCP. The application keeps only the points inside the play area, groups them with DBSCAN so each foot becomes one point, and tracks them across frames. Confirmed positions are converted to LED floor pixel coordinates and sent to Unity over UDP as JSON.",
+
+    contributions: [
+      "Built the sensor-to-Unity bridge in Python using the YDLIDAR SDK",
+      "Implemented ROI filtering, DBSCAN clustering, tracking, and debounce",
+      "Developed the operator GUI for calibration and live visualization",
+      "Packaged the app as a Windows executable and calibrated it on site"
+    ],
+
+    features: [
+      "Real-time footstep detection with multi-point tracking",
+      "Operator GUI for on-site calibration and monitoring",
+      "Low-latency UDP link to Unity",
+      "Standalone Windows executable for easy setup"
+    ],
+
+    challenges: [
+      "Filtering sensor noise to avoid false key presses",
+      "Mapping sensor coordinates to LED floor pixels",
+      "Making the control GUI usable on an ultrawide 2016x504 monitor"
+    ],
+
+    results: [
+      "Delivered a working step-detection system for the live event",
+      "Enabled real-time sync between footsteps and the piano game",
+      "Gave operators a tool to recalibrate on site without editing code"
+    ],
+
+    gallery: [
+      "lidar_piano.webp",
+      "assets/img/projects/gallery/lidar-piano/gameplay-active.webp",
+      "assets/img/projects/gallery/lidar-piano/floor-interaction.webp",
+      "assets/img/projects/gallery/lidar-piano/roi-detector-gui.webp"
+    ],
+
+    clientDeployments: [
+      {
+        endClient: "Daihatsu",
+        event: "GIIAS 2026"
+      }
+    ],
+
+    video: "",
+  },
+
+
+  "aruco-auth": {
+    id: "aruco-auth",
+    tag: "Interactive Installation",
+    categories: ["interactive", "ai"],
+    title: "ArUco Marker Product Authentication System for Interactive Exhibition",
+    img: "aruco_auth.webp",
+    summary:
+      "A real-time computer vision system that detects ArUco markers on automotive spare parts to distinguish genuine vs. counterfeit products and triggers interactive visual feedback in Unity.",
+    tech: [
+      "Python",
+      "OpenCV",
+      "ArUco Markers",
+      "Computer Vision",
+      "TCP Socket",
+      "Unity",
+      "PyInstaller"
+    ],
+    year: "2026",
+    org: "Unictive",
+    github: "",
+
+    overview:
+      "This project developed a physical-to-digital interaction system for the Daihatsu exhibition booth at GIIAS 2026. Visitors interact with physical Daihatsu automotive spare parts equipped with optical ArUco markers by placing them under an inspection camera. A real-time computer vision pipeline identifies whether the part being held is genuine (ASLI) or counterfeit (IMITASI), streaming detection events over a local network to an interactive Unity application to educate visitors through immediate dynamic visual feedback.",
+
+    howItWorks:
+      "An overhead camera captures live video feed using OpenCV's DirectShow backend. The Python vision module detects 4x4 ArUco markers, filters out false positives using contour-size thresholds, and smooths the readings through a sliding-window majority voting buffer. Once a stable marker is identified, its product ID is transmitted over a TCP socket to the Unity application. When the visitor removes the item from the camera's field of view, a lost-marker delay timer sends a reset signal to transition the Unity display back to its idle standby state.",
+
+    contributions: [
+      "Engineered the computer vision pipeline using Python and OpenCV (cv2.aruco)",
+      "Implemented noise filtering, minimum marker size validation, and temporal debouncing logic",
+      "Developed the low-latency TCP client bridge with automatic network reconnect logic",
+      "Created standalone debugging tools with real-time bounding boxes and status overlays",
+      "Packaged the application into a standalone Windows executable and calibrated the setup on site"
+    ],
+
+    features: [
+      "Real-time optical marker recognition using OpenCV ArUco dictionaries",
+      "Sliding-window majority voting buffer to eliminate detection flicker and false positives",
+      "State-aware marker-loss timeout for seamless transitions to standby screen",
+      "Resilient TCP socket client with automatic reconnection handling",
+      "Centralized JSON configuration for camera indices, network settings, and filter thresholds",
+      "Standalone Windows executable package for rapid on-site deployment without Python dependencies"
+    ],
+
+    challenges: [
+      "Eliminating detection flickering and jitter caused by exhibition ambient lighting, reflections, and hand occlusions",
+      "Balancing detection responsiveness with stability through a multi-frame majority voting buffer",
+      "Handling marker removal gracefully with delayed reset triggers to avoid abrupt screen flashes",
+      "Ensuring robust network resilience between the vision service and the Unity interactive application"
+    ],
+
+    results: [
+      "Delivered a robust, high-traffic product authentication experience for the GIIAS 2026 event",
+      "Provided visitors with an intuitive, hands-on demonstration comparing genuine Daihatsu parts with counterfeits",
+      "Achieved sub-second detection latency with zero flicker and stable continuous tracking throughout the exhibition"
+    ],
+
+    gallery: [
+      "aruco_auth.webp",
+      "assets/img/projects/gallery/aruco-auth/booth-overview.webp",
+      "assets/img/projects/gallery/aruco-auth/parts-camera.webp"
+    ],
+
+    clientDeployments: [
+      {
+        endClient: "Daihatsu",
+        event: "GIIAS 2026"
+      }
+    ],
+
+    video: "",
+  },
+
+
+  "dual-linear-rail": {
+    id: "dual-linear-rail",
+    tag: "Interactive Installation",
+    categories: ["interactive", "embedded"],
+    title: "Dual Linear Rail System for EV Incline Performance Demonstration",
+    img: "dual_linear_rail.webp",
+    summary:
+      "A motorized dual linear rail system demonstrating the uphill climbing advantage of a BYD electric vehicle compared to a conventional car, controlled by an ESP32 with wireless Bluetooth tuning.",
+    tech: [
+      "ESP32",
+      "C++",
+      "PlatformIO",
+      "NEMA Stepper Motor",
+      "Linear Rail",
+      "Bluetooth SPP"
+    ],
+    year: "2026",
+    org: "Unictive",
+    github: "",
+
+    overview:
+      "This project created a physical interactive demonstration for the BYD booth at GIIAS Surabaya 2026. The installation showcases how BYD electric vehicles deliver superior uphill acceleration and torque compared to conventional internal combustion engine (ICE) cars. When visitors press a button, two diecast models (a BYD car and a conventional car) climb parallel inclined linear rails at different speeds to visually compare their climbing performance.",
+
+    howItWorks:
+      "When the start button is pressed, an ESP32 activates the booth relay and drives two NEMA stepper motors on linear rails using non-blocking pulse timing. The BYD diecast model moves faster up the incline to illustrate electric torque, while the conventional car climbs at a slower pace. Limit switches at the top detect when each car arrives; the first car waits for the second so visitors can clearly see the arrival difference. Once both reach the top, the motors automatically reverse direction to return the carriages to the starting position for the next visitor. Operators can tune forward and reverse speeds wirelessly via Bluetooth Classic, with settings saved to flash memory.",
+
+    contributions: [
+      "Developed the production ESP32 firmware in C++ using PlatformIO",
+      "Implemented non-blocking stepper pulse generation and limit switch debouncing",
+      "Built the Bluetooth SPP interface for live wireless speed calibration",
+      "Handled wiring, motor driver integration, and relay controls",
+      "Calibrated vehicle speeds, limits, and homing behavior on site"
+    ],
+
+    features: [
+      "Synchronized dual-rail motion demonstrating EV vs conventional uphill climbing",
+      "Non-blocking stepper motor pulse generation using ESP32",
+      "Automatic summit-hold and synchronized return homing via 4 limit switches",
+      "Wireless speed tuning and diagnostics via Bluetooth Classic",
+      "Persistent speed settings saved to flash memory across reboots",
+      "Integrated relay control for booth lighting and effects"
+    ],
+
+    challenges: [
+      "Suppressing stepper motor electrical noise to prevent false limit switch triggers",
+      "Mounting and aligning linear rails cleanly within the interactive booth enclosure",
+      "Fastening diecast cars securely to linear carriages without damaging the models",
+      "Adapting firmware and motion timing quickly to shifting client concept requests"
+    ],
+
+    results: [
+      "Delivered a reliable interactive showcase highlighting BYD's uphill performance advantage",
+      "Allowed on-site technicians to adjust motor speeds wirelessly from a phone without opening the enclosure",
+      "Maintained smooth and trouble-free operation throughout the entire exhibition"
+    ],
+
+    gallery: [
+      "dual_linear_rail.webp",
+      "assets/img/projects/gallery/dual-linear-rail/start-button-summit.webp",
+      "assets/img/projects/gallery/dual-linear-rail/booth-race-demo.webp"
+    ],
+
+    clientDeployments: [
+      {
+        endClient: "BYD",
+        event: "GIIAS Surabaya 2026"
+      }
+    ],
+
+    video: "",
+  },
+
+
   "linear-position": {
     id: "linear-position",
     tag: "Interactive Embedded System",
@@ -1481,6 +1766,10 @@ window.PROJECTS_DATA = {
 };
 
 window.PROJECTS_ORDER = [
+  "dual-linear-rail",
+  "aruco-auth",
+  "lidar-piano",
+  "byd-dashboard",
   "linear-position",
   "sgm",
   "giias-rmbg",

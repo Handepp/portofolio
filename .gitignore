@@ -7,6 +7,7 @@ node_modules/
 # AI Agent skills & local tool state
 .agents/
 .claude/
+.superpowers/
 agent/
 skills-lock.json
 .taste-skill/
