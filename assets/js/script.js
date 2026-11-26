@@ -579,12 +579,14 @@ function initProjectModal() {
       client.textContent = deployment.endClient || deployment.client || "";
       card.append(client);
 
-      if (deployment.event) {
+      const detailLabel = deployment.place ? "Place: " : deployment.event ? "Event: " : "";
+      const detailValue = deployment.place || deployment.event;
+      if (detailValue) {
         const detail = document.createElement("p");
         const labelEl = document.createElement("span");
         labelEl.className = "project-modal-deployment-detail-label";
-        labelEl.textContent = "Event: ";
-        detail.append(labelEl, document.createTextNode(deployment.event));
+        labelEl.textContent = detailLabel;
+        detail.append(labelEl, document.createTextNode(detailValue));
         card.appendChild(detail);
       }
 

@@ -233,7 +233,7 @@ window.PROJECTS_DATA = {
     github: "",
 
     overview:
-      "This project built a physical-to-digital cycling interface for an interactive installation at Galeri BCA, located inside the BCA Learning Institute (BLI) in Sentul. A real bicycle mounted on a stationary trainer was instrumented with industrial rotary encoders and a push button. As visitors pedal and steer, an ESP32 reads their speed, RPM, and handlebar angle in real time and sends the data over USB serial to the interactive display application.",
+      "This project built a physical-to-digital cycling interface for an interactive installation at Galeri BCA, located inside the BCA Learning Institute (BLI). A real bicycle mounted on a stationary trainer was instrumented with industrial rotary encoders and a push button. As visitors pedal and steer, an ESP32 reads their speed, RPM, and handlebar angle in real time and sends the data over USB serial to the interactive display application.",
 
     howItWorks:
       "Two Autonics rotary encoders capture the rider's physical input: an Autonics ENC-1-2-T-24 wheel encoder coupled to the bike trainer tracks pedaling speed and RPM, while an Autonics E80H30-1024-3-T-24 hollow-shaft encoder on the steering column measures handlebar angle within a ±45° range. The ESP32 reads both quadrature signals using hardware counters, applies exponential smoothing to stabilize speed and RPM readings, and waits for a KALIBRASI command from the PC to zero the steering center. Once calibrated, it streams JSON telemetry (speed, rpm, angle) every 20 ms along with debounced button events over USB serial to the host application.",
@@ -243,7 +243,7 @@ window.PROJECTS_DATA = {
       "Developed the ESP32 firmware in C++ (PlatformIO) using hardware quadrature counters",
       "Built a Python serial monitor GUI for sensor testing and calibration checks",
       "Integrated the USB serial JSON telemetry protocol with the interactive display application",
-      "Handled mechanical sensor mounting and on-site installation at Galeri BCA, Sentul"
+      "Handled mechanical sensor mounting and on-site installation at Galeri BCA"
     ],
 
     features: [
@@ -269,15 +269,15 @@ window.PROJECTS_DATA = {
 
     gallery: [
       "bca_cycling.webp",
-      "assets/img/projects/gallery/bca-cycling/installation-setup.webp",
       "assets/img/projects/gallery/bca-cycling/encoder-mounting.webp",
-      "assets/img/projects/gallery/bca-cycling/ride-summary-ui.webp"
+      "assets/img/projects/gallery/bca-cycling/custom-pcb.webp",
+      "assets/img/projects/gallery/bca-cycling/enclosure-3d.webp"
     ],
 
     clientDeployments: [
       {
         endClient: "BCA",
-        event: "Galeri BCA, BCA Learning Institute (Sentul)"
+        place: "Galeri BCA, BCA Learning Institute"
       }
     ],
 
