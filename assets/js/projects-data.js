@@ -211,6 +211,80 @@ window.PROJECTS_DATA = {
   },
 
 
+  "bca-cycling": {
+    id: "bca-cycling",
+    tag: "Interactive Embedded System",
+    categories: ["interactive", "embedded"],
+    title: "Speed & Steering Tracking System for Interactive Cycling",
+    img: "bca_cycling.webp",
+    summary:
+      "An ESP32-based sensor and telemetry system mounted on a stationary bicycle, capturing pedaling speed, RPM, and steering angle to drive an interactive cycling installation.",
+    tech: [
+      "ESP32",
+      "C++",
+      "PlatformIO",
+      "Rotary Encoder",
+      "EasyEDA",
+      "FreeCAD",
+      "USB Serial"
+    ],
+    year: "2026",
+    org: "Unictive",
+    github: "",
+
+    overview:
+      "This project built a physical-to-digital cycling interface for an interactive installation at Galeri BCA, located inside the BCA Learning Institute (BLI) in Sentul. A real bicycle mounted on a stationary trainer was instrumented with industrial rotary encoders and a push button. As visitors pedal and steer, an ESP32 reads their speed, RPM, and handlebar angle in real time and sends the data over USB serial to the interactive display application.",
+
+    howItWorks:
+      "Two Autonics rotary encoders capture the rider's physical input: an Autonics ENC-1-2-T-24 wheel encoder coupled to the bike trainer tracks pedaling speed and RPM, while an Autonics E80H30-1024-3-T-24 hollow-shaft encoder on the steering column measures handlebar angle within a ±45° range. The ESP32 reads both quadrature signals using hardware counters, applies exponential smoothing to stabilize speed and RPM readings, and waits for a KALIBRASI command from the PC to zero the steering center. Once calibrated, it streams JSON telemetry (speed, rpm, angle) every 20 ms along with debounced button events over USB serial to the host application.",
+
+    contributions: [
+      "Designed the 3D enclosure in FreeCAD and the custom PCB in EasyEDA for fabrication at JLCPCB",
+      "Developed the ESP32 firmware in C++ (PlatformIO) using hardware quadrature counters",
+      "Built a Python serial monitor GUI for sensor testing and calibration checks",
+      "Integrated the USB serial JSON telemetry protocol with the interactive display application",
+      "Handled mechanical sensor mounting and on-site installation at Galeri BCA, Sentul"
+    ],
+
+    features: [
+      "Real-time speed, RPM, and steering angle tracking using industrial quadrature encoders",
+      "USB serial JSON telemetry streaming every 20 ms with exponential smoothing",
+      "Software-triggered zero calibration command for steering alignment",
+      "Custom PCB manufactured via JLCPCB and 3D-printed enclosure designed in FreeCAD",
+      "Python desktop test GUI for standalone serial monitoring prior to host integration"
+    ],
+
+    challenges: [
+      "Disassembling and modifying the bicycle frame to integrate the sensors neatly",
+      "Positioning the wheel encoder against the bike trainer roller so it rotates consistently without slipping",
+      "Solving mechanical mounting and coupling alignment for the handlebar steering encoder",
+      "Completing hardware setup and calibration on site at the gallery location"
+    ],
+
+    results: [
+      "Delivered a dependable stationary bike sensor system for the Galeri BCA installation",
+      "Provided responsive synchronization between physical pedaling/steering and the interactive display",
+      "Streamlined on-site setup and maintenance with a dedicated serial test tool and driver guide"
+    ],
+
+    gallery: [
+      "bca_cycling.webp",
+      "assets/img/projects/gallery/bca-cycling/installation-setup.webp",
+      "assets/img/projects/gallery/bca-cycling/encoder-mounting.webp",
+      "assets/img/projects/gallery/bca-cycling/ride-summary-ui.webp"
+    ],
+
+    clientDeployments: [
+      {
+        endClient: "BCA",
+        event: "Galeri BCA, BCA Learning Institute (Sentul)"
+      }
+    ],
+
+    video: "",
+  },
+
+
   "dual-linear-rail": {
     id: "dual-linear-rail",
     tag: "Interactive Installation",
@@ -1841,6 +1915,7 @@ window.PROJECTS_DATA = {
 };
 
 window.PROJECTS_ORDER = [
+  "bca-cycling",
   "dual-linear-rail",
   "smart-spray-can",
   "aruco-auth",
